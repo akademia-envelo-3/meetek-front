@@ -1,0 +1,11 @@
+{
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=827846
+  "recommendations": [
+    "angular.ng-template",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "mattpocock.ts-error-translator",
+    "formulahendry.auto-rename-tag",
+    "rangav.vscode-thunder-client"
+  ]
+}
