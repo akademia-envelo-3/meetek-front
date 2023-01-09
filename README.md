@@ -12,6 +12,7 @@ PRODUCTION=false
 ```
 
 Breakpoints:
-Small(mobile) = 320px
-Medium(laptop) = 568px
-Large(desktop) = 1024px
+
+1. Small(mobile) = 320px
+2. Medium(laptop) = 568px
+3. Large(desktop) = 1024px
