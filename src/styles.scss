@@ -1,3 +1,39 @@
+//colors
+$primary: #2980B9;
+$primaryDark: #115293;
+$primaryLight: #4791DB;
+$secondary: #8F6278;
+$secondaryDark: #713451;
+$secondaryLight: #af6689;
+$success: #4CAF50;
+$successDark: #388E3C;
+$successLight: #81C784;
+$error: #F44336;
+$errorDark: #AA2E25;
+$errorLight: #F6685E;
+$warning: #FF9800;
+$warningDark: #F57C00;
+$warningLight: #FFB74D;
+$background: #FAFAFA;
+$surface: #FFFFFF;
+$divider: #BABABA;
+$disabled: #868686;
+$darkModeBackground: #303030;
+$darkModeSurface: #414148;
+
+//font-size
+$h1_font-size: 24px;
+$h2_font-size: 21px;
+$L_font-size: 18px;
+$M_font-size: 16px;
+$S_font-size: 15px;
+$XS_font-size: 13px;
+$XXS_font-size: 11px;
+$button_font-size: 14px;
+
+//font-weight
+$bold: bold;
+
 
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
@@ -25,8 +61,8 @@ $app-name-theme: mat.define-light-theme((
     primary: $app-name-primary,
     accent: $app-name-accent,
     warn: $app-name-warn,
-  )
-));
+  )  
+));  
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -41,12 +77,15 @@ $app-name-theme: mat.define-light-theme((
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+}  
 
 * {
   margin: 0;
   padding: 0;
   font-family: inherit;
-}
+}  
 
 html, body { height: 100%; }
+
+
+
