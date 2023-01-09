@@ -10,3 +10,8 @@ Sample `.env` file
 API_URL=http://rickandmortyapi.com/api
 PRODUCTION=false
 ```
+
+Breakpoint:
+Small(mobile) - 320px,
+Medium(laptop) - 568px,
+Large(desktop) - 1024px,
