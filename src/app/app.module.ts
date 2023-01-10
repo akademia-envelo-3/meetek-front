@@ -10,14 +10,18 @@ import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
+import { sectionReducer } from './features/section/store/section.reducer';
+import { TestComponent } from './features/section/store/test.component';
+import { SectionEffects } from './features/section/store/section.effects';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
+    TestComponent,
+    StoreModule.forRoot({ sections: sectionReducer }),
+    EffectsModule.forRoot([SectionEffects]),
     BrowserAnimationsModule,
     RouterModule.forRoot([
       {
@@ -35,6 +39,10 @@ import { noProductionGuard } from '@shared/no-production.guard';
             path: 'theme',
             canMatch: [noProductionGuard],
             loadComponent: () => import('./core/theme.component'),
+          },
+          {
+            path: 'test',
+            component: TestComponent,
           },
           {
             path: '**',
