@@ -10,15 +10,17 @@ export class SectionService {
   constructor(private http: HttpClient) {}
 
   getAll() {
+    console.log('i have got');
     return this.http.get<Section[]>(BASE_URL + '/sections');
   }
 
-  add(payload: Section) {
-    return this.http.post<Section>(BASE_URL + '/sections', payload);
+  add(section: Section) {
+    console.log('posted');
+    return this.http.post<Section>(BASE_URL + '/sections', section);
   }
 
-  update(payload: Section) {
-    return this.http.put<Section>(BASE_URL + '/sections', payload);
+  update(section: Section, id: number) {
+    return this.http.put<Section>(BASE_URL + `/sections/${id}`, section);
   }
 
   activate(id: number) {
@@ -34,11 +36,11 @@ export class SectionService {
   }
 
   join(id: number, userId: number) {
-    return this.http.put<Section>(BASE_URL + `/sections/join/${id}/${userId}`, null);
+    return this.http.post<Section>(BASE_URL + `/sections/${id}/users/${userId}`, null);
   }
 
   leave(id: number, userId: number) {
-    return this.http.put<Section>(BASE_URL + `/sections/${id}/${userId}`, null);
+    return this.http.delete<Section>(BASE_URL + `/sections/${id}/users/${userId}`);
   }
 
   getUsers(id: number) {

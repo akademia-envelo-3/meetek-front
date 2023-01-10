@@ -23,10 +23,37 @@ export class TestComponent implements OnInit {
 
   ngOnInit() {
     this.loadSections();
+    this.addSection({
+      id: 6,
+      name: 'Nowa sekcja',
+      description: 'nowa sekcja do pilki w kosza',
+      isActive: true,
+      joinedUsers: [],
+      events: [],
+      recurringEvents: [],
+      sectionOwner: {
+        id: 3,
+        firstName: '',
+        lastName: '',
+        mail: '',
+        password: '',
+        role: 'user',
+        ownedEvents: [],
+        eventsWithResponse: [],
+        ownedGroups: [],
+        joinedGroups: [],
+        notifications: [],
+      },
+    });
+
     console.log(this.store);
   }
 
-  loadSections(): void {
+  public loadSections(): void {
     this.store.dispatch(sectionActions.sectionActions.getSections());
+  }
+
+  public addSection(section: Section): void {
+    this.store.dispatch(sectionActions.sectionActions.addSection({ section }));
   }
 }
