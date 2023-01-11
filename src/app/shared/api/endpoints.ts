@@ -3,7 +3,7 @@ export const ENDPOINTS = {
   HASHTAGS: '/hashtags',
   SECTIONS: '/sections',
   CATEGORY: '/categories',
-  LOGGEDUSER: '/users/me',
+  LOGGED_USER: '/users/me',
   LOGIN: '/auth/login',
   LOGOUT: '/auth/logout',
 } as const;
