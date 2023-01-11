@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthComponent } from './auth.component';
 
-export const paths = {
+export const authPaths = {
   default: '',
 };
 
@@ -10,7 +10,7 @@ export const paths = {
   imports: [
     RouterModule.forChild([
       {
-        path: paths.default,
+        path: authPaths.default,
         component: AuthComponent,
       },
     ]),

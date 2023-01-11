@@ -2,10 +2,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
 
-export const paths = {
+export const homePaths = {
   default: '',
   event: {
-    single: 'event/:id',
+    single: {
+      core: 'event/:id',
+      subpages: {
+        home: '',
+        participants: 'participants',
+        chat: 'chat',
+        attachments: 'attachments',
+      },
+    },
     all: 'events',
     my: 'events/my',
     owned: 'events/owned',
@@ -14,7 +22,13 @@ export const paths = {
     edit: 'event/:id/edit',
   },
   section: {
-    single: 'section/:id',
+    single: {
+      core: 'section/:id',
+      subpages: {
+        home: '',
+        members: 'members',
+      },
+    },
     all: 'sections',
     my: 'sections/my',
     owned: 'sections/owned',
@@ -32,9 +46,20 @@ export const paths = {
   imports: [
     RouterModule.forChild([
       {
-        path: paths.default,
+        path: homePaths.default,
         component: HomeComponent,
         children: [],
+      },
+      {
+        path: homePaths.event.single.core,
+        component: HomeComponent,
+        children: [
+          {
+            path: homePaths.event.single.subpages.participants,
+            component: HomeComponent,
+            title: 'Uczestnicy',
+          },
+        ],
       },
     ]),
   ],
