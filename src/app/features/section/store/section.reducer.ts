@@ -26,5 +26,24 @@ export const sectionReducer = createReducer(
     return { ...state, section };
   }),
 
-  on(sectionsApiActions.sectionsAddedFailure, (state, { errorMsg }): any => ({ ...state, errorMsg }))
+  on(sectionsApiActions.sectionsAddedFailure, (state, { errorMsg }): any => ({ ...state, errorMsg })),
+
+  on(sectionActions.editSection, (state, section): any => ({
+    ...state,
+    sections: [...state.sections, section.section],
+  })),
+
+  on(sectionsApiActions.sectionEditedSuccess, (state, { section }): any => {
+    const updatedSection = state.sections.filter(update => {
+      return section.id === update.id ? update : null;
+    });
+    return { ...state, updatedSection };
+  }),
+
+  on(sectionsApiActions.sectionEditedFailure, (state, { errorMsg }): any => {
+    return {
+      ...state,
+      errorMsg,
+    };
+  })
 );

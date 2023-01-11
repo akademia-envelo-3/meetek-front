@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { catchError, map, switchMap, of, exhaustMap } from 'rxjs';
+import { catchError, map, switchMap, of } from 'rxjs';
 import { SectionService } from '..';
 import { Section } from '..';
 import { sectionActions, sectionsApiActions } from '..';
@@ -25,6 +25,19 @@ export class SectionEffects {
       switchMap(newSection => this.sectionService.add(newSection.section)),
       map(section => sectionsApiActions.sectionsAddedSuccess({ section })),
       catchError(errorMsg => of(sectionsApiActions.sectionsAddedFailure({ errorMsg })))
+    );
+  });
+
+  editSection$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(sectionActions.editSection),
+      switchMap(editedSection => {
+        console.log(editedSection);
+        return this.sectionService
+          .update(editedSection.section)
+          .pipe(map(section => sectionsApiActions.sectionEditedSuccess({ section: editedSection.section })));
+      }),
+      catchError(errorMsg => of(sectionsApiActions.sectionEditedFailure({ errorMsg })))
     );
   });
 }

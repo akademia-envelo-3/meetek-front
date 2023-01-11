@@ -19,8 +19,9 @@ export class SectionService {
     return this.http.post<Section>(BASE_URL + '/sections', section);
   }
 
-  update(section: Section, id: number) {
-    return this.http.put<Section>(BASE_URL + `/sections/${id}`, section);
+  update(section: Section) {
+    console.log('updated');
+    return this.http.put<Section>(BASE_URL + `/sections/${section.id}`, section);
   }
 
   activate(id: number) {

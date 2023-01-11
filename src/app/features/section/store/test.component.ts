@@ -22,17 +22,40 @@ export class TestComponent implements OnInit {
   public readonly allSections$: Observable<Section[]> = this.store.select(sectionSelectors.selectAllSections);
 
   ngOnInit() {
+    // this.addSection({
+    //   id: 7,
+    //   name: 'Nowa sekcja',
+    //   description: 'nowa sekcja do pilki w kosza',
+    //   isActive: true,
+    //   joinedUsers: [],
+    //   events: [],
+    //   recurringEvents: [],
+    //   sectionOwner: {
+    //     id: 4,
+    //     firstName: '',
+    //     lastName: '',
+    //     mail: '',
+    //     password: '',
+    //     role: 'user',
+    //     ownedEvents: [],
+    //     eventsWithResponse: [],
+    //     ownedGroups: [],
+    //     joinedGroups: [],
+    //     notifications: [],
+    //   },
+    // });
     this.loadSections();
-    this.addSection({
+
+    this.editSection({
       id: 6,
-      name: 'Nowa sekcja',
+      name: 'Szósta sekcja znowuu updatowana',
       description: 'nowa sekcja do pilki w kosza',
       isActive: true,
       joinedUsers: [],
       events: [],
       recurringEvents: [],
       sectionOwner: {
-        id: 3,
+        id: 4,
         firstName: '',
         lastName: '',
         mail: '',
@@ -53,7 +76,11 @@ export class TestComponent implements OnInit {
     this.store.dispatch(sectionActions.sectionActions.getSections());
   }
 
-  public addSection(section: Section): void {
-    this.store.dispatch(sectionActions.sectionActions.addSection({ section }));
+  // public addSection(section: Section): void {
+  //   this.store.dispatch(sectionActions.sectionActions.addSection({ section }));
+  // }
+
+  public editSection(section: Section): void {
+    this.store.dispatch(sectionActions.sectionActions.editSection({ section }));
   }
 }

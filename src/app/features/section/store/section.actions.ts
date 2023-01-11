@@ -7,7 +7,7 @@ export const sectionActions = createActionGroup({
   events: {
     'get sections': emptyProps(),
     'add section': props<{ section: Section }>(),
-    'edit section': props<{ sectionId: number; section: Section }>(),
+    'edit section': props<{ section: Section }>(),
     'activate section': props<{ sectionId: number }>(),
     'deactivate section': props<{ sectionId: number }>(),
     'join section': props<{ sectionId: number }>(),
@@ -25,7 +25,7 @@ export const sectionsApiActions = createActionGroup({
     'sections added success': props<{ section: Section }>(),
     'sections added failure': props<{ errorMsg: string }>(),
 
-    'section edited success': props<{ sectionId: number; section: Section }>(),
+    'section edited success': props<{ section: Section }>(),
     'section edited failure': props<{ errorMsg: string }>(),
 
     'section activated success': props<{ sectionId: number }>(),
