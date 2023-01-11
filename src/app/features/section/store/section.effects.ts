@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
 import { catchError, map, switchMap, of } from 'rxjs';
 import { SectionService } from '..';
 import { Section } from '..';
@@ -8,7 +7,8 @@ import { sectionActions, sectionsApiActions } from '..';
 
 @Injectable()
 export class SectionEffects {
-  constructor(private actions$: Actions, private sectionService: SectionService, private store: Store) {}
+  private actions$ = inject(Actions);
+  private sectionService = inject(SectionService);
 
   getSections$ = createEffect(() => {
     return this.actions$.pipe(
@@ -38,6 +38,34 @@ export class SectionEffects {
           .pipe(map(section => sectionsApiActions.sectionEditedSuccess({ section: editedSection.section })));
       }),
       catchError(errorMsg => of(sectionsApiActions.sectionEditedFailure({ errorMsg })))
+    );
+  });
+
+  activateSection$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(sectionActions.activateSection),
+      switchMap(({ sectionId }) => {
+        return this.sectionService.activate(sectionId).pipe(
+          map(section => {
+            return sectionsApiActions.sectionActivatedSuccess({ sectionId: section.id });
+          })
+        );
+      }),
+      catchError(errorMsg => of(sectionsApiActions.sectionActivatedFailure({ errorMsg })))
+    );
+  });
+
+  deactivateSection$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(sectionActions.deactivateSection),
+      switchMap(({ sectionId }) => {
+        return this.sectionService.deactivate(sectionId).pipe(
+          map(section => {
+            return sectionsApiActions.sectionDeactivatedSuccess({ sectionId: section.id });
+          })
+        );
+      }),
+      catchError(errorMsg => of(sectionsApiActions.sectionDeactivatedFailure({ errorMsg })))
     );
   });
 }

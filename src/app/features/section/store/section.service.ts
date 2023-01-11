@@ -24,14 +24,15 @@ export class SectionService {
     return this.http.put<Section>(BASE_URL + `/sections/${section.id}`, section);
   }
 
-  activate(id: number) {
-    return this.http.put<Section>(BASE_URL + `/sections/${id}`, {
+  activate(sectionId: number) {
+    return this.http.patch<Section>(BASE_URL + `/sections/${sectionId}`, {
       isActive: true,
     });
   }
 
-  deactivate(id: number) {
-    return this.http.put<Section>(BASE_URL + `/sections/${id}`, {
+  deactivate(sectionId: number) {
+    console.log('deactivated');
+    return this.http.patch<Section>(BASE_URL + `/sections/${sectionId}`, {
       isActive: false,
     });
   }

@@ -46,41 +46,51 @@ export class TestComponent implements OnInit {
     // });
     this.loadSections();
 
-    this.editSection({
-      id: 6,
-      name: 'Szósta sekcja znowuu updatowana',
-      description: 'nowa sekcja do pilki w kosza',
-      isActive: true,
-      joinedUsers: [],
-      events: [],
-      recurringEvents: [],
-      sectionOwner: {
-        id: 4,
-        firstName: '',
-        lastName: '',
-        mail: '',
-        password: '',
-        role: 'user',
-        ownedEvents: [],
-        eventsWithResponse: [],
-        ownedGroups: [],
-        joinedGroups: [],
-        notifications: [],
-      },
-    });
+    // this.editSection({
+    //   id: 6,
+    //   name: 'Szósta sekcja znowuu updatowana',
+    //   description: 'nowa sekcja do pilki w kosza',
+    //   isActive: true,
+    //   joinedUsers: [],
+    //   events: [],
+    //   recurringEvents: [],
+    //   sectionOwner: {
+    //     id: 4,
+    //     firstName: '',
+    //     lastName: '',
+    //     mail: '',
+    //     password: '',
+    //     role: 'user',
+    //     ownedEvents: [],
+    //     eventsWithResponse: [],
+    //     ownedGroups: [],
+    //     joinedGroups: [],
+    //     notifications: [],
+    //   },
+    // });
 
+    this.activateSection(6);
     console.log(this.store);
+
+    // this.deactivateSection(6);
   }
 
   public loadSections(): void {
     this.store.dispatch(sectionActions.sectionActions.getSections());
   }
 
+  public activateSection(sectionId: number): void {
+    this.store.dispatch(sectionActions.sectionActions.activateSection({ sectionId }));
+  }
+
+  public deactivateSection(sectionId: number): void {
+    this.store.dispatch(sectionActions.sectionActions.deactivateSection({ sectionId }));
+  }
   // public addSection(section: Section): void {
   //   this.store.dispatch(sectionActions.sectionActions.addSection({ section }));
   // }
 
-  public editSection(section: Section): void {
-    this.store.dispatch(sectionActions.sectionActions.editSection({ section }));
-  }
+  // public editSection(section: Section): void {
+  //   this.store.dispatch(sectionActions.sectionActions.editSection({ section }));
+  // }
 }
