@@ -46,4 +46,4 @@ src/environment.ts
 .env
 
 # Json server
-db.json
+/db
