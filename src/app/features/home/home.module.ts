@@ -2,60 +2,60 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
 
-export const homePaths = {
-  default: '',
-  event: {
-    single: {
-      core: 'event/:id',
-      subpages: {
-        home: '',
-        participants: 'participants',
-        chat: 'chat',
-        attachments: 'attachments',
+export const HOME_PATHS = {
+  DEFAULT: '',
+  EVENT: {
+    SINGLE: {
+      CORE: 'event/:id',
+      SUBPAGES: {
+        HOME: '',
+        PARTICIPANTS: 'participants',
+        CHAT: 'chat',
+        ATTACHMENTS: 'attachments',
       },
     },
-    all: 'events',
-    my: 'events/my',
-    owned: 'events/owned',
-    add: 'event/add',
-    redo: 'event/:id/redo',
-    edit: 'event/:id/edit',
+    ALL: 'events',
+    MY: 'events/my',
+    OWNED: 'events/owned',
+    ADD: 'event/add',
+    REDO: 'event/:id/redo',
+    EDIT: 'event/:id/edit',
   },
-  section: {
-    single: {
-      core: 'section/:id',
-      subpages: {
-        home: '',
-        members: 'members',
+  SECTION: {
+    SINGLE: {
+      CORE: 'section/:id',
+      SUBPAGES: {
+        HOME: '',
+        MEMBERS: 'members',
       },
     },
-    all: 'sections',
-    my: 'sections/my',
-    owned: 'sections/owned',
-    add: 'section/add',
-    edit: 'section/:id/edit',
+    ALL: 'sections',
+    MY: 'sections/my',
+    OWNED: 'sections/owned',
+    ADD: 'section/add',
+    EDIT: 'section/:id/edit',
   },
-  categories: 'categories',
-  hashtags: 'hashtags',
-  notifications: 'notifications',
-  requestBox: 'request-box',
-  meender: 'meender',
-};
+  CATEGORIES: 'categories',
+  HASHTAGS: 'hashtags',
+  NOTIFICATIONS: 'notifications',
+  REQUEST_BOX: 'request-box',
+  MEENDER: 'meender',
+} as const;
 
 @NgModule({
   imports: [
     RouterModule.forChild([
       {
-        path: homePaths.default,
+        path: HOME_PATHS.DEFAULT,
         component: HomeComponent,
         children: [],
       },
       {
-        path: homePaths.event.single.core,
+        path: HOME_PATHS.EVENT.SINGLE.CORE,
         component: HomeComponent,
         children: [
           {
-            path: homePaths.event.single.subpages.participants,
+            path: HOME_PATHS.EVENT.SINGLE.SUBPAGES.PARTICIPANTS,
             component: HomeComponent,
             title: 'Uczestnicy',
           },
