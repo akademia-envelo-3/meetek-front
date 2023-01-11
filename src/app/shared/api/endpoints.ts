@@ -1,9 +1,11 @@
-export const enum endpoints {
-  events = '/events',
-  hashtags = '/hashtags',
-  sections = '/sections',
-  category = '/categories',
-  loggedUser = '/users/me',
-  login = '/auth/login',
-  logout = '/auth/logout',
-}
+export const ENDPOINTS = {
+  EVENTS: '/events',
+  HASHTAGS: '/hashtags',
+  SECTIONS: '/sections',
+  CATEGORY: '/categories',
+  LOGGEDUSER: '/users/me',
+  LOGIN: '/auth/login',
+  LOGOUT: '/auth/logout',
+} as const;
+
+export type Endpoints = typeof ENDPOINTS;
