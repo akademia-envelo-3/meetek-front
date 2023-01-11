@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { Store } from '@ngrx/store';
+
 import { AuthResponse, LoginForm } from '../shared/auth.iterfaces';
 import { AuthActions } from '../store/auth.actions';
 import { noWhitespaceValidator } from './auth.validators';

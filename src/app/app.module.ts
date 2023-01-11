@@ -15,6 +15,12 @@ import { noProductionGuard } from '@shared/no-production.guard';
 import { authReducer } from './features/auth/store/auth.reducer';
 import { AuthEffects } from './features/auth/store/auth.effects';
 
+export const APP_PATH = {
+  HOME: '',
+  AUTH: '/auth',
+  THEME: 'theme'
+} as const;
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -35,11 +41,11 @@ import { AuthEffects } from './features/auth/store/auth.effects';
             loadChildren: () => import('./features/home/home.module'),
           },
           {
-            path: 'auth',
+            path: APP_PATH.AUTH,
             loadChildren: () => import('./features/auth/auth.module'),
           },
           {
-            path: 'theme',
+            path: APP_PATH.THEME,
             canMatch: [noProductionGuard],
             loadComponent: () => import('./core/theme.component'),
           },

@@ -5,6 +5,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, filter, map, of, startWith, switchMap, tap } from 'rxjs';
 
+import { APP_PATH } from 'src/app/app.module';
+import { HOME_PATHS } from '../../home';
 import { AuthService } from '../auth.service';
 import { AuthActions } from './auth.actions';
 
@@ -27,7 +29,7 @@ export class AuthEffects {
           }),
           map(response => {
             const { user, accessToken } = response;
-            this.router.navigate(['/']);
+            this.router.navigate([HOME_PATHS.DEFAULT]);
             return AuthActions.loginSuccess({ loginResponse: { user, accessToken } });
           }),
           catchError(() => {
@@ -48,7 +50,7 @@ export class AuthEffects {
         return this.authService.getMe().pipe(map(response => AuthActions.getUserSuccess({ userData: response })));
       }),
       catchError(() => {
-        this.router.navigate(['/auth']);
+        this.router.navigate([APP_PATH.AUTH]);
         this.toast.error('Sesja logowania wygasła');
         this.cookieService.delete('token');
         return of();
