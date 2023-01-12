@@ -1,11 +1,6 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { FormComponent } from './form/form.component';
 
@@ -13,14 +8,7 @@ import { FormComponent } from './form/form.component';
   selector: 'app-auth',
   standalone: true,
   imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
     MatSlideToggleModule,
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
     NgOptimizedImage,
     FormComponent
   ],
@@ -30,7 +18,7 @@ import { FormComponent } from './form/form.component';
         <mat-slide-toggle></mat-slide-toggle>
       </div>
       <div class="form-wrapper">
-        <div class="logo">
+        <div>
           <img ngSrc="assets/images/logo.svg" alt="logo" width="300" height="150" priority />
         </div>
         <app-form></app-form>

@@ -1,4 +1,4 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   FormsModule,
@@ -10,7 +10,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { Store } from '@ngrx/store';
 
 import { AuthResponse, LoginForm } from '../shared/auth.iterfaces';
@@ -25,12 +24,9 @@ import { whitespaceValidator } from './form.validators';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    MatSlideToggleModule,
     CommonModule,
     ReactiveFormsModule,
-    FormsModule,
-    NgOptimizedImage,
-    FormComponent,
+    FormsModule
   ],
   template: `
     <div class="form">
