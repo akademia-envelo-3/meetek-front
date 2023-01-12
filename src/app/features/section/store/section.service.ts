@@ -38,7 +38,7 @@ export class SectionService {
   }
 
   join(sectionId: number, userId: number) {
-    return this.http.post<Section>(`${BASE_URL}/sections/${sectionId}/users/${userId}`, null);
+    return this.http.post<Section>(`${BASE_URL}/sections/${sectionId}/users/${userId}`, {});
   }
 
   leave(sectionId: number, userId: number) {
