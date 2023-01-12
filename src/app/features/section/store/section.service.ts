@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Section } from '..';
 import { environment } from 'src/environment';
+import { Section } from '..';
 
 const BASE_URL = environment.API_URL;
 
@@ -10,18 +10,19 @@ export class SectionService {
   constructor(private http: HttpClient) {}
 
   getAll() {
-    console.log('i have got');
     return this.http.get<Section[]>(BASE_URL + '/sections');
   }
 
+  getOne(sectionId: number) {
+    return this.http.get<Section>(BASE_URL + `/sections/${sectionId}`);
+  }
+
   add(section: Section) {
-    console.log('posted');
     return this.http.post<Section>(BASE_URL + '/sections', section);
   }
 
-  update(section: Section) {
-    console.log('updated');
-    return this.http.put<Section>(BASE_URL + `/sections/${section.id}`, section);
+  update(section: Partial<Section>) {
+    return this.http.patch<Section>(BASE_URL + `/sections/${section.id}`, section);
   }
 
   activate(sectionId: number) {
@@ -31,21 +32,16 @@ export class SectionService {
   }
 
   deactivate(sectionId: number) {
-    console.log('deactivated');
     return this.http.patch<Section>(BASE_URL + `/sections/${sectionId}`, {
       isActive: false,
     });
   }
 
-  join(id: number, userId: number) {
-    return this.http.post<Section>(BASE_URL + `/sections/${id}/users/${userId}`, null);
+  join(sectionId: number, userId: number) {
+    return this.http.post<Section>(BASE_URL + `/sections/${sectionId}/users/${userId}`, null);
   }
 
-  leave(id: number, userId: number) {
-    return this.http.delete<Section>(BASE_URL + `/sections/${id}/users/${userId}`);
-  }
-
-  getUsers(id: number) {
-    return this.http.get<Section>(BASE_URL + `/sections/${id}/users`);
+  leave(sectionId: number, userId: number) {
+    return this.http.delete<Section>(BASE_URL + `/sections/${sectionId}/users/${userId}`);
   }
 }

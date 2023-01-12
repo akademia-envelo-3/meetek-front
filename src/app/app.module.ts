@@ -4,25 +4,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-
 import { AppComponent } from './app.component';
 import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
-import { sectionReducer } from './features/section/store/section.reducer';
-import { TestComponent } from './features/section/store/test.component';
-import { SectionEffects } from './features/section/store/section.effects';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
-    TestComponent,
-    StoreModule.forRoot({ sections: sectionReducer }),
-    EffectsModule.forRoot([SectionEffects]),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     RouterModule.forRoot([
       {
         path: '',
@@ -39,10 +36,6 @@ import { SectionEffects } from './features/section/store/section.effects';
             path: 'theme',
             canMatch: [noProductionGuard],
             loadComponent: () => import('./core/theme.component'),
-          },
-          {
-            path: 'test',
-            component: TestComponent,
           },
           {
             path: '**',

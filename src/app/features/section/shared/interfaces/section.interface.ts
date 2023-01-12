@@ -6,7 +6,7 @@ export interface Section {
   name: string;
   description: string;
   isActive: boolean;
-  joinedUsers: User[];
+  users: User[];
   events: Event[];
   recurringEvents: RecurringEvent[];
   sectionOwner: User;
