@@ -40,7 +40,7 @@ import { FormComponent } from './form/form.component';
   styles: [
     `
       main {
-        background-color: #fafafa;
+        background-color: var(--background);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -59,7 +59,7 @@ import { FormComponent } from './form/form.component';
         justify-content: center;
         align-items: center;
         gap: 20px;
-        background-color: #fff;
+        background-color: var(--surface);
         width: 450px;
         height: 550px;
         box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);

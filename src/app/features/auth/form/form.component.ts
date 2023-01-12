@@ -97,6 +97,10 @@ import { whitespaceValidator } from './form.validators';
       mat-form-field {
         width: 100%;
       }
+
+      mat-error {
+        font-size: var(--S_font-size)
+      }
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,

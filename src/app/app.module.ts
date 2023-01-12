@@ -17,8 +17,8 @@ import { AuthEffects } from './features/auth/store/auth.effects';
 
 export const APP_PATH = {
   HOME: '',
-  AUTH: '/auth',
-  THEME: 'theme'
+  AUTH: 'auth',
+  THEME: 'theme',
 } as const;
 
 @NgModule({
@@ -66,7 +66,7 @@ export const APP_PATH = {
       provide: IS_PRODUCTION,
       useValue: environment.production,
     },
-    CookieService
+    CookieService,
   ],
   bootstrap: [AppComponent],
 })
