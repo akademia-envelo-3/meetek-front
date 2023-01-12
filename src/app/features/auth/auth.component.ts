@@ -46,7 +46,6 @@ import { FormComponent } from './form/form.component';
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 20px;
         background-color: var(--surface);
         width: 450px;
         height: 550px;

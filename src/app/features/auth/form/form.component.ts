@@ -66,7 +66,7 @@ import { whitespaceValidator } from './form.validators';
             >
           </mat-form-field>
         </div>
-        <button mat-raised-button color="primary" [disabled]="loginForm.invalid">Zaloguj się</button>
+        <button class="button" mat-raised-button color="primary" [disabled]="loginForm.invalid">Zaloguj się</button>
       </form>
     </div>
   `,
@@ -96,6 +96,11 @@ import { whitespaceValidator } from './form.validators';
 
       mat-error {
         font-size: var(--S_font-size)
+      }
+
+      .button {
+        height: 45px;
+        text-transform: uppercase;  
       }
     `,
   ],
