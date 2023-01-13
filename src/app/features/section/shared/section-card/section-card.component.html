@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card__mainContent">
+    <h3 class="card__title">{{ name }}</h3>
+    <p class="card__members">Liczba członków: {{ numberOfMembers.toLocaleString() }}</p>
+  </div>
+
+  <div class="card__ownerContent">
+    <ng-container *ngIf="isActive; else inactive">
+      <button
+        *ngIf="isActivationButton"
+        (click)="handleBtnClick($event)"
+        data-action="deactivation"
+        class="card__button">
+        Dezaktywuj
+      </button>
+    </ng-container>
+
+    <ng-template #inactive>
+      <button
+        *ngIf="isDeactivationButton"
+        (click)="handleBtnClick($event)"
+        data-action="activation"
+        class="card__button">
+        Aktywuj
+      </button>
+    </ng-template>
+
+    <button
+      *ngIf="isModificationButton"
+      (click)="handleBtnClick($event)"
+      data-action="modification"
+      class="card__button">
+      Modyfikuj
+    </button>
+  </div>
+</div>

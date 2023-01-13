@@ -1,0 +1,80 @@
+.card {
+  width: 270px;
+  border-radius: 5px;
+  background-color: var(--surface);
+  box-shadow: var(--box-shadow);
+  cursor: pointer;
+
+  &__mainContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+  }
+
+  &__title {
+    max-width: 250px;
+    margin-bottom: 2px;
+    padding: 0 5px;
+    text-align: center;
+    font-weight: normal;
+    font-size: var(--L_font-size);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  &__members {
+    max-width: 225px;
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: var(--XS_font-size);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  &__ownerContent {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  &__button {
+    padding: 0 20px 10px;
+    border: none;
+    background-color: transparent;
+    font-size: var(--M_font-size);
+    transition: 0.1s;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &[data-action='modification'] {
+      color: var(--primary);
+
+      &:hover {
+        color: var(--primaryDark);
+      }
+    }
+
+    &[data-action='deactivation'] {
+      color: var(--error);
+
+      &:hover {
+        color: var(--errorDark);
+      }
+    }
+
+    &[data-action='activation'] {
+      color: var(--success);
+
+      &:hover {
+        color: var(--successDark);
+      }
+    }
+  }
+}
