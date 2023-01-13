@@ -9,8 +9,7 @@
       <button
         *ngIf="isActivationButton"
         (click)="$event.stopPropagation(); deactivation.emit()"
-        data-action="deactivation"
-        class="card__button">
+        class="card__button deactivation">
         Dezaktywuj
       </button>
     </ng-container>
@@ -19,8 +18,7 @@
       <button
         *ngIf="isDeactivationButton"
         (click)="$event.stopPropagation(); activation.emit()"
-        data-action="activation"
-        class="card__button">
+        class="card__button activation">
         Aktywuj
       </button>
     </ng-template>
@@ -28,8 +26,7 @@
     <button
       *ngIf="isModificationButton"
       (click)="$event.stopPropagation(); modification.emit()"
-      data-action="modification"
-      class="card__button">
+      class="card__button modification">
       Modyfikuj
     </button>
   </div>
