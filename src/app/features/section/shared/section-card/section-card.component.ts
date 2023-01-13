@@ -16,27 +16,17 @@ export class SectionCardComponent implements OnInit {
   @Input() numberOfMembers!: number;
   @Input() isActive!: boolean;
 
-  @Output() modificationEvent = new EventEmitter();
-  @Output() activationEvent = new EventEmitter();
-  @Output() deactivationEvent = new EventEmitter();
+  @Output() modification = new EventEmitter();
+  @Output() activation = new EventEmitter();
+  @Output() deactivation = new EventEmitter();
 
   isModificationButton = false;
   isActivationButton = false;
   isDeactivationButton = false;
 
   ngOnInit() {
-    if (this.modificationEvent.observed) this.isModificationButton = true;
-    if (this.activationEvent.observed) this.isDeactivationButton = true;
-    if (this.deactivationEvent.observed) this.isActivationButton = true;
-  }
-
-  handleBtnClick(e: Event) {
-    e.stopPropagation();
-    const buttonElement = e.target as HTMLButtonElement;
-
-    if (buttonElement) {
-      const action = buttonElement.getAttribute('data-action') as SectionActions;
-      this[`${action}Event`].emit();
-    }
+    if (this.modification.observed) this.isModificationButton = true;
+    if (this.activation.observed) this.isDeactivationButton = true;
+    if (this.deactivation.observed) this.isActivationButton = true;
   }
 }

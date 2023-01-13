@@ -14,16 +14,16 @@ import { SectionCardComponent } from 'src/app/features/section';
     <ng-container *ngIf="sectionCard as card">
       <div class="element">
         <app-section-card
-          (modificationEvent)="card.handleModification()"
-          (activationEvent)="card.handleActivation()"
-          (deactivationEvent)="card.handleDeactivation()"
+          (modification)="card.handleModification()"
+          (activation)="card.handleActivation()"
+          (deactivation)="card.handleDeactivation()"
           [name]="'Sekcja szalonych pływaków i pływaczek'"
           [numberOfMembers]="31842"
           [isActive]="card.isActive"></app-section-card>
       </div>
       <div class="element">
         <app-section-card
-          (modificationEvent)="card.handleModification()"
+          (modification)="card.handleModification()"
           [name]="'Piłkarze'"
           [numberOfMembers]="2"
           [isActive]="false"></app-section-card>

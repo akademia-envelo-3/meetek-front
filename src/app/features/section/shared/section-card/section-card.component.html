@@ -8,7 +8,7 @@
     <ng-container *ngIf="isActive; else inactive">
       <button
         *ngIf="isActivationButton"
-        (click)="handleBtnClick($event)"
+        (click)="$event.stopPropagation(); deactivation.emit()"
         data-action="deactivation"
         class="card__button">
         Dezaktywuj
@@ -18,7 +18,7 @@
     <ng-template #inactive>
       <button
         *ngIf="isDeactivationButton"
-        (click)="handleBtnClick($event)"
+        (click)="$event.stopPropagation(); activation.emit()"
         data-action="activation"
         class="card__button">
         Aktywuj
@@ -27,7 +27,7 @@
 
     <button
       *ngIf="isModificationButton"
-      (click)="handleBtnClick($event)"
+      (click)="$event.stopPropagation(); modification.emit()"
       data-action="modification"
       class="card__button">
       Modyfikuj
