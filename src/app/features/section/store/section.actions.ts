@@ -1,7 +1,7 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { Section } from 'src/app/features/section/shared/interfaces';
 
-export const sectionActions = createActionGroup({
+export const SectionActions = createActionGroup({
   source: 'Sections',
   events: {
     'get sections': emptyProps(),
@@ -15,7 +15,7 @@ export const sectionActions = createActionGroup({
   },
 });
 
-export const sectionsApiActions = createActionGroup({
+export const SectionsApiActions = createActionGroup({
   source: 'Sections API',
   events: {
     'sections loaded success': props<{ sections: Section[] }>(),

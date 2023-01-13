@@ -9,7 +9,6 @@ import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
 import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
-import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +18,6 @@ import { ToastrModule } from 'ngx-toastr';
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
     RouterModule.forRoot([
       {
         path: '',

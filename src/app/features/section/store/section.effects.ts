@@ -1,101 +1,82 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { ToastrService } from 'ngx-toastr';
 import { catchError, map, switchMap, of } from 'rxjs';
 import { SectionService } from '..';
-import { sectionActions, sectionsApiActions } from '..';
+import { SectionActions, SectionsApiActions } from '..';
 
 @Injectable()
 export class SectionEffects {
   private actions$ = inject(Actions);
   private sectionService = inject(SectionService);
-  private toast = inject(ToastrService);
 
   getSections$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(sectionActions.getSections),
+      ofType(SectionActions.getSections),
       switchMap(() => this.sectionService.getAll()),
-      map(sections => sectionsApiActions.sectionsLoadedSuccess({ sections })),
+      map(sections => SectionsApiActions.sectionsLoadedSuccess({ sections })),
       catchError(() => {
-        this.toast.error('Nie udało się pobrać sekcji');
-        return of(sectionsApiActions.sectionsLoadedFailure());
+        //to do: tutaj ma się pojawić toast; task nr FT024: https://github.com/akademia-envelo-3/meetek-front/issues/34
+        return of(SectionsApiActions.sectionsLoadedFailure());
       })
     );
   });
 
   getSection$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(sectionActions.getSection),
+      ofType(SectionActions.getSection),
       switchMap(({ sectionId }) => this.sectionService.getOne(sectionId)),
-      map(section => {
-        return sectionsApiActions.sectionLoadedSuccess({ section });
-      }),
+      map(section => SectionsApiActions.sectionLoadedSuccess({ section })),
       catchError(() => {
-        this.toast.error('Nie udało się pobrać danej sekcji');
-        return of(sectionsApiActions.sectionLoadedFailure());
+        //to do: tutaj ma się pojawić toast; task nr FT024: https://github.com/akademia-envelo-3/meetek-front/issues/34
+        return of(SectionsApiActions.sectionLoadedFailure());
       })
     );
   });
 
   addSection$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(sectionActions.addSection),
+      ofType(SectionActions.addSection),
       switchMap(newSection => this.sectionService.add(newSection.section)),
-      map(section => sectionsApiActions.sectionsAddedSuccess({ section })),
+      map(section => SectionsApiActions.sectionsAddedSuccess({ section })),
       catchError(() => {
-        this.toast.error('Nie udało się utworzyć sekcji');
-        return of(sectionsApiActions.sectionsAddedFailure());
+        //to do: tutaj ma się pojawić toast; task nr FT024: https://github.com/akademia-envelo-3/meetek-front/issues/34
+        return of(SectionsApiActions.sectionsAddedFailure());
       })
     );
   });
 
   editSection$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(sectionActions.editSection),
-      switchMap(editedSection => {
-        return this.sectionService.update(editedSection.section).pipe(
-          map(section => {
-            return sectionsApiActions.sectionEditedSuccess({ section });
-          }),
-          catchError(() => {
-            this.toast.error('Nie udało się zedytować sekcji');
-            return of(sectionsApiActions.sectionEditedFailure());
-          })
-        );
+      ofType(SectionActions.editSection),
+      switchMap(editedSection => this.sectionService.update(editedSection.section)),
+      map(section => SectionsApiActions.sectionEditedSuccess({ section })),
+      catchError(() => {
+        //to do: tutaj ma się pojawić toast; task nr FT024: https://github.com/akademia-envelo-3/meetek-front/issues/34
+        return of(SectionsApiActions.sectionEditedFailure());
       })
     );
   });
 
   activateSection$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(sectionActions.activateSection),
-      switchMap(({ sectionId }) => {
-        return this.sectionService.activate(sectionId).pipe(
-          map(section => {
-            return sectionsApiActions.sectionActivatedSuccess({ sectionId: section.id });
-          }),
-          catchError(() => {
-            this.toast.error('Nie udało się aktywować sekcji');
-            return of(sectionsApiActions.sectionActivatedFailure());
-          })
-        );
+      ofType(SectionActions.activateSection),
+      switchMap(({ sectionId }) => this.sectionService.activate(sectionId)),
+      map(section => SectionsApiActions.sectionActivatedSuccess({ sectionId: section.id })),
+      catchError(() => {
+        //to do: tutaj ma się pojawić toast; task nr FT024: https://github.com/akademia-envelo-3/meetek-front/issues/34
+        return of(SectionsApiActions.sectionActivatedFailure());
       })
     );
   });
 
   deactivateSection$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(sectionActions.deactivateSection),
-      switchMap(({ sectionId }) => {
-        return this.sectionService.deactivate(sectionId).pipe(
-          map(section => {
-            return sectionsApiActions.sectionDeactivatedSuccess({ sectionId: section.id });
-          }),
-          catchError(() => {
-            this.toast.error('Nie udało się deaktywować sekcji');
-            return of(sectionsApiActions.sectionDeactivatedFailure());
-          })
-        );
+      ofType(SectionActions.deactivateSection),
+      switchMap(({ sectionId }) => this.sectionService.deactivate(sectionId)),
+      map(section => SectionsApiActions.sectionDeactivatedSuccess({ sectionId: section.id })),
+      catchError(() => {
+        //to do: tutaj ma się pojawić toast; task nr FT024: https://github.com/akademia-envelo-3/meetek-front/issues/34
+        return of(SectionsApiActions.sectionDeactivatedFailure());
       })
     );
   });
