@@ -2,8 +2,6 @@ import { ChangeDetectionStrategy, Component, Input, Output, EventEmitter, OnInit
 import { MatCardModule } from '@angular/material/card';
 import { NgIf } from '@angular/common';
 
-export type SectionActions = 'modification' | 'activation' | 'deactivation';
-
 @Component({
   selector: 'app-section-card[name][numberOfMembers][isActive]',
   standalone: true,
