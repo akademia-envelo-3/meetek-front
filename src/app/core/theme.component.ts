@@ -39,14 +39,12 @@ export default class ThemeComponent {
   sectionCard = {
     isActive: true,
     handleModification: function () {
-      console.log('modification...');
+      // modification action
     },
     handleActivation: function () {
-      console.log('activation...');
       this.isActive = true;
     },
     handleDeactivation: function () {
-      console.log('deactivation...');
       this.isActive = false;
     },
   };

@@ -1,33 +1,24 @@
-<div class="card">
-  <div class="card__mainContent">
-    <h3 class="card__title">{{ name }}</h3>
-    <p class="card__members">Liczba członków: {{ numberOfMembers.toLocaleString() }}</p>
+<mat-card class="card">
+  <div class="main-content">
+    <h3 class="title">{{ name }}</h3>
+    <p class="members">Liczba członków: {{ numberOfMembers.toLocaleString() }}</p>
   </div>
 
-  <div class="card__ownerContent">
+  <div class="owner-content">
     <ng-container *ngIf="isActive; else inactive">
-      <button
-        *ngIf="isActivationButton"
-        (click)="$event.stopPropagation(); deactivation.emit()"
-        class="card__button deactivation">
+      <button *ngIf="isActivationButton" (click)="$event.stopPropagation(); deactivation.emit()" class="deactivation">
         Dezaktywuj
       </button>
     </ng-container>
 
     <ng-template #inactive>
-      <button
-        *ngIf="isDeactivationButton"
-        (click)="$event.stopPropagation(); activation.emit()"
-        class="card__button activation">
+      <button *ngIf="isDeactivationButton" (click)="$event.stopPropagation(); activation.emit()" class="activation">
         Aktywuj
       </button>
     </ng-template>
 
-    <button
-      *ngIf="isModificationButton"
-      (click)="$event.stopPropagation(); modification.emit()"
-      class="card__button modification">
+    <button *ngIf="isModificationButton" (click)="$event.stopPropagation(); modification.emit()" class="modification">
       Modyfikuj
     </button>
   </div>
-</div>
+</mat-card>
