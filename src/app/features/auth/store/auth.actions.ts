@@ -1,13 +1,17 @@
-import { createActionGroup, props } from '@ngrx/store';
+import { createActionGroup, emptyProps, props } from '@ngrx/store';
 
-import { AuthResponse, LoginData, User } from '../shared/auth.iterfaces';
+import { LoginData } from '../../auth';
 
 export const AuthActions = createActionGroup({
   source: 'Auth',
   events: {
-    'Login': props<{ loginData: LoginData }>(),
-    'login success': props<{ loginResponse: AuthResponse }>(),
-    'get user': props<{ user: AuthResponse }>(),
-    'get user success': props<{ userData: User }>()
+    'login': props<{ loginData: LoginData }>(),
+  },
+});
+
+export const AuthApiActions = createActionGroup({
+  source: 'Auth API',
+  events: {
+    ['login failure']: emptyProps(),
   },
 });

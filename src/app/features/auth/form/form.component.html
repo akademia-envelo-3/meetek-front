@@ -1,0 +1,36 @@
+<div class="form">
+  <h2>Zaloguj się</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="email-container">
+      <mat-form-field appearance="outline">
+        <mat-label>E-mail</mat-label>
+        <input matInput placeholder="E-mail" type="email" formControlName="email" required />
+        <mat-error *ngIf="loginForm.get('email')?.hasError('required')">Pole wymagane</mat-error>
+        <mat-error *ngIf="loginForm.get('email')?.hasError('email')">Niepoprawny adres e-mail</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="password-container">
+      <mat-form-field appearance="outline">
+        <mat-label>Hasło</mat-label>
+        <input
+          matInput
+          placeholder="Hasło"
+          [type]="visible ? 'text' : 'password'"
+          formControlName="password"
+          required />
+        <button
+          matSuffix
+          mat-icon-button
+          type="button"
+          (click)="togglePasswordVisibility()"
+          color="primary"
+          [disabled]="!this.loginForm.value.password">
+          <mat-icon>remove_red_eye</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Pole wymagane</mat-error>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('whitespace')"> Użyto niedozwolonych znaków</mat-error>
+      </mat-form-field>
+    </div>
+    <button class="button" mat-raised-button color="primary" [disabled]="loginForm.invalid">Zaloguj się</button>
+  </form>
+</div>

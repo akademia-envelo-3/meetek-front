@@ -1,19 +1,17 @@
-import { inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CookieService } from 'ngx-cookie-service';
-import { ToastrService } from 'ngx-toastr';
-import { catchError, filter, map, of, startWith, switchMap, tap } from 'rxjs';
+import { catchError, map, of, switchMap, tap } from 'rxjs';
 
-import { APP_PATH } from 'src/app/app.module';
 import { HOME_PATHS } from '../../home';
-import { AuthService } from '../auth.service';
-import { AuthActions } from './auth.actions';
+import { AuthActions, AuthApiActions, AuthService } from '../../auth';
+import { UserApiActions } from '@core/store/user.actions';
 
+@Injectable()
 export class AuthEffects {
   private actions$ = inject(Actions);
   private cookieService = inject(CookieService);
-  private toast = inject(ToastrService);
   private authService = inject(AuthService);
   private router = inject(Router);
 
@@ -28,32 +26,15 @@ export class AuthEffects {
             this.cookieService.set('token', accessToken, 1);
           }),
           map(response => {
-            const { user, accessToken } = response;
+            const { user } = response;
             this.router.navigate([HOME_PATHS.DEFAULT]);
-            return AuthActions.loginSuccess({ loginResponse: { user, accessToken } });
+            return UserApiActions.getUserSuccess({ user });
           }),
           catchError(() => {
-            this.toast.error('Niepoprawny login lub hasło');
-            return of();
+            // TODO dodać toast task nr FT024: https://github.com/akademia-envelo-3/meetek-front/issues/34
+            return of(AuthApiActions.loginFailure());
           })
         );
-      })
-    );
-  });
-
-  getUser$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(AuthActions.getUser),
-      startWith(AuthActions.getUser),
-      filter(() => this.cookieService.check('token')),
-      switchMap(() => {
-        return this.authService.getMe().pipe(map(response => AuthActions.getUserSuccess({ userData: response })));
-      }),
-      catchError(() => {
-        this.router.navigate([APP_PATH.AUTH]);
-        this.toast.error('Sesja logowania wygasła');
-        this.cookieService.delete('token');
-        return of();
       })
     );
   });

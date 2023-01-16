@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
 
-import { AuthComponent } from './auth.component';
+import { AuthEffects, AuthComponent } from '../auth';
 
 export const AUTH_PATHS = {
   DEFAULT: '',
@@ -9,6 +10,7 @@ export const AUTH_PATHS = {
 
 @NgModule({
   imports: [
+    EffectsModule.forFeature([AuthEffects]),
     RouterModule.forChild([
       {
         path: AUTH_PATHS.DEFAULT,

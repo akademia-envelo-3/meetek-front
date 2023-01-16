@@ -5,15 +5,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { CookieService } from 'ngx-cookie-service';
-import { ToastrModule } from 'ngx-toastr';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
-import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
-import { authReducer } from './features/auth/store/auth.reducer';
-import { AuthEffects } from './features/auth/store/auth.effects';
+import { userReducer } from './core/store/user.reducer';
+import { UserEffects } from '@core/store/user.effects';
+import { UserState } from '@core/store/user.interfaces';
+
+export interface AppState {
+  user?: UserState;
+}
 
 export const APP_PATH = {
   HOME: '',
@@ -27,10 +31,9 @@ export const APP_PATH = {
     BrowserModule,
     HttpClientModule,
     StoreModule.forRoot({
-      user: authReducer,
+      user: userReducer
     }),
-    EffectsModule.forRoot([AuthEffects]),
-    ToastrModule.forRoot(),
+    EffectsModule.forRoot([UserEffects]),
     BrowserAnimationsModule,
     RouterModule.forRoot([
       {

@@ -31,7 +31,6 @@
     "@ngrx/store": "^15.0.0",
     "date-fns": "^2.29.3",
     "ngx-cookie-service": "^15.0.0",
-    "ngx-toastr": "^16.0.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

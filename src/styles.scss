@@ -5,7 +5,6 @@
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat.core();
-@import 'ngx-toastr/toastr';
 $dark-primary-text: black;
 $light-primary-text: white;
 
@@ -210,18 +209,22 @@ $front-theme: mat.define-dark-theme(
   --XXS_font-size: 11px;
   --button_font-size: 14px;
 
+  //breakpoints
+  --mobile-breakpoint: max-width: 568px;
+  --laptop-breakpoint: max-width: 1024px;
+
   //font-weight
   --bold: bold;
 
   //font-family
-  --roboto: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+  --roboto: Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
 * {
   margin: 0;
   padding: 0;
-  font-family: inherit;
+  font-family: var(--roboto);
 }
 
 html,
