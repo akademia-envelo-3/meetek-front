@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { HomeComponent } from './home.component';
 import { SectionComponent } from '../section/section.component';
+import { SectionEffects, sectionReducer } from '../section';
 
 export const HOME_PATHS = {
   DEFAULT: '',
@@ -45,6 +48,8 @@ export const HOME_PATHS = {
 
 @NgModule({
   imports: [
+    StoreModule.forFeature('sections', sectionReducer),
+    EffectsModule.forFeature([SectionEffects]),
     RouterModule.forChild([
       {
         path: HOME_PATHS.DEFAULT,
