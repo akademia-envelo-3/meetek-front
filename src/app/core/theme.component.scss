@@ -7,3 +7,15 @@
   margin: 20px;
   padding: 10px;
 }
+
+@media (max-width: 1024px) {
+  .list {
+    min-width: 40vw;
+  }
+}
+
+@media (max-width: 568px) {
+  .list {
+    min-width: 70vw;
+  }
+}

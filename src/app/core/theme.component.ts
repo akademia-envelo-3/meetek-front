@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { MemberListItemComponent } from '../features/section/shared/list/list-item/member-list-item.component';
 import { MemberListComponent } from '../features/section/shared/list/member-list/member-list.component';
-
 @Component({
   selector: 'app-theme',
   standalone: true,
