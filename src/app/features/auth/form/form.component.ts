@@ -33,7 +33,12 @@ export class FormComponent {
         Validators.minLength(10),
         Validators.maxLength(100),
       ]),
-      password: this.formBuilder.control('', [Validators.required, Validators.minLength(6), whitespaceValidator]),
+      password: this.formBuilder.control('', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(100),
+        whitespaceValidator,
+      ]),
     });
 
     return form;
@@ -49,13 +54,13 @@ export class FormComponent {
           return 'Pole wymagane';
       }
     }
-    if (control?.hasError('email') || control?.hasError('minlength')) {
+    if (control?.hasError('email') || control?.hasError('minlength') || control?.hasError('maxlength')) {
       switch (formControlName) {
         case 'email':
           return 'Nieprawidłowy adres e-mail';
       }
     }
-    if (control?.hasError('whitespace') || control?.hasError('minlength')) {
+    if (control?.hasError('whitespace') || control?.hasError('minlength') || control?.hasError('maxlength')) {
       switch (formControlName) {
         case 'password':
           return 'Nieprawidłowe hasło';
