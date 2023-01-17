@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
+import { SectionComponent } from '../section/section.component';
 
 export const HOME_PATHS = {
   DEFAULT: '',
@@ -60,6 +61,10 @@ export const HOME_PATHS = {
             title: 'Uczestnicy',
           },
         ],
+      },
+      {
+        path: HOME_PATHS.SECTION.ALL,
+        component: SectionComponent,
       },
     ]),
   ],

@@ -170,8 +170,8 @@ $front-theme: mat.define-dark-theme(
 /* You can add global styles to this file, and also import other style files */
 :root {
   font-family: var(--roboto);
-  font-size: var(--h1_font-size);
-  color: var(--primary);
+  font-size: var(--M_font-size);
+  color: var(--text);
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -198,6 +198,7 @@ $front-theme: mat.define-dark-theme(
   --disabled: #868686;
   --darkModeBackground: #303030;
   --darkModeSurface: #414148;
+  --text:#000;
 
   //font-size
   --h1_font-size: 24px;
@@ -226,4 +227,5 @@ $front-theme: mat.define-dark-theme(
 html,
 body {
   height: 100%;
+  background-color: var(--background);
 }
