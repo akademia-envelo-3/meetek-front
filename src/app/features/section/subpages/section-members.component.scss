@@ -1,0 +1,31 @@
+* {
+  display: flex;
+  justify-content: center;
+}
+
+:host {
+  display: flex;
+  height: 100%;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
+h2 {
+  font-weight: 400;
+  margin: 10px 0;
+}
+
+.card {
+  width: 50vw;
+  height: 70vh;
+  justify-content: flex-start;
+  padding: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .card {
+    background-color: var(--background);
+    box-shadow: none;
+    width: 100%;
+  }
+}

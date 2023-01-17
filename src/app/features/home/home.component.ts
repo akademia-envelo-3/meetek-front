@@ -1,15 +1,29 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { SectionActions } from '../section';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CommonModule],
   template: `
     application shell
+
     <router-outlet></router-outlet>
   `,
-  styles: [],
+  styles: [``],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {}
+export class HomeComponent implements OnInit {
+  private sectionStore = inject(Store);
+
+  ngOnInit() {
+    this.loadSections();
+  }
+
+  public loadSections() {
+    this.sectionStore.dispatch(SectionActions.getSections());
+  }
+}

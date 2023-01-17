@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list {
+  min-width: 20vw;
+  padding: 10px;
+}
+
+@media (max-width: 1024px) {
+  .list {
+    min-width: 50vw;
+  }
+}
+
+@media (max-width: 568px) {
+  .list {
+    min-width: 80vw;
+  }
+}

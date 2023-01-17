@@ -1,4 +1,4 @@
-import { Section } from '..';
+import { Section } from '../shared/interfaces';
 
 export interface SectionState {
   sections: Section[];

@@ -1,0 +1,6 @@
+<mat-list class="list">
+  <app-members-list-item
+    *ngFor="let user of usersOfSection$ | async"
+    [name]="getFullName(user)"
+    [initials]="getInitials(user)"></app-members-list-item>
+</mat-list>

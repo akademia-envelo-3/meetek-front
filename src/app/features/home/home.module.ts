@@ -3,7 +3,9 @@ import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { HomeComponent } from './home.component';
-import { SectionEffects, sectionReducer } from '../section';
+import { SectionEffects } from '../section/store/section.effects';
+import { sectionReducer } from '../section/store/section.reducer';
+import { SectionMembersComponent } from '../section/subpages/section-members.component';
 
 export const HOME_PATHS = {
   DEFAULT: '',
@@ -63,6 +65,16 @@ export const HOME_PATHS = {
             path: HOME_PATHS.EVENT.SINGLE.SUBPAGES.PARTICIPANTS,
             component: HomeComponent,
             title: 'Uczestnicy',
+          },
+        ],
+      },
+      {
+        path: HOME_PATHS.SECTION.SINGLE.CORE,
+        component: HomeComponent,
+        children: [
+          {
+            path: HOME_PATHS.SECTION.SINGLE.SUBPAGES.MEMBERS,
+            component: SectionMembersComponent,
           },
         ],
       },

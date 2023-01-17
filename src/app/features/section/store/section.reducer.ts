@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { SectionsApiActions } from '..';
+import { SectionsApiActions } from './section.actions';
 import { initialSectionState, SectionState } from './section.state';
 
 export const sectionReducer = createReducer(

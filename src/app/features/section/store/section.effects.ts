@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap, of } from 'rxjs';
-import { SectionService } from '..';
-import { SectionActions, SectionsApiActions } from '..';
+import { SectionService } from './section.service';
+import { SectionActions, SectionsApiActions } from './section.actions';
 
 @Injectable()
 export class SectionEffects {
