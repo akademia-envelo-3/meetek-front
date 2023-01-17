@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+
 import { HomeComponent } from './home.component';
-import { SectionEffects, sectionReducer } from '../section';
+import { SectionEffects, sectionReducer, SectionFormComponent } from '../section';
 
 export const HOME_PATHS = {
   DEFAULT: '',
@@ -54,6 +55,10 @@ export const HOME_PATHS = {
         path: HOME_PATHS.DEFAULT,
         component: HomeComponent,
         children: [],
+      },
+      {
+        path: HOME_PATHS.SECTION.ADD,
+        component: SectionFormComponent,
       },
       {
         path: HOME_PATHS.EVENT.SINGLE.CORE,

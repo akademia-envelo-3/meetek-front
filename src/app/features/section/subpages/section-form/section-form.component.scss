@@ -1,0 +1,14 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--background);
+}
+
+.form-wrapper {
+  width: 450px;
+  height: 500px;
+  background-color: var(--surface);
+}
