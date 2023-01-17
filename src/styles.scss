@@ -5,7 +5,6 @@
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat.core();
-
 $dark-primary-text: black;
 $light-primary-text: white;
 
@@ -200,6 +199,10 @@ $front-theme: mat.define-dark-theme(
   --darkModeSurface: #414148;
   --list-circle: #d9d9d9;
   --list-circle-stroke: #9b9b9b;
+  --text: #000;
+
+  //box-shadow
+  --box-shadow: -1px 2px 5px -1px rgba(0, 0, 0, 0.4);
 
   //font-size
   --h1_font-size: 24px;
@@ -210,6 +213,10 @@ $front-theme: mat.define-dark-theme(
   --XS_font-size: 13px;
   --XXS_font-size: 11px;
   --button_font-size: 14px;
+
+  //breakpoints
+  --mobile-breakpoint: max-width: 568px;
+  --laptop-breakpoint: max-width: 1024px;
 
   //font-weight
   --bold: bold;

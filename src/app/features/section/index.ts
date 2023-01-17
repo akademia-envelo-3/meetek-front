@@ -1,3 +1,4 @@
+export * from './shared/section-card/section-card.component';
 export * from './shared/interfaces/section.interface';
 export * from './store/section.actions';
 export * from './store/section.effects';
