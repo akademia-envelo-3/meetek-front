@@ -6,6 +6,7 @@
 }
 
 h2 {
+  font-weight: 400;
   padding: 0 24px 24px;
 }
 
@@ -16,16 +17,17 @@ form {
   gap: 12px;
 }
 
+.inputs-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 mat-form-field {
   width: 100%;
 
   mat-error {
-    display: none !important;
     font-size: var(--S_font-size);
-  }
-
-  mat-error:first-child {
-    display: block !important;
   }
 }
 

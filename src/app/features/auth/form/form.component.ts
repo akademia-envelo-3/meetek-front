@@ -33,10 +33,36 @@ export class FormComponent {
         Validators.minLength(10),
         Validators.maxLength(100),
       ]),
-      password: this.formBuilder.control('', [Validators.required, whitespaceValidator]),
+      password: this.formBuilder.control('', [Validators.required, Validators.minLength(6), whitespaceValidator]),
     });
 
     return form;
+  }
+
+  getErrorMessage(formControlName: string) {
+    const control = this.loginForm.get(formControlName);
+    if (control?.hasError('required')) {
+      switch (formControlName) {
+        case 'email':
+          return 'Pole wymagane';
+        case 'password':
+          return 'Pole wymagane';
+      }
+    }
+    if (control?.hasError('email') || control?.hasError('minlength')) {
+      switch (formControlName) {
+        case 'email':
+          return 'Nieprawidłowy adres e-mail';
+      }
+    }
+    if (control?.hasError('whitespace') || control?.hasError('minlength')) {
+      switch (formControlName) {
+        case 'password':
+          return 'Nieprawidłowe hasło';
+      }
+    }
+
+    return '';
   }
 
   togglePasswordVisibility() {
