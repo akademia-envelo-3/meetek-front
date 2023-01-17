@@ -1,0 +1,39 @@
+@import 'breakpoints.scss';
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--background);
+}
+
+.dark-mode-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  background-color: var(--surface);
+  width: 450px;
+  height: 550px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.input {
+  width: 300px;
+  height: 50px;
+}
+
+@include breakpoint('laptop') {
+  .form-wrapper {
+    width: 100vw;
+    min-height: 100vh;
+  }
+}

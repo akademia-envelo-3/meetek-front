@@ -1,0 +1,36 @@
+<div class="form">
+  <h2>Zaloguj się</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="inputs-wrapper">
+      <div class="email-container">
+        <mat-form-field appearance="outline">
+          <mat-label>E-mail</mat-label>
+          <input matInput placeholder="E-mail" type="email" formControlName="email" required />
+          <mat-error *ngIf="getErrorMessage('email')">{{ getErrorMessage('email') }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="password-container">
+        <mat-form-field appearance="outline">
+          <mat-label>Hasło</mat-label>
+          <input
+            matInput
+            placeholder="Hasło"
+            [type]="visible ? 'text' : 'password'"
+            formControlName="password"
+            required />
+          <button
+            matSuffix
+            mat-icon-button
+            type="button"
+            (click)="togglePasswordVisibility()"
+            color="primary"
+            [disabled]="!this.loginForm.value.password">
+            <mat-icon>remove_red_eye</mat-icon>
+          </button>
+          <mat-error *ngIf="getErrorMessage('password')">{{ getErrorMessage('password') }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <button class="button" mat-raised-button color="primary" [disabled]="loginForm.invalid">Zaloguj się</button>
+  </form>
+</div>
