@@ -1,11 +1,13 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { SectionCardComponent } from 'src/app/features/section';
+import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
+import { SearchComponent } from '@shared/ui/search/search.component';
 
 @Component({
   selector: 'app-theme',
   standalone: true,
-  imports: [SectionCardComponent, NgIf],
+  imports: [SectionCardComponent, NgIf, ToggleComponent, SearchComponent],
   styles: ['.element { margin: 10px;}'],
   template: `
     <h1>Storybook-like route</h1>
@@ -32,6 +34,16 @@ import { SectionCardComponent } from 'src/app/features/section';
         <app-section-card [name]="'Rowerzyści'" [numberOfMembers]="24" [isActive]="true"></app-section-card>
       </div>
     </ng-container>
+    <hr />
+    <h2>Toggle</h2>
+    <div class="element">
+      <app-toggle></app-toggle>
+    </div>
+    <hr />
+    <h2>Wyszukiwarka</h2>
+    <div class="element">
+      <app-search></app-search>
+    </div>
     <hr />
   `,
 })

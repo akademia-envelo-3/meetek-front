@@ -31,7 +31,7 @@ export const APP_PATH = {
     BrowserModule,
     HttpClientModule,
     StoreModule.forRoot({
-      user: userReducer
+      user: userReducer,
     }),
     EffectsModule.forRoot([UserEffects]),
     BrowserAnimationsModule,
