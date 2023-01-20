@@ -61,13 +61,13 @@ $error-palette: (
   50: #ffebee,
   100: #ffcdd2,
   200: #ef9a9a,
-  300: #e57373,
+  300: #f6685e,
   400: #ef5350,
   500: #f44336,
   600: #e53935,
   700: #d32f2f,
   800: #c62828,
-  900: #b71b1c,
+  900: #aa2e25,
   contrast: (
     50: $dark-primary-text,
     100: $dark-primary-text,
@@ -87,9 +87,9 @@ $success-palette: (
   200: #a5d6a7,
   300: #81c784,
   400: #66bb69,
-  500: #4caf4f,
+  500: #4caf50,
   600: #43a046,
-  700: #388e3b,
+  700: #388e3c,
   800: #2e7d31,
   900: #1b5e1f,
   contrast: (
@@ -198,10 +198,8 @@ $front-theme: mat.define-dark-theme(
   --disabled: #868686;
   --darkModeBackground: #303030;
   --darkModeSurface: #414148;
-  --text: #000;
-
-  //box-shadow
-  --box-shadow: -1px 2px 5px -1px rgba(0, 0, 0, 0.4);
+  --text:#000;
+  --white: #fff;
 
   //font-size
   --h1_font-size: 24px;
@@ -234,4 +232,88 @@ $front-theme: mat.define-dark-theme(
 html,
 body {
   height: 100%;
+  background-color: var(--background);
+}
+button {
+  border: none;
+  background-color: transparent;
+  font-size: var(--M_font-size);
+  transition: 0.1s;
+  cursor: pointer;
+  color: var(--white);
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &.modification {
+    color: var(--primary);
+    padding: 0 20px 10px;
+
+
+    &:hover {
+      color: var(--primaryDark);
+    }
+  }
+
+  &.deactivation {
+    color: mat.get-color-from-palette($error-palette, 500);
+    padding: 0 20px 10px;
+
+
+    &:hover {
+      color: mat.get-color-from-palette($error-palette, 900);
+    }
+  }
+
+  &.activation {
+    color:  mat.get-color-from-palette($success-palette, 500);
+    padding: 0 20px 10px;
+
+
+    &:hover {
+      color:  mat.get-color-from-palette($success-palette, 700);
+    } 
+  }
+  &.success {
+    background-color:  mat.get-color-from-palette($success-palette, 500);
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 4px;
+    
+    &:hover {
+      background-color:  mat.get-color-from-palette($success-palette, 700);
+    } 
+  }
+  &.error {
+    background-color:  mat.get-color-from-palette($error-palette, 500);
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 4px;
+
+    &:hover {
+      background-color:  mat.get-color-from-palette($error-palette, 700);
+    } 
+  }
+  &.warning {
+    background-color:  mat.get-color-from-palette($warning-palette, 500);
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 4px;
+
+    &:hover {
+      background-color:  mat.get-color-from-palette($warning-palette, 700);
+    } 
+  }
+  &.formButton {
+    border: 2px solid var(--primaryLight);
+    text-align: center;
+    padding: 10px 20px;
+    color: var(--text);
+
+    &:hover {
+      background-color:  mat.get-color-from-palette($warning-palette, 700);
+    } 
+  }
+
 }
