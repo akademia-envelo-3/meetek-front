@@ -18,7 +18,7 @@ import { User } from '../../interfaces';
   styleUrls: ['./member-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MemberListComponent implements OnInit {
+export class MembersListComponent implements OnInit {
   sectionId!: number;
   usersOfSection$!: Observable<User[] | undefined>;
   listOfMembers: User[] = [];

@@ -1,5 +1,4 @@
 import { Section } from '../shared/interfaces';
-// import { User, Event } from '../shared/interfaces';
 
 export interface SectionState {
   sections: Section[];
