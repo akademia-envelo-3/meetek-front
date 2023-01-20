@@ -10,6 +10,7 @@ import { HeaderComponent } from '@shared/ui/header/header.component';
   styles: ['.element { margin: 10px;}'],
   template: `
     <h1>Storybook-like route</h1>
+    <h2>Header component</h2>
     <app-header></app-header>
     <hr />
     <h2>Section card</h2>
