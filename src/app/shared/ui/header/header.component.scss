@@ -1,6 +1,7 @@
 @media only screen and (max-width: 568px) {
   .header__initials {
     display: none;
+    margin-left: 15px;
   }
   .header__title {
     margin-left: 20px;
@@ -11,6 +12,9 @@
   .header__title {
     margin-left: 20px;
     font-size: var(--h1_font-size);
+  }
+  .header__initials {
+    margin-left: 15px;
   }
 }
 .header__notifications-btn {
