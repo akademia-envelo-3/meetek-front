@@ -1,3 +1,5 @@
+@import 'breakpoints.scss';
+
 * {
   margin: 10px;
 }
@@ -8,13 +10,13 @@
   padding: 10px;
 }
 
-@media (max-width: 1024px) {
+@include breakpoint('laptop') {
   .list {
     min-width: 40vw;
   }
 }
 
-@media (max-width: 568px) {
+@include breakpoint('mobile') {
   .list {
     min-width: 70vw;
   }

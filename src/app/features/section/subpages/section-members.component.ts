@@ -11,4 +11,4 @@ import { MemberListComponent } from '../shared/list/member-list/member-list.comp
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SectionMembersComponent {}
-// to do: dodać wyszukiwarkę oraz menu górne
+// to do: dodać wyszukiwarkę oraz menu górne; task nr FT037 https://github.com/akademia-envelo-3/meetek-front/issues/51 oraz task nr FT028 https://github.com/akademia-envelo-3/meetek-front/issues/47

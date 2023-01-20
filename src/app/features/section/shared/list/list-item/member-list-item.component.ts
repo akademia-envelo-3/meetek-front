@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-members-list-item',
+  selector: 'app-members-list-item[name][initials]',
   standalone: true,
   templateUrl: './member-list-item.component.html',
   styleUrls: ['./member-list-item.component.scss'],

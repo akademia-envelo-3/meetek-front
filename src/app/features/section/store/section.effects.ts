@@ -2,12 +2,15 @@ import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap, of } from 'rxjs';
 import { SectionService } from './section.service';
-import { SectionActions, SectionsApiActions } from './section.actions';
+import { SectionActions, sectionDetailsActions, SectionDetilsApiActions, SectionsApiActions } from './section.actions';
+import { Router } from '@angular/router';
+import { HOME_PATHS } from '../../home';
 
 @Injectable()
 export class SectionEffects {
   private actions$ = inject(Actions);
   private sectionService = inject(SectionService);
+  private router = inject(Router);
 
   getSections$ = createEffect(() => {
     return this.actions$.pipe(
@@ -23,12 +26,12 @@ export class SectionEffects {
 
   getSection$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(SectionActions.getSection),
+      ofType(sectionDetailsActions.getSectionDetails),
       switchMap(({ sectionId }) => this.sectionService.getOne(sectionId)),
-      map(section => SectionsApiActions.sectionLoadedSuccess({ section })),
+      map(section => SectionDetilsApiActions.sectionDetailsSuccess({ section })),
       catchError(() => {
-        //to do: tutaj ma się pojawić toast; task nr FT024: https://github.com/akademia-envelo-3/meetek-front/issues/34
-        return of(SectionsApiActions.sectionLoadedFailure());
+        this.router.navigate([HOME_PATHS.SECTION.SINGLE.SUBPAGES.HOME]);
+        return of(SectionDetilsApiActions.sectionDetailsFailure());
       })
     );
   });

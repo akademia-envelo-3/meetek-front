@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -7,7 +6,7 @@ import { SectionActions } from '../section';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterOutlet, CommonModule],
+  imports: [RouterOutlet],
   template: `
     application shell
 
