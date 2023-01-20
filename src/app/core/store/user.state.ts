@@ -6,5 +6,6 @@ export const initialUserState: UserState = {
       firstName: '',
       lastName: '',
       email: '',
+      role:''
     }
 };

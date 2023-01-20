@@ -1,14 +1,16 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { SectionCardComponent } from 'src/app/features/section';
+import { HeaderComponent } from '@shared/ui/header/header.component';
 
 @Component({
   selector: 'app-theme',
   standalone: true,
-  imports: [SectionCardComponent, NgIf],
+  imports: [SectionCardComponent, NgIf, HeaderComponent],
   styles: ['.element { margin: 10px;}'],
   template: `
     <h1>Storybook-like route</h1>
+    <app-header></app-header>
     <hr />
     <h2>Section card</h2>
     <ng-container *ngIf="sectionCard as card">

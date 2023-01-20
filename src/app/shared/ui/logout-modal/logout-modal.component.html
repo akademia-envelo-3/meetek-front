@@ -1,0 +1,20 @@
+<div class="logout-modal">
+  <div class="logout-modal__container">
+    <div class="logout-modal__user-btn">
+      <app-user-initials-button></app-user-initials-button>
+    </div>
+    <div *ngIf="userSelector$ | async as userSelector" class="logout-modal__initials">
+      <div *ngIf="userSelector.role === 'admin'">
+        <p class="logout-modal__admin-name">Admin</p>
+      </div>
+      <div *ngIf="userSelector.role === 'user'">
+        <p class="logout-modal__user-name">{{ getFullName(userSelector) }}</p>
+        <p class="logout-modal__user-email">{{ userSelector.email }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="logout-modal__user-logout">
+    <mat-icon>exit_to_app</mat-icon>
+    <button class="logout-modal__logout-btn"><p class="logout-paragraph">Wyloguj</p></button>
+  </div>
+</div>

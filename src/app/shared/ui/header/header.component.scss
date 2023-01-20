@@ -1,0 +1,25 @@
+@media only screen and (max-width: 568px) {
+  .header__initials {
+    display: none;
+  }
+  .header__title {
+    margin-left: 20px;
+    font-size: var(--h2_font-size);
+  }
+}
+@media only screen and (min-width: 568px) {
+  .header__title {
+    margin-left: 20px;
+    font-size: var(--h1_font-size);
+  }
+}
+.header__notifications-btn {
+  margin-right: -10px;
+  margin-left: -10px;
+}
+.header__example-spacer {
+  flex: 1 1 auto;
+}
+header {
+  min-width: 320px;
+}

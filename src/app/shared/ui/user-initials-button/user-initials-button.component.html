@@ -1,0 +1,8 @@
+<button
+  *ngIf="userSelector$ | async as userSelector"
+  mat-icon-button
+  class="initials-button"
+  aria-label="Example icon-button with share icon">
+  <p class="initials-button__initials" *ngIf="userSelector.role === 'user'">{{ getInitials(userSelector) }}</p>
+  <p class="initials-button__initials" *ngIf="userSelector.role === 'admin'">A</p>
+</button>
