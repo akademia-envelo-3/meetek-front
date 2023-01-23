@@ -19,11 +19,11 @@ import { User } from '../../interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MembersListComponent implements OnInit {
-  usersOfSection$!: Observable<User[] | undefined>;
-  listOfMembers: User[] = [];
-
   private sectionStore = inject(Store);
   private activeRoute = inject(ActivatedRoute);
+
+  usersOfSection$!: Observable<User[] | undefined>;
+
   sectionDetails$ = this.sectionStore.select(selectSectionDetails);
 
   ngOnInit() {
@@ -32,13 +32,5 @@ export class MembersListComponent implements OnInit {
 
       this.sectionStore.dispatch(sectionDetailsActions.getSectionDetails({ sectionId: +id! }));
     });
-  }
-
-  getFullName(user: User): string {
-    return `${user.firstName} ${user.lastName}`;
-  }
-
-  getInitials(user: User): string {
-    return `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`;
   }
 }

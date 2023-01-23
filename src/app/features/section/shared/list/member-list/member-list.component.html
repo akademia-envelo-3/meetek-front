@@ -1,8 +1,5 @@
 <mat-list class="list">
   <ng-container *ngIf="sectionDetails$ | async as sectionDetails">
-    <app-members-list-item
-      *ngFor="let user of sectionDetails.users"
-      [name]="getFullName(user)"
-      [initials]="getInitials(user)"></app-members-list-item>
+    <app-members-list-item *ngFor="let user of sectionDetails.users" [user]="user"></app-members-list-item>
   </ng-container>
 </mat-list>

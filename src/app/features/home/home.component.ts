@@ -10,7 +10,6 @@ import { RouterOutlet } from '@angular/router';
 
     <router-outlet></router-outlet>
   `,
-  styles: [``],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {}

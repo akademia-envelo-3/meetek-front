@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { SectionCardComponent } from 'src/app/features/section';
 import { MemberListItemComponent } from '../features/section/shared/list/list-item/member-list-item.component';
 import { MatListModule } from '@angular/material/list';
+import { User } from '../features/section/shared/interfaces';
 
 @Component({
   selector: 'app-theme',
@@ -37,7 +38,7 @@ import { MatListModule } from '@angular/material/list';
     <hr />
     <h2>List item</h2>
     <mat-list class="list">
-      <app-members-list-item [name]="name" [initials]="initials"></app-members-list-item>
+      <app-members-list-item [user]="user"></app-members-list-item>
     </mat-list>
   `,
 })
@@ -55,6 +56,9 @@ export default class ThemeComponent {
     },
   };
 
-  name = 'Ania Dąbrowska';
-  initials = 'AD';
+  user: User = {
+    id: 1,
+    firstName: 'Ewelina',
+    lastName: 'Mężyk',
+  };
 }
