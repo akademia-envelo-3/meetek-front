@@ -5,8 +5,14 @@ import { UserInitialsButtonComponent } from '../user-initials-button/user-initia
 import { NgIf, AsyncPipe } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 
+export interface UserMenuInputs { 
+fullName : string,
+initials : string,
+email : string
+}
+
 @Component({
-  selector: 'app-user-menu',
+  selector: 'app-user-menu[userData]',
   standalone: true,
   imports: [MatIconModule, MatButtonModule, UserInitialsButtonComponent, NgIf, AsyncPipe, MatCardModule],
   templateUrl: './user-menu.component.html',
@@ -14,8 +20,5 @@ import { MatCardModule } from '@angular/material/card';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserMenuComponent {
-  @Input() fullName!: string;
-  @Input() initials!: string;
-  @Input() email!: string;
-  @Input() userRole!: string;
+  @Input() userData! : UserMenuInputs
 }

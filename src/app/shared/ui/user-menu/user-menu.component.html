@@ -1,20 +1,17 @@
 <div class="user-menu">
   <div class="user-menu__container">
-    
     <div class="user-menu__initials">
       <div class="user-menu__user-btn">
-        <p class="user-menu__initials-item">{{ initials }}</p>
+        <p class="user-menu__initials-item">{{ userData.initials }}</p>
       </div>
-      <div *ngIf="userRole === 'admin'">
-        <p class="user-menu__admin-name">Admin</p>
-      </div>
-      <div *ngIf="userRole === 'user'">
-        <p class="user-menu__user-name">{{ fullName }}</p>
-        <p class="user-menu__user-email">{{ email }}</p>
+      <div>
+        <p class="user-menu__user-name">{{ userData.fullName }}</p>
+        <p class="user-menu__user-email">{{ userData.email }}</p>
       </div>
     </div>
   </div>
   <div class="user-menu__user-logout">
     <mat-icon>exit_to_app</mat-icon>
     <button class="user-menu__logout-btn"><p class="user-menu__logout-paragraph">Wyloguj</p></button>
-  
+  </div>
+</div>

@@ -11,6 +11,5 @@ import { MatButtonModule } from '@angular/material/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserInitialsButtonComponent {
-    @Input() name!: string;
     @Input() initials!: string;
 }

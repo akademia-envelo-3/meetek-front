@@ -1,15 +1,15 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { NgIf, AsyncPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { UserInitialsButtonComponent } from '../user-initials-button/user-initials-button.component';
 import { CdkMenuModule } from '@angular/cdk/menu';
-import { UserResponse } from '@core/store/user.interfaces';
+import { map } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { UserInitialsButtonComponent } from '../user-initials-button/user-initials-button.component';
 import { selectLoggedUser } from '@core/store/user.selectors';
-import { NgIf, AsyncPipe } from '@angular/common';
 import { UserMenuComponent } from '../user-menu/user-menu.component';
-
+import { UserMenuInputs } from '../user-menu/user-menu.component';
 
 @Component({
   selector: 'app-header',
@@ -22,7 +22,7 @@ import { UserMenuComponent } from '../user-menu/user-menu.component';
     CdkMenuModule,
     NgIf,
     AsyncPipe,
-    UserMenuComponent
+    UserMenuComponent,
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
@@ -30,16 +30,19 @@ import { UserMenuComponent } from '../user-menu/user-menu.component';
 })
 export class HeaderComponent {
   private store = inject(Store);
-  user$ = this.store.select(selectLoggedUser);
 
-  getInitials(user: UserResponse): string {
-    if(user.role === 'admin'){
-      return 'A';
-    } else return `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`;
-     
-    
-  }
-  getFullName(user: UserResponse): string {
-    return `${user.firstName} ${user.lastName}`;
-  }
+  user$ = this.store.select(selectLoggedUser).pipe(
+    map(user => {
+      if (!user) return;
+
+      const { role, firstName, lastName, email } = user;
+
+      const userData: UserMenuInputs = {
+        initials: role === 'admin' ? 'A' : `${firstName.charAt(0)}${lastName.charAt(0)}`,
+        fullName: role === 'admin' ? 'Admin' : `${firstName} ${lastName}`,
+        email,
+      };
+      return userData;
+    })
+  );
 }
