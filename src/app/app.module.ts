@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { CookieService } from 'ngx-cookie-service';
 import { RouterModule } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { API_URL, IS_PRODUCTION } from '@core/env.token';
@@ -30,8 +31,9 @@ export const APP_PATH = {
   imports: [
     BrowserModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
     StoreModule.forRoot({
-      user: userReducer
+      user: userReducer,
     }),
     EffectsModule.forRoot([UserEffects]),
     BrowserAnimationsModule,
