@@ -4,12 +4,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'app-toggle',
   standalone: true,
   template: `
-    <div class="rabatCode">
-      <label class="toggle">
-        <input class="toggle-checkbox" type="checkbox" />
-        <div class="toggle-switch"></div>
-      </label>
-    </div>
+    <label class="toggle">
+      <input class="toggle-checkbox" type="checkbox" />
+      <div class="toggle-switch"></div>
+    </label>
   `,
   styles: [
     `
