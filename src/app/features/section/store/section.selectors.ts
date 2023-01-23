@@ -14,13 +14,6 @@ export const selectSection = (sectionId: number) => {
   });
 };
 
-export const selectUsersOfSection = (sectionId: number) => {
-  return createSelector(
-    selectSectionsState,
-    (state: SectionState) => state?.sections.find(el => el.id === sectionId)?.users
-  );
-};
-
 export const selectSectionDetails = createSelector(selectSectionDetailsState, (state: SectionDetailsState) => {
   return state?.section;
 });

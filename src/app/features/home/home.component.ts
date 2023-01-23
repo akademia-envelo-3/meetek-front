@@ -1,7 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { SectionActions } from '../section';
 
 @Component({
   selector: 'app-home',
@@ -15,14 +13,4 @@ import { SectionActions } from '../section';
   styles: [``],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent implements OnInit {
-  private sectionStore = inject(Store);
-
-  ngOnInit() {
-    this.loadSections();
-  }
-
-  public loadSections() {
-    this.sectionStore.dispatch(SectionActions.getSections());
-  }
-}
+export class HomeComponent {}

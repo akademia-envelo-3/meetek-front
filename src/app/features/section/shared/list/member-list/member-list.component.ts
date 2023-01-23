@@ -19,10 +19,8 @@ import { User } from '../../interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MembersListComponent implements OnInit {
-  sectionId!: number;
   usersOfSection$!: Observable<User[] | undefined>;
   listOfMembers: User[] = [];
-  idk!: number;
 
   private sectionStore = inject(Store);
   private activeRoute = inject(ActivatedRoute);
