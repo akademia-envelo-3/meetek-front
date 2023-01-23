@@ -1,11 +1,14 @@
-@media only screen and (max-width: 568px) {
-  .logout-modal {
+@import 'breakpoints.scss';
+$angular-material-bp:600px;
+
+@include breakpoint('mobile') {
+  .user-menu {
     display: none;
   }
 }
 
-@media only screen and (max-width: 600px) {
-  .logout-modal {
+@media only screen and (max-width: #{$angular-material-bp}) {
+  .user-menu {
     width: 280px;
     height: 140px;
     position: absolute;
@@ -13,10 +16,12 @@
     right: 0px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     z-index: 1000;
+    background-color: var(--surface);
   }
 }
-@media only screen and (min-width: 600px) {
-  .logout-modal {
+
+@media only screen and (min-width: #{$angular-material-bp}) {
+  .user-menu {
     width: 280px;
     height: 140px;
     position: absolute;
@@ -24,42 +29,63 @@
     right: 0px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     z-index: 1000;
+    background-color: var(--surface);
   }
 }
-.logout-modal__user-btn {
-  margin: 10px 0px 10px 10px;
-}
-.logout-modal__user-name {
+
+
+.user-menu__user-name {
   font-size: var(--h2_font-size);
 }
-.logout-modal__initials {
+
+.user-menu__initials {
   display: flex;
   padding: 10px;
   justify-content: center;
   align-items: center;
 }
-.logout-modal__user-email {
+
+.user-menu__user-email {
   font-size: var(--XS_font-size);
   color: var(--text);
 }
-.logout-modal__container {
+
+.user-menu__container {
   display: flex;
   padding: 10px;
 }
-.logout-modal__user-logout {
+
+.user-menu__user-logout {
   display: flex;
   justify-content: flex-end;
   margin: 10px;
 }
-.logout-paragraph {
+
+.user-menu__logout-paragraph {
   font-size: var(--L_font-size);
 }
-.logout-modal__logout-btn {
+
+.user-menu__logout-btn {
   outline: none;
   border: none;
   background-color: white;
   cursor: pointer;
 }
-.logout-modal__admin-name {
+
+.user-menu__admin-name {
   font-size: var(--h2_font-size);
+}
+.user-menu__initials-item{
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--divider);
+    border: 1px solid var(--disabled);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  
+  
 }

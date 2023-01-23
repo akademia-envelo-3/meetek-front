@@ -3,21 +3,26 @@
     <mat-toolbar color="primary">
       <button
         mat-icon-button
-        class="example-icon"
-        class="header__notifications-btn"
-        aria-label="Example icon-button with menu icon">
+        class="header__menu-btn"
+        aria-label="Example icon-button with menu icon example-icon">
         <mat-icon>menu</mat-icon>
       </button>
-      <span class="header__title">{{ title }}</span>
+      <span class="header__title">Meetek</span>
       <span class="header__example-spacer"></span>
       <button mat-icon-button class="header__notifications-btn">
         <mat-icon>notifications</mat-icon>
       </button>
-      <app-user-initials-button class="header__initials" [cdkMenuTriggerFor]="menu"></app-user-initials-button>
+      <app-user-initials-button *ngIf="user$ | async as user" [cdkMenuTriggerFor]="menu" [initials]="getInitials(user)"  class="header__initials"></app-user-initials-button>
     </mat-toolbar>
   </div>
+
+  <ng-template #menu class="header__modal">
+    <app-user-menu *ngIf="user$ | async as user"
+    [userRole]="user.role"
+    [initials]="getInitials(user)"
+    [fullName]="getFullName(user)"
+    [email]="user.email"
+     cdkMenu ></app-user-menu>
+  </ng-template>
 </header>
 
-<ng-template #menu class="header__modal">
-  <app-logout-modal cdkMenu></app-logout-modal>
-</ng-template>
