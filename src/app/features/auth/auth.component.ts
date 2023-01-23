@@ -1,10 +1,19 @@
+import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
+import { FormComponent } from './form/form.component';
 
 @Component({
   selector: 'app-auth',
   standalone: true,
-  template: ` <p>auth works!</p> `,
-  styles: [],
+  imports: [
+    MatSlideToggleModule,
+    NgOptimizedImage,
+    FormComponent
+  ],
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthComponent {}

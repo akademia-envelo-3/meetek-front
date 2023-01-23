@@ -4,20 +4,36 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { CookieService } from 'ngx-cookie-service';
+import { RouterModule } from '@angular/router';
+
 import { AppComponent } from './app.component';
 import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
-import { RouterModule } from '@angular/router';
 import { noProductionGuard } from '@shared/no-production.guard';
-import { SectionFormComponent } from './features/section/subpages/section-form/section-form.component';
+import { userReducer } from './core/store/user.reducer';
+import { UserEffects } from '@core/store/user.effects';
+import { UserState } from '@core/store/user.interfaces';
+
+export interface AppState {
+  user?: UserState;
+}
+
+export const APP_PATH = {
+  HOME: '',
+  AUTH: 'auth',
+  THEME: 'theme',
+} as const;
 
 @NgModule({
-  declarations: [AppComponent, SectionFormComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot({
+      user: userReducer
+    }),
+    EffectsModule.forRoot([UserEffects]),
     BrowserAnimationsModule,
     RouterModule.forRoot([
       {
@@ -28,11 +44,11 @@ import { SectionFormComponent } from './features/section/subpages/section-form/s
             loadChildren: () => import('./features/home/home.module'),
           },
           {
-            path: 'auth',
+            path: APP_PATH.AUTH,
             loadChildren: () => import('./features/auth/auth.module'),
           },
           {
-            path: 'theme',
+            path: APP_PATH.THEME,
             canMatch: [noProductionGuard],
             loadComponent: () => import('./core/theme.component'),
           },
@@ -53,6 +69,7 @@ import { SectionFormComponent } from './features/section/subpages/section-form/s
       provide: IS_PRODUCTION,
       useValue: environment.production,
     },
+    CookieService,
   ],
   bootstrap: [AppComponent],
 })
