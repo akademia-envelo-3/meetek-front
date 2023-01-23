@@ -1,0 +1,32 @@
+<!-- <app-header></app-header> -->
+<main>
+  <h1>Wszystkie sekcje</h1>
+  <div class="content">
+    <br />
+    <div class="search">
+      <input matInput placeholder="Wyszukaj" />
+      <div class="icon">
+        <mat-icon>search</mat-icon>
+      </div>
+    </div>
+    <ng-container *ngIf="sectionCard as card">
+      <app-section-card
+        (modification)="card.handleModification()"
+        (activation)="card.handleActivation()"
+        (deactivation)="card.handleDeactivation()"
+        [name]="'Sekcja szalonych pływaków i pływaczek'"
+        [numberOfMembers]="31842"
+        [isActive]="card.isActive">
+      </app-section-card>
+      <app-section-card
+        (modification)="card.handleModification()"
+        [name]="'Piłkarze'"
+        [numberOfMembers]="2"
+        [isActive]="false"></app-section-card>
+      <app-section-card [name]="'Rowerzyści'" [numberOfMembers]="24" [isActive]="true"></app-section-card>
+    </ng-container>
+  </div>
+</main>
+<button mat-fab color="accent" aria-label="Example icon button with a add icon" (click)="goToAddSection()">
+  <mat-icon>add</mat-icon>
+</button>

@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { HomeComponent } from './home.component';
-import { SectionComponent } from '../section/section.component';
+import { SectionsComponent } from '../section/sections.component';
 import { SectionEffects, sectionReducer } from '../section';
 
 export const HOME_PATHS = {
@@ -69,7 +69,7 @@ export const HOME_PATHS = {
       },
       {
         path: HOME_PATHS.SECTION.ALL,
-        component: SectionComponent,
+        component: SectionsComponent,
       },
     ]),
   ],
