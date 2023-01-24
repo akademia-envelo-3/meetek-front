@@ -7,7 +7,7 @@ import { catchError, map, of, switchMap, tap } from 'rxjs';
 import { HOME_PATHS } from '../../home';
 import { AuthActions, AuthApiActions, AuthService } from '../../auth';
 import { UserApiActions } from '@core/store/user.actions';
-import { ToastrFacade } from '@shared/services';
+import { ToastFacadeService } from '@shared/services';
 
 @Injectable()
 export class AuthEffects {
@@ -15,7 +15,7 @@ export class AuthEffects {
   private cookieService = inject(CookieService);
   private authService = inject(AuthService);
   private router = inject(Router);
-  private toastService = inject(ToastrFacade);
+  private toastService = inject(ToastFacadeService);
 
   login$ = createEffect(() => {
     return this.actions$.pipe(
@@ -33,7 +33,7 @@ export class AuthEffects {
             return UserApiActions.getUserSuccess({ user });
           }),
           catchError(() => {
-            this.toastService.toastr.error('Niepoprawny login lub hasło');
+            this.toastService.showError('Niepoprawny login lub hasło', 'Błąd');
             return of(AuthApiActions.loginFailure());
           })
         );

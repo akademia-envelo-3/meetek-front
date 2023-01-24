@@ -4,13 +4,13 @@ import { catchError, map, switchMap, of } from 'rxjs';
 
 import { SectionService } from '..';
 import { SectionActions, SectionsApiActions } from '..';
-import { ToastrFacade } from '@shared/services';
+import { ToastFacadeService } from '@shared/services';
 
 @Injectable()
 export class SectionEffects {
   private actions$ = inject(Actions);
   private sectionService = inject(SectionService);
-  private toastService = inject(ToastrFacade);
+  private toastService = inject(ToastFacadeService);
 
   getSections$ = createEffect(() => {
     return this.actions$.pipe(
@@ -18,7 +18,7 @@ export class SectionEffects {
       switchMap(() => this.sectionService.getAll()),
       map(sections => SectionsApiActions.sectionsLoadedSuccess({ sections })),
       catchError(() => {
-        this.toastService.toastr.error('Nie udało się pobrać sekcji');
+        this.toastService.showError('Nie udało się pobrać sekcji', 'Błąd');
         return of(SectionsApiActions.sectionsLoadedFailure());
       })
     );
@@ -30,7 +30,7 @@ export class SectionEffects {
       switchMap(({ sectionId }) => this.sectionService.getOne(sectionId)),
       map(section => SectionsApiActions.sectionLoadedSuccess({ section })),
       catchError(() => {
-        this.toastService.toastr.error('Nie udało się pobrać danej sekcji');
+        this.toastService.showError('Nie udało się pobrać danej sekcji', 'Błąd');
         return of(SectionsApiActions.sectionLoadedFailure());
       })
     );
@@ -42,7 +42,7 @@ export class SectionEffects {
       switchMap(newSection => this.sectionService.add(newSection.section)),
       map(section => SectionsApiActions.sectionsAddedSuccess({ section })),
       catchError(() => {
-        this.toastService.toastr.error('Nie udało się utworzyć sekcji');
+        this.toastService.showError('Nie udało się utworzyć sekcji', 'Błąd');
         return of(SectionsApiActions.sectionsAddedFailure());
       })
     );
@@ -54,7 +54,7 @@ export class SectionEffects {
       switchMap(editedSection => this.sectionService.update(editedSection.section)),
       map(section => SectionsApiActions.sectionEditedSuccess({ section })),
       catchError(() => {
-        this.toastService.toastr.error('Nie udało się edytować sekcji');
+        this.toastService.showError('Nie udało się edytować sekcji', 'Błąd');
         return of(SectionsApiActions.sectionEditedFailure());
       })
     );
@@ -66,7 +66,7 @@ export class SectionEffects {
       switchMap(({ sectionId }) => this.sectionService.activate(sectionId)),
       map(section => SectionsApiActions.sectionActivatedSuccess({ sectionId: section.id })),
       catchError(() => {
-        this.toastService.toastr.error('Nie udało się aktywować sekcji');
+        this.toastService.showError('Nie udało się aktywować sekcji', 'Błąd');
         return of(SectionsApiActions.sectionActivatedFailure());
       })
     );
@@ -78,7 +78,7 @@ export class SectionEffects {
       switchMap(({ sectionId }) => this.sectionService.deactivate(sectionId)),
       map(section => SectionsApiActions.sectionDeactivatedSuccess({ sectionId: section.id })),
       catchError(() => {
-        this.toastService.toastr.error('Nie udało się dezaktywować sekcji');
+        this.toastService.showError('Nie udało się dezaktywować sekcji', 'Błąd');
         return of(SectionsApiActions.sectionDeactivatedFailure());
       })
     );

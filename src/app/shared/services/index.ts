@@ -1,1 +1,1 @@
-export * from './toastr-facade.service';
+export * from './toast.facade.service';
