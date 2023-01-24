@@ -42,7 +42,7 @@ import { SectionCardComponent } from 'src/app/features/section';
     <hr />
     <h2>Wyszukiwarka</h2>
     <div class="element">
-      <app-search [placeholder]="'Wyszukaj'"></app-search>
+      <app-search [placeholderValue]="'Wyszukaj'"></app-search>
     </div>
     <hr />
   `,
