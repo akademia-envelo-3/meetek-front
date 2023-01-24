@@ -1,14 +1,14 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
-  selector: 'app-search',
+  selector: 'app-search[placeholder]',
   standalone: true,
   imports: [MatIconModule, MatInputModule],
   template: `
     <div class="search">
-      <input matInput placeholder="Wyszukaj" />
+      <input matInput [placeholder]="'Wyszukaj'" />
       <div class="icon">
         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="search"></mat-icon>
       </div>
@@ -41,4 +41,6 @@ import { MatInputModule } from '@angular/material/input';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchComponent {}
+export class SearchComponent {
+  @Input() placeholder!: string;
+}
