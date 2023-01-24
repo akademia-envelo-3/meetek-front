@@ -14,6 +14,7 @@ import { noProductionGuard } from '@shared/no-production.guard';
 import { userReducer } from './core/store/user.reducer';
 import { UserEffects } from '@core/store/user.effects';
 import { UserState } from '@core/store/user.interfaces';
+import { TokenInterceptorProvider } from '@shared/interceptors/token.interceptor';
 
 export interface AppState {
   user?: UserState;
@@ -31,7 +32,7 @@ export const APP_PATH = {
     BrowserModule,
     HttpClientModule,
     StoreModule.forRoot({
-      user: userReducer
+      user: userReducer,
     }),
     EffectsModule.forRoot([UserEffects]),
     BrowserAnimationsModule,
@@ -70,6 +71,7 @@ export const APP_PATH = {
       useValue: environment.production,
     },
     CookieService,
+    TokenInterceptorProvider,
   ],
   bootstrap: [AppComponent],
 })
