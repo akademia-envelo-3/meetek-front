@@ -11,7 +11,7 @@ export class TokenInterceptor implements HttpInterceptor {
     const token = this.cookieService.get('token');
 
     request = request.clone({
-      headers: request.headers.set('Authorization', token),
+      headers: request.headers.set('Authorization', `Bearer ${token}`),
     });
 
     return next.handle(request);
