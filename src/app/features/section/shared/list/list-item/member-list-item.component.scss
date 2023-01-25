@@ -11,7 +11,7 @@
 .circle {
   display: flex;
   height: 50px;
-  width: 50px;
+  min-width: 50px;
   align-items: center;
   justify-content: center;
   font-size: var(--S_font-size);
