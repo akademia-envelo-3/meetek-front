@@ -89,18 +89,4 @@ export class SectionEffects {
       })
     );
   });
-
-  getAllUsers$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(SectionActions.getAllUsers),
-      switchMap(() => {
-        return this.userService
-          .getAllUsers()
-          .pipe(map(response => SectionsApiActions.getAllUsersSuccess({ users: response })));
-      }),
-      catchError(() => {
-        return of(SectionsApiActions.getAllUsersFailure());
-      })
-    );
-  });
 }

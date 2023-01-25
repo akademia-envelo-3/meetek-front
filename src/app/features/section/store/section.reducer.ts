@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { SectionsApiActions } from '..';
-import { HomeState } from '../../home';
+
 import { initialSectionState, SectionState } from './section.state';
 
 export const sectionReducer = createReducer(
@@ -8,13 +8,5 @@ export const sectionReducer = createReducer(
 
   on(SectionsApiActions.sectionsLoadedSuccess, (state, { sections }): SectionState => {
     return { ...state, sections };
-  })
-);
-
-export const allUsersReducer = createReducer(
-  initialSectionState,
-
-  on(SectionsApiActions.getAllUsersSuccess, (state, { users }): HomeState => {
-    return { ...state, users };
   })
 );

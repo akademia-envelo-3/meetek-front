@@ -4,14 +4,8 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { HomeComponent } from './home.component';
-import { SectionEffects, sectionReducer, allUsersReducer, Section, SectionFormComponent } from '../section';
+import { SectionEffects, sectionReducer, SectionFormComponent } from '../section';
 import { UserEffects } from '@core/store/user.effects';
-import { UserResponse } from '@core/store/user.interfaces';
-
-export interface HomeState {
-  sections: Section[];
-  users: UserResponse[];
-}
 
 export const HOME_PATHS = {
   DEFAULT: '',
@@ -56,7 +50,6 @@ export const HOME_PATHS = {
 @NgModule({
   imports: [
     StoreModule.forFeature('sections', sectionReducer),
-    StoreModule.forFeature('allUsers', allUsersReducer),
     EffectsModule.forFeature([SectionEffects, UserEffects]),
     RouterModule.forChild([
       {

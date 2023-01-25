@@ -28,30 +28,14 @@
           <mat-form-field class="chip-list" appearance="fill">
             <mat-label>Organizator</mat-label>
             <mat-chip-grid #chipGrid>
-              <div class="chips-scroll">
-                <mat-chip-row *ngFor="let organizer of organizers" (removed)="removeOrganizer(organizer)">
-                  {{ organizer.firstName + ' ' + organizer.lastName }}
-                  <button matChipRemove>
-                    <mat-icon>cancel</mat-icon>
-                  </button>
-                </mat-chip-row>
-              </div>
+              <mat-chip-row *ngFor="let organizer of organizers">
+                {{ organizer.firstName }} {{ organizer.lastName }}
+              </mat-chip-row>
+              <input
+                placeholder="Organizator"
+                [matChipInputFor]="chipGrid"
+                [disabled]="!!organizers.length" />
             </mat-chip-grid>
-            <input
-              placeholder="Organizator"
-              #organizerInput
-              formControlName="sectionOwner"
-              [matChipInputFor]="chipGrid"
-              [matAutocomplete]="auto"
-              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-              [(ngModel)]="filteredText"
-              (input)="getFilteredUsers()"
-              (blur)="organizerInput.value = ''" />
-            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedOrganizer($event)">
-              <mat-option *ngFor="let organizer of filteredUsers$ | async" [value]="organizer">
-                {{ organizer.firstName + ' ' + organizer.lastName }}
-              </mat-option>
-            </mat-autocomplete>
           </mat-form-field>
         </div>
       </div>

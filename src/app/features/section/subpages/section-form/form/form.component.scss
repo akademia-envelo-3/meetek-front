@@ -61,21 +61,6 @@ button {
   text-transform: uppercase;
 }
 
-mat-chip-grid {
-  overflow-x: auto;
-  flex-flow: nowrap;
-
-  span {
-    flex-flow: nowrap;
-  }
-}
-
-.chips-scroll {
-  display: flex;
-  flex-flow: nowrap !important;
-  padding-bottom: 6px;
-}
-
 .mat-mdc-raised-button:enabled {
   background-color: var(--success) !important;
   color: var(--surface) !important;

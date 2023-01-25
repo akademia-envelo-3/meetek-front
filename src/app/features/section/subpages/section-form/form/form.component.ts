@@ -1,18 +1,15 @@
-import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { AsyncPipe, NgIf, NgForOf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormsModule, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Store } from '@ngrx/store';
-import { Observable, map } from 'rxjs';
 
 import { selectLoggedUser } from '@core/store/user.selectors';
-import { selectAllUsers, SectionActions, organizers } from '../../../../section';
+import { SectionActions, organizers } from '../../../../section';
 import { validateCharacters, validateNotNumbers } from '../../section-form';
 
 @Component({
@@ -21,7 +18,6 @@ import { validateCharacters, validateNotNumbers } from '../../section-form';
   imports: [
     MatFormFieldModule,
     AsyncPipe,
-    MatAutocompleteModule,
     MatInputModule,
     MatIconModule,
     MatButtonModule,
@@ -40,12 +36,8 @@ export class FormComponent implements OnInit {
   private store = inject(Store);
 
   loggedInUser$ = this.store.select(selectLoggedUser);
-  allUsers$ = this.store.select(selectAllUsers);
   newSectionForm = this.createNewSectionForm();
-  filteredUsers$!: Observable<organizers[]>;
-  separatorKeysCodes: number[] = [ENTER, COMMA];
   organizers: organizers[] = [];
-  filteredText = '';
 
   ngOnInit() {
     this.loggedInUser$.subscribe(user => {
@@ -54,28 +46,6 @@ export class FormComponent implements OnInit {
         lastName: user?.lastName,
         id: user?.id,
       });
-    });
-
-    this.store.dispatch(SectionActions.getAllUsers());
-  }
-
-  removeOrganizer(organizer: organizers) {
-    const index = this.organizers.indexOf(organizer);
-
-    this.loggedInUser$.subscribe(user => {
-      if (organizer.id === user?.id) {
-        return;
-      } else {
-        this.organizers.splice(index, 1);
-      }
-    });
-  }
-
-  selectedOrganizer(event: MatAutocompleteSelectedEvent) {
-    this.organizers.push({
-      firstName: event.option.value.firstName,
-      lastName: event.option.value.lastName,
-      id: event.option.value.id,
     });
   }
 
@@ -133,22 +103,6 @@ export class FormComponent implements OnInit {
     return '';
   }
 
-  getFilteredUsers() {
-    if (this.filteredText.length) {
-      this.filteredUsers$ = this.allUsers$.pipe(
-        map(users =>
-          users.filter(user => {
-            const isSelected = this.filterUsers(this.organizers)(user);
-            const isIncluded = (user.firstName + ' ' + user.lastName)
-              .toLowerCase()
-              .includes(this.filteredText.toLowerCase());
-            return isSelected && isIncluded;
-          })
-        )
-      );
-    }
-  }
-
   createSection() {
     this.newSectionForm.markAllAsTouched();
 
@@ -180,11 +134,5 @@ export class FormComponent implements OnInit {
     });
 
     return form;
-  }
-
-  private filterUsers(organizer: organizers[]) {
-    return (user: organizers) => {
-      return !organizer.some(organizer => organizer.id === user.id);
-    };
   }
 }

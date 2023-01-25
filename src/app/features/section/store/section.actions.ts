@@ -1,4 +1,3 @@
-import { UserResponse } from '@core/store/user.interfaces';
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { Section } from 'src/app/features/section/shared/interfaces';
 import { AddNewSection } from '../shared/interfaces/section-form.interface';
@@ -14,7 +13,6 @@ export const SectionActions = createActionGroup({
     'deactivate section': props<{ sectionId: number }>(),
     'join section': props<{ sectionId: number }>(),
     'leave section': props<{ sectionId: number }>(),
-    'get all users': emptyProps(),
   },
 });
 
@@ -44,8 +42,5 @@ export const SectionsApiActions = createActionGroup({
 
     'section left success': props<{ sectionId: number }>(),
     'section left failure': emptyProps(),
-
-    'get all users success': props<{ users: UserResponse[] }>(),
-    'get all users failure': emptyProps(),
   },
 });
