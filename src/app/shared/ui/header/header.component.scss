@@ -7,15 +7,11 @@
   }
 
   .header__title {
-    margin-left: 10px;
     font-size: var(--h2_font-size);
+    margin-top: 100px;
+    display: block;
   }
 }
-
-  .header__title {
-    margin-left: 10px;
-    font-size: var(--h1_font-size);
-  }
 
   .header__initials {
     margin-left: 15px;
@@ -32,4 +28,8 @@
 
 header {
   min-width: 320px;
+}
+
+.header__img{
+  margin-top: 3px;
 }
