@@ -156,7 +156,7 @@ export class FormComponent implements OnInit {
       return;
     }
 
-    this.newSectionForm.controls.organizer.setValue(this.organizers);
+    this.newSectionForm.controls.owners.setValue(this.organizers);
     this.store.dispatch(SectionActions.addSection({ section: this.newSectionForm.getRawValue() }));
   }
 
@@ -176,7 +176,7 @@ export class FormComponent implements OnInit {
         validateCharacters,
         validateNotNumbers,
       ]),
-      organizer: this.formBuilder.control(this.organizers),
+      owners: this.formBuilder.control(this.organizers),
     });
 
     return form;
