@@ -8,7 +8,7 @@ export const SectionActions = createActionGroup({
   events: {
     'get sections': emptyProps(),
     'get section': props<{ sectionId: number }>(),
-    'add section': props<{ section: AddNewSection }>(),
+    'add section': props<{ section: AddNewSection, isActive: boolean }>(),
     'edit section': props<{ section: Partial<Section> }>(),
     'activate section': props<{ sectionId: number }>(),
     'deactivate section': props<{ sectionId: number }>(),

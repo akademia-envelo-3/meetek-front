@@ -16,8 +16,11 @@ export class SectionService {
     return this.http.get<Section>(`${this.BASE_URL}/sections/${sectionId}`);
   }
 
-  add(section: AddNewSection) {
-    return this.http.post<AddNewSection>(`${this.BASE_URL}/sections`, section);
+  add(section: AddNewSection, isActive: boolean) {
+    return this.http.post<AddNewSection>(`${this.BASE_URL}/sections`, {
+      ...section,
+      isActive
+    });
   }
 
   update(section: Partial<Section>) {

@@ -42,7 +42,7 @@ export class SectionEffects {
   addSection$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(SectionActions.addSection),
-      switchMap(newSection => this.sectionService.add(newSection.section)),
+      switchMap(newSection => this.sectionService.add(newSection.section, newSection.isActive)),
       map(section => {
         this.router.navigate([HOME_PATHS.SECTION.ALL])
         return SectionsApiActions.sectionsAddedSuccess({ section });

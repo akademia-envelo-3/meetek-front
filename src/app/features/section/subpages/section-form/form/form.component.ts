@@ -156,8 +156,8 @@ export class FormComponent implements OnInit {
       return;
     }
 
-    this.newSectionForm.controls.owners.setValue(this.organizers);
-    this.store.dispatch(SectionActions.addSection({ section: this.newSectionForm.getRawValue() }));
+    this.newSectionForm.controls.sectionOwner.setValue(this.organizers);
+    this.store.dispatch(SectionActions.addSection({ section: this.newSectionForm.getRawValue(), isActive: true }));
   }
 
   private createNewSectionForm() {
@@ -176,7 +176,7 @@ export class FormComponent implements OnInit {
         validateCharacters,
         validateNotNumbers,
       ]),
-      owners: this.formBuilder.control(this.organizers),
+      sectionOwner: this.formBuilder.control(this.organizers),
     });
 
     return form;

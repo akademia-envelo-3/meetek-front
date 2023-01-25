@@ -7,5 +7,5 @@ export interface organizers {
 export interface AddNewSection {
   name: string;
   description: string;
-  owners: organizers[];
+  sectionOwner: organizers[];
 }
