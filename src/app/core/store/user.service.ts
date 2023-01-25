@@ -30,4 +30,12 @@ export class UserService {
       },
     });
   }
+
+  getAllUsers() {
+    return this.http.get<UserResponse[]>(`${this.base_url}/users`, {
+      headers: {
+        Authorization: `Bearer ${this.cookieService.get('token')}`,
+      },
+    });
+  }
 }

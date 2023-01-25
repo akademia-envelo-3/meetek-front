@@ -6,30 +6,8 @@ main {
   align-items: center;
   flex-direction: column;
   min-height: 100vh;
+  max-width: 100vw;
   background-color: var(--background);
-}
-
-.form-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 24px;
-  background-color: var(--surface);
-  width: 450px;
-  height: 550px;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
-}
-
-.input {
-  width: 300px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 h2 {
@@ -37,58 +15,8 @@ h2 {
   padding: 0 24px 24px;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 12px;
-}
-
-.inputs-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-mat-form-field {
-  width: 100%;
-
-  mat-error {
-    font-size: var(--S_font-size);
-  }
-}
-
-.button-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-button {
-  height: 45px;
-  width: 120px;
-  text-transform: uppercase;
-}
-
-.mat-mdc-raised-button:enabled {
-  background-color: var(--success) !important;
-  color: var(--surface) !important;
-}
-
 @include breakpoint('laptop') {
-  .form-wrapper {
-    width: 100%;
-    min-height: 100vh;
-    position: relative;
-  }
-
-  h2 {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    text-align: center;
-    z-index: 1;
+  main {
+    background-color: var(--surface);
   }
 }

@@ -1,13 +1,19 @@
 import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { UserService } from '@core/store/user.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap, of } from 'rxjs';
 import { SectionService } from '..';
 import { SectionActions, SectionsApiActions } from '..';
+import { HOME_PATHS } from '../../home';
 
 @Injectable()
 export class SectionEffects {
   private actions$ = inject(Actions);
   private sectionService = inject(SectionService);
+  private userService = inject(UserService);
+  private router = inject(Router);
 
   getSections$ = createEffect(() => {
     return this.actions$.pipe(
@@ -37,7 +43,10 @@ export class SectionEffects {
     return this.actions$.pipe(
       ofType(SectionActions.addSection),
       switchMap(newSection => this.sectionService.add(newSection.section)),
-      map(section => SectionsApiActions.sectionsAddedSuccess({ section })),
+      map(section => {
+        this.router.navigate([HOME_PATHS.SECTION.ALL])
+        return SectionsApiActions.sectionsAddedSuccess({ section });
+      }),
       catchError(() => {
         //to do: tutaj ma się pojawić toast; task nr FT024: https://github.com/akademia-envelo-3/meetek-front/issues/34
         return of(SectionsApiActions.sectionsAddedFailure());
@@ -77,6 +86,20 @@ export class SectionEffects {
       catchError(() => {
         //to do: tutaj ma się pojawić toast; task nr FT024: https://github.com/akademia-envelo-3/meetek-front/issues/34
         return of(SectionsApiActions.sectionDeactivatedFailure());
+      })
+    );
+  });
+
+  getAllUsers$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SectionActions.getAllUsers),
+      switchMap(() => {
+        return this.userService
+          .getAllUsers()
+          .pipe(map(response => SectionsApiActions.getAllUsersSuccess({ users: response })));
+      }),
+      catchError(() => {
+        return of(SectionsApiActions.getAllUsersFailure());
       })
     );
   });
