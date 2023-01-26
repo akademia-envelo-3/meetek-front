@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { Dialog } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-quit-section-dialog[text]',

@@ -4,8 +4,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { InputDialogComponent } from '../input dialog/input-dialog.component';
-import { CancelConfirmDialogComponent } from '../cancel-confirm dialog/quit-section-dialog.component';
-
+import { CancelConfirmDialogComponent } from '../quit-section-dialog/cancel-confirm-dialog.component.ts';
 export interface DialogData {
   title: string;
   buttonText: string;
