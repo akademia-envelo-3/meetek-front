@@ -37,7 +37,7 @@ import { SectionCardComponent } from 'src/app/features/section';
     <hr />
     <h2>Toggle</h2>
     <div class="element">
-      <app-toggle></app-toggle>
+      <app-toggle (toggleChange)="onToggleChange($event)"></app-toggle>
     </div>
     <hr />
     <h2>Wyszukiwarka</h2>
@@ -60,4 +60,7 @@ export default class ThemeComponent {
       this.isActive = false;
     },
   };
+  onToggleChange(isChecked: boolean) {
+    console.log(isChecked);
+  }
 }
