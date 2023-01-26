@@ -4,6 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { HomeComponent } from './home.component';
 import { SectionEffects, sectionReducer } from '../section';
+import { EditFormComponent } from '../section/subpages/edit-form/edit-form.component';
 
 export const HOME_PATHS = {
   DEFAULT: '',
@@ -63,9 +64,19 @@ export const HOME_PATHS = {
             path: HOME_PATHS.EVENT.SINGLE.SUBPAGES.PARTICIPANTS,
             component: HomeComponent,
             title: 'Uczestnicy',
-          },
+          }
         ],
       },
+      {
+        path: HOME_PATHS.SECTION.ALL,
+        component: HomeComponent,
+        children: [
+          {
+            path: HOME_PATHS.SECTION.EDIT,
+            component: EditFormComponent
+          }
+        ]
+      }
     ]),
   ],
 })
