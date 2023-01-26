@@ -1,0 +1,25 @@
+<div class="input-dialog">
+  <div class="input-dialog__close-btn-container">
+    <button (click)="closeDialog()" class="input-dialog__close-btn">
+      <mat-icon class="input-dialog__icon">close</mat-icon>
+    </button>
+  </div>
+  <div class="input-dialog__title-container">
+    <p class="input-dialog__title">{{ data.title }}</p>
+  </div>
+
+  <div class="input-dialog__input-container">
+    <form class="example-form">
+      <input
+        class="input-dialog__input"
+        placeholder="{{data.inputLabelText}}"
+        [(ngModel)]="data.importedDialogData"
+        name="dialogData" />
+    </form>
+  </div>
+  <div mat-dialog-actions class="input-dialog__btn-container">
+    <button type="submit" class="input-dialog__btn success" [mat-dialog-close]="data.importedDialogData" mat-button>
+      {{data.buttonText}}
+    </button>
+  </div>
+</div>

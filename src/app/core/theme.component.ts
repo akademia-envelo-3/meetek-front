@@ -2,16 +2,19 @@ import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { SectionCardComponent } from 'src/app/features/section';
 import { HeaderComponent } from '@shared/ui/header/header.component';
+import { ExampleDialogComponent } from '@shared/ui/modals/example dialog/example-dialog.component';
 
 @Component({
   selector: 'app-theme',
   standalone: true,
-  imports: [SectionCardComponent, NgIf, HeaderComponent],
+  imports: [SectionCardComponent, NgIf, HeaderComponent, ExampleDialogComponent],
   styles: ['.element { margin: 10px;}'],
   template: `
     <h1>Storybook-like route</h1>
     <h2>Header component</h2>
     <app-header></app-header>
+    <h3>Dialogi</h3>
+    <app-example-dialog></app-example-dialog>
     <hr />
     <h2>Section card</h2>
     <ng-container *ngIf="sectionCard as card">

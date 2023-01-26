@@ -1,0 +1,14 @@
+<div class="cancel-confirm-dialog">
+  <div class="cancel-confirm-dialog__close-btn-container">
+    <button [mat-dialog-close] class="cancel-confirm-dialog__close-btn">
+      <mat-icon class="cancel-confirm-dialog__icon">close</mat-icon>
+    </button>
+  </div>
+  <div class="cancel-confirm-dialog__title-container">
+    <p class="cancel-confirm-dialog__title">{{ data.text }}</p>
+  </div>
+  <div class="cancel-confirm-dialog__btn-container">
+    <button mat-button class="cancel-confirm-dialog__cancel-btn error">ANULUJ</button>
+    <button mat-button class="cancel-confirm-dialog__confirm-btn success">POTWIERDŹ</button>
+  </div>
+</div>
