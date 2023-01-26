@@ -3,8 +3,10 @@ import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { HomeComponent } from './home.component';
-import { SectionEffects, sectionReducer } from '../section';
 import { EditFormComponent } from '../section/subpages/edit-form/edit-form.component';
+import { SectionEffects } from '../section/store/section.effects';
+import { sectionDetailsReducer, sectionReducer } from '../section/store/section.reducer';
+import { SectionMembersComponent } from '../section';
 
 export const HOME_PATHS = {
   DEFAULT: '',
@@ -31,13 +33,13 @@ export const HOME_PATHS = {
       SUBPAGES: {
         HOME: '',
         MEMBERS: 'members',
+        EDIT: 'edit',
       },
     },
     ALL: 'sections',
     MY: 'sections/my',
     OWNED: 'sections/owned',
     ADD: 'section/add',
-    EDIT: 'section/:id/edit',
   },
   CATEGORIES: 'categories',
   HASHTAGS: 'hashtags',
@@ -49,6 +51,7 @@ export const HOME_PATHS = {
 @NgModule({
   imports: [
     StoreModule.forFeature('sections', sectionReducer),
+    StoreModule.forFeature('sectionDetails', sectionDetailsReducer),
     EffectsModule.forFeature([SectionEffects]),
     RouterModule.forChild([
       {
@@ -68,15 +71,19 @@ export const HOME_PATHS = {
         ],
       },
       {
-        path: HOME_PATHS.SECTION.ALL,
-        component: HomeComponent,
+        path: HOME_PATHS.SECTION.SINGLE.CORE,
+        component: HomeComponent, //todo: zmienić, jak już będziemy mieli komponent dla sekcji task FT017 https://github.com/akademia-envelo-3/meetek-front/issues/18
         children: [
           {
-            path: HOME_PATHS.SECTION.EDIT,
+            path: HOME_PATHS.SECTION.SINGLE.SUBPAGES.MEMBERS,
+            component: SectionMembersComponent,
+          },
+          {
+            path: HOME_PATHS.SECTION.SINGLE.SUBPAGES.EDIT,
             component: EditFormComponent
           }
-        ]
-      }
+        ],
+      },
     ]),
   ],
 })

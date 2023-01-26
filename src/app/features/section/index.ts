@@ -5,3 +5,6 @@ export * from './store/section.effects';
 export * from './store/section.reducer';
 export * from './store/section.selectors';
 export * from './store/section.service';
+export * from './subpages/section-members/section-members.component';
+export * from './shared/list/list-item/member-list-item.component';
+export * from './shared/list/member-list/member-list.component';

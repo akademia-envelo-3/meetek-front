@@ -1,5 +1,5 @@
-import { AsyncPipe, NgIf, NgForOf } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { AsyncPipe, NgIf, NgForOf, JsonPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormsModule, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,7 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
 import { Store } from '@ngrx/store';
-// import { SectionActions } from '../..';
+import { ActivatedRoute } from '@angular/router';
+import { SectionActions, sectionDetailsActions, selectSectionDetails } from '../..';
 
 @Component({
   selector: 'app-edit-form',
@@ -24,17 +25,29 @@ import { Store } from '@ngrx/store';
     ReactiveFormsModule,
     FormsModule,
     MatChipsModule,
+    JsonPipe
   ],
   templateUrl: './edit-form.component.html',
   styleUrls: ['./edit-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditFormComponent {
+export class EditFormComponent implements OnInit {
   private formBuilder = inject(NonNullableFormBuilder);
+  private activeRoute = inject(ActivatedRoute);
   private store = inject(Store);
 
+  sectionDetails$ = this.store.select(selectSectionDetails);
   editSectionForm = this.editSectionsForm();
   organizers = [{ firstName: 'Jan', lastName: 'Kowalski' }];
+
+  ngOnInit() {
+    this.activeRoute.parent?.paramMap.subscribe((params) => {
+      const id = params.get('id');
+      if (id) {
+        this.store.dispatch(sectionDetailsActions.getSectionDetails({ sectionId: +id }));
+      }
+    })
+  }
 
   getErrorMessage(formControlName: string) {
     const control = this.editSectionForm.get(formControlName);
