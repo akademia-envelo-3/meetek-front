@@ -7,6 +7,7 @@ import { startWith, filter, switchMap, map, catchError, of } from 'rxjs';
 import { APP_PATH } from 'src/app/app.module';
 import { UserActions, UserApiActions } from './user.actions';
 import { UserService } from './user.service';
+import { ToastFacadeService } from '@shared/services';
 
 @Injectable()
 export class UserEffects {
@@ -14,6 +15,7 @@ export class UserEffects {
   private cookieService = inject(CookieService);
   private userService = inject(UserService);
   private router = inject(Router);
+  private toastService = inject(ToastFacadeService);
 
   getUser$ = createEffect(() => {
     return this.actions$.pipe(
@@ -25,7 +27,7 @@ export class UserEffects {
       }),
       catchError(() => {
         this.router.navigate([APP_PATH.AUTH]);
-        // #TODO: Add toast
+        this.toastService.showError('Nie udało się pobrać użytkownika', 'Błąd');
         this.cookieService.delete('token');
         return of(UserApiActions.getUserFailure());
       })
