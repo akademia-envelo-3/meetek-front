@@ -28,13 +28,13 @@
           <mat-form-field class="chip-list" appearance="fill">
             <mat-label>Organizator</mat-label>
             <mat-chip-grid #chipGrid>
-              <mat-chip-row *ngFor="let organizer of organizers">
-                {{ organizer.firstName }} {{ organizer.lastName }}
+              <mat-chip-row>
+                {{ organizers.firstName }} {{ organizers.lastName }}
               </mat-chip-row>
               <input
                 placeholder="Organizator"
                 [matChipInputFor]="chipGrid"
-                [disabled]="!!organizers.length" />
+                [disabled]="!!organizers" />
             </mat-chip-grid>
           </mat-form-field>
         </div>

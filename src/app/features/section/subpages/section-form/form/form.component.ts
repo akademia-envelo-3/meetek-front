@@ -37,15 +37,15 @@ export class FormComponent implements OnInit {
 
   loggedInUser$ = this.store.select(selectLoggedUser);
   newSectionForm = this.createNewSectionForm();
-  organizers: organizers[] = [];
+  organizers: organizers = {};
 
   ngOnInit() {
     this.loggedInUser$.subscribe(user => {
-      this.organizers.push({
+      this.organizers = {
         firstName: user?.firstName,
         lastName: user?.lastName,
         id: user?.id,
-      });
+      }
     });
   }
 
