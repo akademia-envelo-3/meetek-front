@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
 import { Store } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
-import { SectionActions, sectionDetailsActions, selectSectionDetails } from '../..';
+import { sectionDetailsActions, selectSectionDetails } from '../..';
 
 @Component({
   selector: 'app-edit-form',
