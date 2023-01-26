@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
-import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { Dialog } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-quit-section-dialog[text]',
@@ -12,5 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CancelConfirmDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { text: string }) {}
+  constructor( public dialog:MatDialog, @Inject(MAT_DIALOG_DATA) public data: { text: string }) {}
+  closeDialog() {
+    this.dialog.closeAll()
+  }
 }
