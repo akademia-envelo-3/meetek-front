@@ -19,8 +19,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         display: inline-block;
         background: var(--error);
         border-radius: 16px;
-        width: 45px;
-        height: 20px;
+        width: 43px;
+        height: 22px;
         position: relative;
         vertical-align: middle;
         transition: background 0.25s;
@@ -34,8 +34,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         background: linear-gradient(to bottom, #fff 0%, #eee 100%);
         border-radius: 50%;
         box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
-        width: 14px;
-        height: 14px;
+        width: 16px;
+        height: 16px;
         position: absolute;
         top: 3px;
         left: 3px;
@@ -49,7 +49,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         background: var(--success);
       }
       .toggle-checkbox:checked + .toggle-switch:before {
-        left: 28px;
+        left: 23px;
       }
       .toggle-checkbox {
         position: absolute;
