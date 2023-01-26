@@ -15,6 +15,13 @@ export const SectionActions = createActionGroup({
   },
 });
 
+export const sectionDetailsActions = createActionGroup({
+  source: 'Section Details',
+  events: {
+    'get section details': props<{ sectionId: number }>(),
+  },
+});
+
 export const SectionsApiActions = createActionGroup({
   source: 'Sections API',
   events: {
@@ -41,5 +48,13 @@ export const SectionsApiActions = createActionGroup({
 
     'section left success': props<{ sectionId: number }>(),
     'section left failure': emptyProps(),
+  },
+});
+
+export const SectionDetilsApiActions = createActionGroup({
+  source: 'Section Details API',
+  events: {
+    'section details success': props<{ section: Section }>(),
+    'section details failure': emptyProps(),
   },
 });
