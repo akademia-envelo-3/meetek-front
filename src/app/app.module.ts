@@ -14,7 +14,7 @@ import { noProductionGuard } from '@shared/no-production.guard';
 import { userReducer } from './core/store/user.reducer';
 import { UserEffects } from '@core/store/user.effects';
 import { UserState } from '@core/store/user.interfaces';
-import { TokenInterceptorProvider } from '@shared/interceptors/token.interceptor';
+import { TokenInterceptorProvider } from '@shared/interceptors';
 
 export interface AppState {
   user?: UserState;

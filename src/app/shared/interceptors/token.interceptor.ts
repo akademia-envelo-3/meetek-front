@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable()
-export class TokenInterceptor implements HttpInterceptor {
+class TokenInterceptor implements HttpInterceptor {
   private cookieService = inject(CookieService);
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
