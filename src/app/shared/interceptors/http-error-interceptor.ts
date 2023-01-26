@@ -1,4 +1,11 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, EMPTY, Observable, retry } from 'rxjs';
 
@@ -6,7 +13,7 @@ import { API_URL } from '@core/env.token';
 import { ToastFacadeService } from '@shared/services';
 
 @Injectable()
-export class HttpErrorInterceptor implements HttpInterceptor {
+class HttpErrorInterceptor implements HttpInterceptor {
   private base_url = inject(API_URL);
   private toastService = inject(ToastFacadeService);
 
@@ -35,3 +42,5 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     );
   }
 }
+
+export const HttpErrorInterceptorProvider = { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true };
