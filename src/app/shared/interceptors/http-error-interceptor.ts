@@ -34,6 +34,7 @@ class HttpErrorInterceptor implements HttpInterceptor {
         }
 
         if (error.status >= 500) {
+          //todo: doprecyzować sposob wyswietlania bledow z backendu https://github.com/akademia-envelo-3/meetek-front/issues/80
           this.toastService.showError('Błąd serwera', 'Błąd');
         }
 
