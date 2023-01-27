@@ -5,7 +5,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { HomeComponent } from './home.component';
 import { EditFormComponent } from '../section/subpages/edit-form/edit-form.component';
 import { SectionEffects } from '../section/store/section.effects';
-import { sectionDetailsReducer, sectionReducer } from '../section/store/section.reducer';
+import { sectionAllUsersReducer, sectionDetailsReducer, sectionReducer } from '../section/store/section.reducer';
 import { SectionMembersComponent } from '../section';
 
 export const HOME_PATHS = {
@@ -52,6 +52,7 @@ export const HOME_PATHS = {
   imports: [
     StoreModule.forFeature('sections', sectionReducer),
     StoreModule.forFeature('sectionDetails', sectionDetailsReducer),
+    StoreModule.forFeature('users', sectionAllUsersReducer),
     EffectsModule.forFeature([SectionEffects]),
     RouterModule.forChild([
       {
