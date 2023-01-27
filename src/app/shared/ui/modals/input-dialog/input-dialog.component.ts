@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, Inject, Injectable } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Inject } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -8,7 +8,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 
 import { DialogData } from '../index';
-import { Dialog, DIALOG_DATA } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-category-dialog',
