@@ -1,12 +1,15 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { SectionCardComponent } from 'src/app/features/section';
+import { MemberListItemComponent } from '../features/section/shared/list/list-item/member-list-item.component';
+import { MatListModule } from '@angular/material/list';
+import { User } from '../features/section/shared/interfaces';
 
 @Component({
   selector: 'app-theme',
   standalone: true,
-  imports: [SectionCardComponent, NgIf],
-  styles: ['.element { margin: 10px;}'],
+  imports: [SectionCardComponent, NgIf, MemberListItemComponent, MatListModule],
+  styleUrls: ['./theme.component.scss'],
   template: `
     <h1>Storybook-like route</h1>
     <hr />
@@ -33,6 +36,10 @@ import { SectionCardComponent } from 'src/app/features/section';
       </div>
     </ng-container>
     <hr />
+    <h2>List item</h2>
+    <mat-list class="list">
+      <app-members-list-item [user]="user"></app-members-list-item>
+    </mat-list>
   `,
 })
 export default class ThemeComponent {
@@ -47,5 +54,11 @@ export default class ThemeComponent {
     handleDeactivation: function () {
       this.isActive = false;
     },
+  };
+
+  user: User = {
+    id: 1,
+    firstName: 'Ewelina',
+    lastName: 'Mężyk',
   };
 }

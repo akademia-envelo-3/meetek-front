@@ -1,0 +1,23 @@
+@import 'breakpoints.scss';
+
+* {
+  margin: 10px;
+}
+
+.list {
+  width: 20vw;
+  margin: 20px;
+  padding: 10px;
+}
+
+@include breakpoint('laptop') {
+  .list {
+    min-width: 40vw;
+  }
+}
+
+@include breakpoint('mobile') {
+  .list {
+    min-width: 70vw;
+  }
+}

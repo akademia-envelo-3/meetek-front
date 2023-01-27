@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { CookieService } from 'ngx-cookie-service';
 import { RouterModule } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { API_URL, IS_PRODUCTION } from '@core/env.token';
@@ -15,6 +16,7 @@ import { userReducer } from './core/store/user.reducer';
 import { UserEffects } from '@core/store/user.effects';
 import { UserState } from '@core/store/user.interfaces';
 import { TokenInterceptorProvider } from '@shared/interceptors';
+import { HttpErrorInterceptorProvider } from '@shared/interceptors';
 
 export interface AppState {
   user?: UserState;
@@ -31,6 +33,7 @@ export const APP_PATH = {
   imports: [
     BrowserModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
     StoreModule.forRoot({
       user: userReducer,
     }),
@@ -72,6 +75,7 @@ export const APP_PATH = {
     },
     CookieService,
     TokenInterceptorProvider,
+    HttpErrorInterceptorProvider,
   ],
   bootstrap: [AppComponent],
 })
