@@ -37,12 +37,11 @@ export class HeaderComponent {
 
       const { role, firstName, lastName, email } = user;
 
-      const userData: UserMenuInputs = {
-        initials: role === 'admin' ? 'A' : `${firstName.charAt(0)}${lastName.charAt(0)}`,
-        fullName: role === 'admin' ? 'Admin' : `${firstName} ${lastName}`,
-        email,
-      };
+      const initials = role === 'admin' ? 'A' : `${firstName.charAt(0)}${lastName.charAt(0)}`;
+      const fullName = role === 'admin' ? 'Admin' : `${firstName} ${lastName}`;
+
+      const userData: UserMenuInputs = { initials, fullName, email };
+
       return userData;
-    })
-  );
-}
+    }));
+  }
