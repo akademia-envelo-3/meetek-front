@@ -1,6 +1,6 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 
-import { SectionState, SectionDetailsState, SectionAllUsersState } from '../';
+import { SectionState, SectionDetailsState, SectionAllUsersState } from './section.state';
 
 export const selectSectionsState = createFeatureSelector<SectionState>('sections');
 export const selectSectionDetailsState = createFeatureSelector<SectionDetailsState>('sectionDetails');

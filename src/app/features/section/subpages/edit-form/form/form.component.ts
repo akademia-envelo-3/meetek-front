@@ -159,13 +159,13 @@ export class FormComponent implements OnInit {
         Validators.minLength(5),
         Validators.maxLength(30),
         validateCharacters,
-        validateNotNumbers,
+        validateNotNumbers
       ]),
       description: this.formBuilder.control('', [
         Validators.required,
         Validators.minLength(20),
         Validators.maxLength(250),
-        validateNotNumbers,
+        validateNotNumbers
       ]),
       sectionOwner: this.formBuilder.control(this.editedOwner),
     });
