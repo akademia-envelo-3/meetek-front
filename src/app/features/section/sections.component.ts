@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
@@ -7,9 +7,7 @@ import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { HOME_PATHS } from '../home';
 import { Store } from '@ngrx/store';
-import { Section } from './shared/interfaces';
-import { selectAllSections } from 'src/app/features/section';
-import { selectSectionDetails } from '../section/store/section.selectors';
+// import { selectSectionDetails } from '../section/store/section.selectors';
 
 @Component({
   selector: 'app-sections',
@@ -22,7 +20,7 @@ import { selectSectionDetails } from '../section/store/section.selectors';
 export class SectionsComponent {
   private sectionStore = inject(Store);
 
-  sectionDetails$ = this.sectionStore.select(selectSectionDetails);
+  // sectionDetails$ = this.sectionStore.select(selectSectionDetails);
 
   constructor(private router: Router) {}
 
