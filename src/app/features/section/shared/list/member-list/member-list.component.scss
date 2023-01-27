@@ -1,0 +1,25 @@
+@import 'breakpoints.scss';
+
+:host {
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+  height: 100%;
+}
+
+.list {
+  width: 20vw;
+  padding: 10px;
+}
+
+@include breakpoint('laptop') {
+  .list {
+    width: 50vw;
+  }
+}
+
+@include breakpoint('mobile') {
+  .list {
+    width: 80vw;
+  }
+}
