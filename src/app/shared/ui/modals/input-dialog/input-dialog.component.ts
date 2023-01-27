@@ -1,13 +1,14 @@
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Inject, Injectable } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogData } from '../example dialog/example-dialog.component';
 import { FormsModule } from '@angular/forms';
+
+import { DialogData } from '../index';
+import { Dialog, DIALOG_DATA } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-category-dialog',
@@ -26,7 +27,10 @@ import { FormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputDialogComponent {
-  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+  private dialog = inject(MatDialog);
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
   closeDialog() {
     this.dialog.closeAll();
   }

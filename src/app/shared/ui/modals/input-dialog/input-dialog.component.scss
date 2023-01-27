@@ -98,10 +98,12 @@
 .input-dialog__close-btn {
   background-color: var(--white);
   color: var(--text);
+  transition: 0,1s;
 }
 
 .input-dialog__close-btn :hover {
   background-color: var(--divider);
+  transition: 10ms;
 }
 
 .input-dialog__icon {

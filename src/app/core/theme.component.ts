@@ -1,16 +1,21 @@
 import { NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+
 import { SectionCardComponent } from 'src/app/features/section';
-import { ExampleDialogComponent } from '@shared/ui/modals/example dialog/example-dialog.component';
+import { CancelConfirmDialogComponent, InputDialogComponent } from '../shared/ui/modals/index';
+
 @Component({
   selector: 'app-theme',
   standalone: true,
-  imports: [SectionCardComponent, NgIf,ExampleDialogComponent],
+  imports: [SectionCardComponent, NgIf, MatDialogModule, MatButtonModule],
   styles: ['.element { margin: 10px;}'],
   template: `
     <h1>Storybook-like route</h1>
     <h3>Dialogi</h3>
-    <app-example-dialog></app-example-dialog>
+    <button mat-raised-button (click)="openDialog()">Dialog z inputem</button>
+      <button mat-raised-button (click)="openDialog2()">Dialog z przyciskami</button>
     <hr />
     <h2>Section card</h2>
     <ng-container *ngIf="sectionCard as card">
@@ -50,4 +55,28 @@ export default class ThemeComponent {
       this.isActive = false;
     },
   };
+
+  public dialog = inject(MatDialog)
+  importedDialogData!: string;
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(InputDialogComponent, {
+      data: {
+        title: 'Przykładowy tytuł modala',
+        buttonText: 'Wyślij prośbę',
+        inputLabelText: 'Example label',
+        importedDialogData: this.importedDialogData,
+      },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.importedDialogData = result;
+    });
+  }
+
+  openDialog2() {
+    this.dialog.open(CancelConfirmDialogComponent, {
+      data: { text: 'Przykładowy tekst przekazany z add-category-component' },
+    });
+  }
 }

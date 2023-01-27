@@ -44,10 +44,12 @@
 
 .cancel-confirm-dialog__close-btn {
   color: var(--text);
+  
 }
 
 .cancel-confirm-dialog__close-btn :hover {
   background-color: var(--divider);
+  transition: 10ms;
 }
 
 .cancel-confirm-dialog__title {

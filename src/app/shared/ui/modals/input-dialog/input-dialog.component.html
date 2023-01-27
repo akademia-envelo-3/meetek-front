@@ -11,15 +11,15 @@
   <div class="input-dialog__input-container">
     <form class="example-form">
       <input
-        class="input-dialog__input"
-        placeholder="{{data.inputLabelText}}"
         [(ngModel)]="data.importedDialogData"
+        class="input-dialog__input"
+        [placeholder]="data.inputLabelText"
         name="dialogData" />
     </form>
   </div>
   <div mat-dialog-actions class="input-dialog__btn-container">
-    <button type="submit" class="input-dialog__btn success" [mat-dialog-close]="data.importedDialogData" mat-button>
-      {{data.buttonText}}
+    <button [mat-dialog-close]="data.importedDialogData" type="submit" class="input-dialog__btn success" mat-button>
+      {{ data.buttonText }}
     </button>
   </div>
 </div>
