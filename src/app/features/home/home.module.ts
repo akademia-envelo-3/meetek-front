@@ -31,6 +31,7 @@ export const HOME_PATHS = {
       SUBPAGES: {
         HOME: '',
         MEMBERS: 'members',
+        EDIT: 'section/:id/edit',
       },
     },
     ALL: 'sections',

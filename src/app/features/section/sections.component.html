@@ -1,4 +1,3 @@
-<!-- <app-header></app-header> -->
 <main>
   <h1>Wszystkie sekcje</h1>
   <div class="content">
@@ -16,7 +15,8 @@
         (deactivation)="card.handleDeactivation()"
         [name]="'Sekcja szalonych pływaków i pływaczek'"
         [numberOfMembers]="31842"
-        [isActive]="card.isActive">
+        [isActive]="card.isActive"
+        (click)="goToSection()">
       </app-section-card>
       <app-section-card
         (modification)="card.handleModification()"
