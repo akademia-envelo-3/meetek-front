@@ -1,12 +1,12 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
+import { MatListModule } from '@angular/material/list';
+
+import { User } from '../features/section/shared/interfaces';
 import { SearchComponent } from '@shared/ui/search/search.component';
 import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
 import { SectionCardComponent } from 'src/app/features/section';
 import { MemberListItemComponent } from '../features/section/shared/list/list-item/member-list-item.component';
-import { MatListModule } from '@angular/material/list';
-import { User } from '../features/section/shared/interfaces';
-
 @Component({
   selector: 'app-theme',
   standalone: true,

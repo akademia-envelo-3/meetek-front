@@ -1,11 +1,15 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-toggle',
   standalone: true,
   template: `
     <label class="toggle">
-      <input class="toggle-checkbox" type="checkbox" />
+      <input
+        #toggleCheckbox
+        class="toggle-checkbox"
+        type="checkbox"
+        (change)="onToggleChange(toggleCheckbox.checked)" />
       <div class="toggle-switch"></div>
     </label>
   `,
@@ -65,4 +69,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ToggleComponent {}
+export class ToggleComponent {
+  @Output() toggleChange = new EventEmitter<boolean>();
+
+  onToggleChange(isChecked: boolean) {
+    this.toggleChange.emit(isChecked);
+  }
+}
