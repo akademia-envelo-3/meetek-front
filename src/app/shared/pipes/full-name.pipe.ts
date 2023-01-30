@@ -7,7 +7,7 @@ import { UserResponse } from '@core/store/user.interfaces';
   standalone: true,
 })
 export class FullNamePipe implements PipeTransform {
-  transform(value: UserResponse): string {
+  transform(value: UserResponse) {
     if (value.role === 'admin') {
       return 'Admin';
     }
