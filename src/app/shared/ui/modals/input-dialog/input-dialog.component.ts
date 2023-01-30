@@ -9,7 +9,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatHint } from '@angular/material/form-field';
 
 import { DialogData } from '../index';
 
@@ -25,14 +24,14 @@ import { DialogData } from '../index';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
-    NgIf
+    NgIf,
   ],
   templateUrl: './input-dialog.component.html',
   styleUrls: ['./input-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputDialogComponent {
-  text = new FormControl('', [Validators.maxLength(50)])
+  text = new FormControl('', [Validators.maxLength(50)]);
   private dialog = inject(MatDialog);
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
