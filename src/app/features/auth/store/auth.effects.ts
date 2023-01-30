@@ -23,12 +23,10 @@ export class AuthEffects {
       switchMap(({ loginData }) => {
         const { email, password } = loginData;
         return this.authService.login(email, password).pipe(
-          tap(response => {
-            const { accessToken } = response;
+          tap(({ accessToken }) => {
             this.cookieService.set('token', accessToken, 1);
           }),
-          map(response => {
-            const { user } = response;
+          map(({ user }) => {
             this.router.navigate([HOME_PATHS.DEFAULT]);
             return UserApiActions.getUserSuccess({ user });
           }),

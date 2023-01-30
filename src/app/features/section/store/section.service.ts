@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { API_URL } from '@core/env.token';
 
-import { NewSection, Section } from '..';
+import { Section, CreateSection } from '..';
 
 @Injectable({ providedIn: 'root' })
 export class SectionService {
@@ -17,10 +17,10 @@ export class SectionService {
     return this.http.get<Section>(`${this.BASE_URL}/sections/${sectionId}`);
   }
 
-  add(section: NewSection, isActive: boolean) {
-    return this.http.post<NewSection>(`${this.BASE_URL}/sections`, {
+  add(section: CreateSection, isActive: boolean) {
+    return this.http.post<Section>(`${this.BASE_URL}/sections`, {
       ...section,
-      isActive
+      isActive,
     });
   }
 

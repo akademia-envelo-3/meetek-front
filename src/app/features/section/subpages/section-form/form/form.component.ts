@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Store } from '@ngrx/store';
 
 import { selectLoggedUser } from '@core/store/user.selectors';
-import { SectionActions, organizer } from '../../../../section';
+import { SectionActions, Organizer } from '../../../../section';
 import { validateCharacters, validateNotNumbers } from '../../section-form';
 
 @Component({
@@ -37,7 +37,7 @@ export class FormComponent implements OnInit {
 
   loggedInUser$ = this.store.select(selectLoggedUser);
   newSectionForm = this.createNewSectionForm();
-  organizers!: organizer;
+  organizers!: Organizer;
 
   ngOnInit() {
     this.loggedInUser$.subscribe(user => {

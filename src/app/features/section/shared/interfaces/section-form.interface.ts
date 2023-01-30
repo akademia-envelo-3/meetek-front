@@ -1,11 +1,11 @@
-export interface organizer {
+export interface Organizer {
   firstName: string;
   lastName: string;
   id: number;
 }
 
-export interface NewSection {
+export interface CreateSection {
   name: string;
   description: string;
-  sectionOwner: organizer;
+  sectionOwner: Organizer;
 }

@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap, of } from 'rxjs';
+import { catchError, map, switchMap, of, tap } from 'rxjs';
 import { SectionService } from './section.service';
 import { SectionActions, sectionDetailsActions, SectionDetilsApiActions, SectionsApiActions } from './section.actions';
 import { ToastFacadeService } from '@shared/services';
@@ -42,11 +42,9 @@ export class SectionEffects {
   addSection$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(SectionActions.addSection),
-      switchMap(newSection => this.sectionService.add(newSection.section, newSection.isActive)),
-      map(section => {
-        this.router.navigate([HOME_PATHS.SECTION.ALL])
-        return SectionsApiActions.sectionsAddedSuccess({ section });
-      }),
+      switchMap(({ section, isActive }) => this.sectionService.add(section, isActive)),
+      map(section => SectionsApiActions.sectionsAddedSuccess({ section })),
+      tap(() => this.router.navigate([HOME_PATHS.SECTION.ALL])),
       catchError(() => {
         this.toastService.showError('Nie udało się utworzyć sekcji', 'Błąd');
         return of(SectionsApiActions.sectionsAddedFailure());

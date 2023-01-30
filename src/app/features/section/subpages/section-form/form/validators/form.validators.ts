@@ -10,7 +10,7 @@ export function validateCharacters(control: FormControl) {
 
 export function validateNotNumbers(control: FormControl) {
   const input = control.value.trim();
-  if(!input) return { onlySpaces: true }
+  if (!input) return { onlySpaces: true }
   const onlyNumbers = /^[0-9]+$/;
   if (onlyNumbers.test(input)) {
     return { onlyNumbers: true };
