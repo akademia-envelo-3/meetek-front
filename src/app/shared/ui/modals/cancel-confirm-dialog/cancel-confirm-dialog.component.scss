@@ -44,6 +44,7 @@
 
 .cancel-confirm-dialog__close-btn {
   color: var(--text);
+  outline: none;
   
 }
 
@@ -74,6 +75,15 @@
   width: 110px;
 }
 
+.cancel-confirm-dialog__confirm-btn :hover{
+  color: var(--white);
+  width: 110px;
+}
+
 .cancel-confirm-dialog__icon {
   padding: 3px;
+}
+
+.cancel-confirm-dialog__close-btn :focus {
+  outline: none;
 }

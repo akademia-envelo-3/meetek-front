@@ -99,17 +99,36 @@
   background-color: var(--white);
   color: var(--text);
   transition: 0,1s;
+  outline: none;
 }
 
 .input-dialog__close-btn :hover {
   background-color: var(--divider);
   transition: 10ms;
 }
+.input-dialog__close-btn:focus {
+  outline: none;
+}
 
 .input-dialog__icon {
   padding: 3px;
 }
 
-input:focus::-webkit-input-placeholder {
-  color: transparent;
+input{
+  outline: none;
 }
+
+input:focus{
+  border:2px solid var(--divider);
+}
+
+.input-dialog__maxlength{
+ font-size: var(--XS_font-size);
+ color: var(--divider);
+ padding: 2px;
+}
+
+input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */

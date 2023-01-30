@@ -11,10 +11,13 @@
   <div class="input-dialog__input-container">
     <form class="example-form">
       <input
+        [formControl]="text"
         [(ngModel)]="data.importedDialogData"
         class="input-dialog__input"
         [placeholder]="data.inputLabelText"
-        name="dialogData" />
+        name="dialogData"
+        maxlength="50" />
+      <p class="input-dialog__maxlength" *ngIf="text.value?.length === 50">Maksymalna liczba znaków to 50</p>
     </form>
   </div>
   <div mat-dialog-actions class="input-dialog__btn-container">
