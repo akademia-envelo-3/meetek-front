@@ -11,25 +11,21 @@
     <ng-container *ngIf="sectionCard as card">
       <div class="sectionCard" *ngIf="allSections$ | async as sections">
         <app-section-card
+          routerlink="section/:id"
           *ngFor="let section of sections"
           (modification)="card.handleModification()"
           (activation)="card.handleActivation()"
           (deactivation)="card.handleDeactivation()"
           [name]="section.name"
           [numberOfMembers]="section.users.length"
-          [isActive]="card.isActive"
-          (click)="goToSection()">
+          [isActive]="card.isActive">
         </app-section-card>
-        <!-- <app-section-card
-          (modification)="card.handleModification()"
-          [name]="'Piłkarze'"
-          [numberOfMembers]="2"
-          [isActive]="false"></app-section-card>
-        <app-section-card [name]="'Rowerzyści'" [numberOfMembers]="24" [isActive]="true"></app-section-card> -->
       </div>
     </ng-container>
   </div>
 </main>
-<button mat-fab color="accent" aria-label="Example icon button with a add icon" (click)="goToAddSection()">
-  <mat-icon>add</mat-icon>
-</button>
+<a routerLink="section/add">
+  <button mat-fab color="accent" aria-label="Example icon button with a add icon">
+    <mat-icon>add</mat-icon>
+  </button>
+</a>
