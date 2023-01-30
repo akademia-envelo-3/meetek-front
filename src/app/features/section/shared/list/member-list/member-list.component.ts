@@ -30,6 +30,7 @@ export class MembersListComponent implements OnInit {
     this.activeRoute.parent?.paramMap.subscribe(params => {
       const id = params.get('id');
 
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       this.sectionStore.dispatch(sectionDetailsActions.getSectionDetails({ sectionId: +id! }));
     });
   }

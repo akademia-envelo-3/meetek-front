@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { SectionCardComponent, SectionService } from 'src/app/features/section';
 import { HOME_PATHS } from '../home';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 import { selectAllSections } from '../section/store/section.selectors';
 import { Section } from './shared/interfaces';
