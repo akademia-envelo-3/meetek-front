@@ -6,6 +6,7 @@ import { HomeComponent } from './home.component';
 import { SectionEffects } from '../section/store/section.effects';
 import { sectionDetailsReducer, sectionReducer } from '../section/store/section.reducer';
 import { SectionMembersComponent } from '../section/subpages/section-members.component';
+import { SectionDetailsComponent } from '../section/subpages/section-details/section-details.component';
 
 export const HOME_PATHS = {
   DEFAULT: '',
@@ -71,8 +72,12 @@ export const HOME_PATHS = {
       },
       {
         path: HOME_PATHS.SECTION.SINGLE.CORE,
-        component: HomeComponent, //todo: zmienić, jak już będziemy mieli komponent dla sekcji task FT017 https://github.com/akademia-envelo-3/meetek-front/issues/18
         children: [
+          {
+            path: HOME_PATHS.DEFAULT,
+            component: SectionDetailsComponent,
+            pathMatch: 'full',
+          },
           {
             path: HOME_PATHS.SECTION.SINGLE.SUBPAGES.MEMBERS,
             component: SectionMembersComponent,

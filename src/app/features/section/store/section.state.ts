@@ -34,12 +34,10 @@ export const initialSectionDetailsState: SectionDetailsState = {
         location: '',
       },
     ],
-    sectionOwner: [
-      {
+    sectionOwner: {
         id: 0,
         firstName: '',
         lastName: '',
       },
-    ],
   },
 };

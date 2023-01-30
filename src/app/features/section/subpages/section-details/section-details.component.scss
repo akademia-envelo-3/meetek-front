@@ -1,0 +1,73 @@
+@import 'breakpoints.scss';
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--background);
+}
+
+.nav {
+  height: 60px;
+}
+
+.section-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 60px;
+  background-color: var(--surface);
+  width: 570px;
+  min-height: 550px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.status {
+  font-size: var(--L_font-size);
+}
+
+.info-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  gap: 8px;
+  width: 100%;
+}
+
+.info {
+  padding: 24px 0;
+}
+
+.description {
+  display: flex;
+  flex: 1;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  width: 120px;
+}
+
+@include breakpoint('laptop') {
+  main {
+    background-color: var(--surface);
+  }
+
+  .section-wrapper {
+    box-shadow: none;
+  }
+}
+
+@include breakpoint('mobile') {
+  .section-wrapper {
+    width: 100vw;
+    max-height: 100vh;
+  }
+}
