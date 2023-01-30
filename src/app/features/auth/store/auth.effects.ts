@@ -7,6 +7,7 @@ import { catchError, map, of, switchMap, tap } from 'rxjs';
 import { HOME_PATHS } from '../../home';
 import { AuthActions, AuthApiActions, AuthService } from '../../auth';
 import { UserApiActions } from '@core/store/user.actions';
+import { ToastFacadeService } from '@shared/services';
 
 @Injectable()
 export class AuthEffects {
@@ -14,6 +15,7 @@ export class AuthEffects {
   private cookieService = inject(CookieService);
   private authService = inject(AuthService);
   private router = inject(Router);
+  private toastService = inject(ToastFacadeService);
 
   login$ = createEffect(() => {
     return this.actions$.pipe(
@@ -31,7 +33,7 @@ export class AuthEffects {
             return UserApiActions.getUserSuccess({ user });
           }),
           catchError(() => {
-            // TODO dodać toast task nr FT024: https://github.com/akademia-envelo-3/meetek-front/issues/34
+            this.toastService.showError('Niepoprawny login lub hasło', 'Błąd');
             return of(AuthApiActions.loginFailure());
           })
         );
