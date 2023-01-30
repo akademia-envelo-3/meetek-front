@@ -1,7 +1,7 @@
 <div class="form-wrapper">
   <div>
-    <form [formGroup]="newSectionForm" (submit)="createSection()">
-      <div class="inputs-wrapper">
+    <form [formGroup]="newSectionForm" (ngSubmit)="createSection()">
+      <div class="input-wrapper">
         <div class="input">
           <mat-form-field appearance="outline">
             <mat-label>Nazwa</mat-label>

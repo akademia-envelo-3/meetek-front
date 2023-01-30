@@ -1,5 +1,6 @@
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
+
 @use 'app/shared/styles/button.scss';
 @use 'app/shared/styles/palette.scss';
 
@@ -7,6 +8,11 @@
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat.core();
+
+@import 'ngx-toastr/toastr';
+
+$dark-primary-text: black;
+$light-primary-text: white;
 
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
@@ -77,8 +83,13 @@ $front-theme: mat.define-dark-theme(
   --disabled: #868686;
   --darkModeBackground: #303030;
   --darkModeSurface: #414148;
+  --list-circle: #d9d9d9;
+  --list-circle-stroke: #9b9b9b;
   --text:#000;
   --white: #fff;
+
+  //box-shadow
+  --box-shadow: -1px 2px 5px -1px rgba(0, 0, 0, 0.4);
 
   //font-size
   --h1_font-size: 24px;
@@ -109,3 +120,4 @@ body {
   height: 100%;
   background-color: var(--background);
 }
+

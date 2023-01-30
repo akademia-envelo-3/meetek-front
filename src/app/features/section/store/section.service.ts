@@ -1,7 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AddNewSection, Section } from '..';
 import { API_URL } from '@core/env.token';
+
+import { NewSection, Section } from '..';
 
 @Injectable({ providedIn: 'root' })
 export class SectionService {
@@ -16,8 +17,8 @@ export class SectionService {
     return this.http.get<Section>(`${this.BASE_URL}/sections/${sectionId}`);
   }
 
-  add(section: AddNewSection, isActive: boolean) {
-    return this.http.post<AddNewSection>(`${this.BASE_URL}/sections`, {
+  add(section: NewSection, isActive: boolean) {
+    return this.http.post<NewSection>(`${this.BASE_URL}/sections`, {
       ...section,
       isActive
     });

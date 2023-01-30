@@ -4,8 +4,10 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { HomeComponent } from './home.component';
-import { SectionEffects, sectionReducer, SectionFormComponent } from '../section';
+
+import { SectionEffects, sectionReducer, SectionFormComponent, sectionDetailsReducer } from '../section';
 import { UserEffects } from '@core/store/user.effects';
+import { SectionMembersComponent } from '../section/subpages/section-members.component';
 
 export const HOME_PATHS = {
   DEFAULT: '',
@@ -50,6 +52,7 @@ export const HOME_PATHS = {
 @NgModule({
   imports: [
     StoreModule.forFeature('sections', sectionReducer),
+    StoreModule.forFeature('sectionDetails', sectionDetailsReducer),
     EffectsModule.forFeature([SectionEffects, UserEffects]),
     RouterModule.forChild([
       {
@@ -69,6 +72,16 @@ export const HOME_PATHS = {
             path: HOME_PATHS.EVENT.SINGLE.SUBPAGES.PARTICIPANTS,
             component: HomeComponent,
             title: 'Uczestnicy',
+          },
+        ],
+      },
+      {
+        path: HOME_PATHS.SECTION.SINGLE.CORE,
+        component: HomeComponent, //todo: zmienić, jak już będziemy mieli komponent dla sekcji task FT017 https://github.com/akademia-envelo-3/meetek-front/issues/18
+        children: [
+          {
+            path: HOME_PATHS.SECTION.SINGLE.SUBPAGES.MEMBERS,
+            component: SectionMembersComponent,
           },
         ],
       },

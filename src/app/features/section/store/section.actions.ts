@@ -1,18 +1,25 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { Section } from 'src/app/features/section/shared/interfaces';
-import { AddNewSection } from '../shared/interfaces/section-form.interface';
+
+import { Section, NewSection } from '../';
 
 export const SectionActions = createActionGroup({
   source: 'Sections',
   events: {
     'get sections': emptyProps(),
     'get section': props<{ sectionId: number }>(),
-    'add section': props<{ section: AddNewSection, isActive: boolean }>(),
+    'add section': props<{ section: NewSection, isActive: boolean }>(),
     'edit section': props<{ section: Partial<Section> }>(),
     'activate section': props<{ sectionId: number }>(),
     'deactivate section': props<{ sectionId: number }>(),
     'join section': props<{ sectionId: number }>(),
     'leave section': props<{ sectionId: number }>(),
+  },
+});
+
+export const sectionDetailsActions = createActionGroup({
+  source: 'Section Details',
+  events: {
+    'get section details': props<{ sectionId: number }>(),
   },
 });
 
@@ -25,7 +32,7 @@ export const SectionsApiActions = createActionGroup({
     'section loaded success': props<{ section: Section }>(),
     'section loaded failure': emptyProps(),
 
-    'sections added success': props<{ section: AddNewSection }>(),
+    'sections added success': props<{ section: NewSection }>(),
     'sections added failure': emptyProps(),
 
     'section edited success': props<{ section: Partial<Section> }>(),
@@ -42,5 +49,13 @@ export const SectionsApiActions = createActionGroup({
 
     'section left success': props<{ sectionId: number }>(),
     'section left failure': emptyProps(),
+  },
+});
+
+export const SectionDetilsApiActions = createActionGroup({
+  source: 'Section Details API',
+  events: {
+    'section details success': props<{ section: Section }>(),
+    'section details failure': emptyProps(),
   },
 });

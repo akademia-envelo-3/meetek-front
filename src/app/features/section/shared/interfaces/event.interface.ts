@@ -1,12 +1,7 @@
-import { Hashtag } from './hashtag.interface';
-
 export interface Event {
-  id: string;
-  hashtags: Hashtag[];
-  owner: string;
+  id: number;
   name: string;
-  link: string;
-  description: string;
+  location: string;
   dateTimeFrom: string;
   dateTimeTo: string;
 }
