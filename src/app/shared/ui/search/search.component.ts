@@ -26,6 +26,7 @@ import { MatInputModule } from '@angular/material/input';
       }
       *:focus {
         outline: none;
+        border: solid 4px var(--primaryDark);
       }
       .search {
         position: relative;
