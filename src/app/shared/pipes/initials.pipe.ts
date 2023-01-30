@@ -7,9 +7,9 @@ import { UserResponse } from '@core/store/user.interfaces';
   standalone: true,
 })
 export class InitialsPipe implements PipeTransform {
-  transform(value: UserResponse) {
-    if (value.role === 'admin') {
+  transform(user: UserResponse) {
+    if (user.role === 'admin') {
       return 'A';
-    } else return `${value.firstName.charAt(0)}${value.lastName.charAt(0)}`;
+    } else return `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`;
   }
 }
