@@ -1,19 +1,27 @@
 import { NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+
+import { SectionCardComponent } from 'src/app/features/section';
+import { CancelConfirmDialogComponent, InputDialogComponent } from '../shared/ui/modals/index';
+import { MemberListItemComponent } from '../features/section/shared/list/list-item/member-list-item.component';
 import { MatListModule } from '@angular/material/list';
+
 
 import { User } from '../features/section/shared/interfaces';
 import { SearchComponent } from '@shared/ui/search/search.component';
 import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
-import { SectionCardComponent } from 'src/app/features/section';
-import { MemberListItemComponent } from '../features/section/shared/list/list-item/member-list-item.component';
 @Component({
   selector: 'app-theme',
   standalone: true,
-  imports: [SectionCardComponent, NgIf, MemberListItemComponent, MatListModule, ToggleComponent, SearchComponent],
+  imports: [SectionCardComponent, NgIf, MemberListItemComponent, MatListModule, ToggleComponent, SearchComponent, MatDialogModule, MatButtonModule],
   styleUrls: ['./theme.component.scss'],
   template: `
     <h1>Storybook-like route</h1>
+    <h3>Dialogi</h3>
+    <button mat-raised-button (click)="openDialog()">Dialog z inputem</button>
+      <button mat-raised-button (click)="openDialog2()">Dialog z przyciskami</button>
     <hr />
     <h2>Section card</h2>
     <ng-container *ngIf="sectionCard as card">
@@ -76,4 +84,28 @@ export default class ThemeComponent {
     firstName: 'Ewelina',
     lastName: 'Mężyk',
   };
+
+ public dialog = inject(MatDialog)
+  importedDialogData!: string;
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(InputDialogComponent, {
+      data: {
+        title: 'Przykładowy tytuł modala',
+        buttonText: 'Wyślij prośbę',
+        inputLabelText: 'Example label',
+        importedDialogData: this.importedDialogData,
+      },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.importedDialogData = result;
+    });
+  }
+
+  openDialog2() {
+    this.dialog.open(CancelConfirmDialogComponent, {
+      data: { text: 'Przykładowy tekst przekazany z add-category-component' },
+    });
+  }
 }
