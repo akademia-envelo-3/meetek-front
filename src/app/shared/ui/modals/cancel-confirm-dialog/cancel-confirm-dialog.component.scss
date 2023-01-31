@@ -1,0 +1,89 @@
+@import 'breakpoints.scss';
+@import 'button.scss';
+
+@include breakpoint('laptop') {
+  .cancel-confirm-dialog {
+    width: 240px !important;
+    height: 200px !important;
+  }
+
+  .cancel-confirm-dialog__btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    width: 240px;
+    height: 50px;
+    position: absolute;
+    top: 130px;
+  }
+
+}
+@media screen and (min-width: 1024px) {
+  .cancel-confirm-dialog__btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    width: 300px;
+    height: 50px;
+    position: absolute;
+    top: 130px;
+  }
+}
+
+.cancel-confirm-dialog {
+  width: 300px;
+  height: 200px;
+}
+
+.cancel-confirm-dialog__close-btn-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cancel-confirm-dialog__close-btn {
+  color: var(--text);
+  outline: none;
+  
+}
+
+.cancel-confirm-dialog__close-btn :hover {
+  background-color: var(--divider);
+  transition: 10ms;
+}
+
+.cancel-confirm-dialog__title {
+  font-size: var(--L_font-size);
+  padding: 10px;
+  text-align: center;
+}
+
+.cancel-confirm-dialog__title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cancel-confirm-dialog__cancel-btn {
+  color: var(--white);
+  width: 110px;
+}
+
+.cancel-confirm-dialog__confirm-btn {
+  color: var(--white);
+  width: 110px;
+}
+
+.cancel-confirm-dialog__confirm-btn :hover{
+  color: var(--white);
+  width: 110px;
+}
+
+.cancel-confirm-dialog__icon {
+  padding: 3px;
+}
+
+.cancel-confirm-dialog__close-btn :focus {
+  outline: none;
+}
