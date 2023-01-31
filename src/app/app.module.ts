@@ -15,6 +15,8 @@ import { noProductionGuard } from '@shared/no-production.guard';
 import { userReducer } from './core/store/user.reducer';
 import { UserEffects } from '@core/store/user.effects';
 import { UserState } from '@core/store/user.interfaces';
+import { TokenInterceptorProvider } from '@shared/interceptors';
+import { HttpErrorInterceptorProvider } from '@shared/interceptors';
 
 export interface AppState {
   user?: UserState;
@@ -72,6 +74,8 @@ export const APP_PATH = {
       useValue: environment.production,
     },
     CookieService,
+    TokenInterceptorProvider,
+    HttpErrorInterceptorProvider,
   ],
   bootstrap: [AppComponent],
 })

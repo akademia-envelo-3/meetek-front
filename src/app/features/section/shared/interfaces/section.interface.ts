@@ -1,4 +1,4 @@
-import { Event, RecurringEvent } from './event.interface';
+import { Event } from './event.interface';
 import { User } from './user.interface';
 
 export interface Section {
@@ -8,6 +8,5 @@ export interface Section {
   isActive: boolean;
   users: User[];
   events: Event[];
-  recurringEvents: RecurringEvent[];
-  sectionOwner: User;
+  sectionOwner: User[];
 }

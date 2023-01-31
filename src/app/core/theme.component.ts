@@ -1,16 +1,43 @@
 import { NgIf } from '@angular/common';
-import { Component } from '@angular/core';
 import { SectionCardComponent } from 'src/app/features/section';
 import { CategoryCardComponent } from '../features/category/shared/category-card/category-card.component';
+import { Component, inject } from '@angular/core';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { CancelConfirmDialogComponent, InputDialogComponent } from '../shared/ui/modals/index';
+import { MemberListItemComponent } from '../features/section/shared/list/list-item/member-list-item.component';
+import { MatListModule } from '@angular/material/list';
 
+import { User } from '../features/section/shared/interfaces';
+import { SearchComponent } from '@shared/ui/search/search.component';
+import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
 @Component({
   selector: 'app-theme',
   standalone: true,
-  imports: [SectionCardComponent, CategoryCardComponent, NgIf],
+  imports: [
+    CategoryCardComponent,
+    SectionCardComponent,
+    NgIf,
+    MemberListItemComponent,
+    MatListModule,
+    ToggleComponent,
+    SearchComponent,
+    MatDialogModule,
+    MatButtonModule,
+  ],
   styles: ['.element { margin: 10px;}'],
+
+  styleUrls: ['./theme.component.scss'],
   template: `
     <h1>Storybook-like route</h1>
+
+    <h2>Dialogi</h2>
+    <div class="element">
+      <button mat-raised-button (click)="openDialog()">Dialog z inputem</button>
+      <button mat-raised-button (click)="openDialog2()">Dialog z przyciskami</button>
+    </div>
     <hr />
+
     <h2>Section card</h2>
     <ng-container *ngIf="sectionCard as card">
       <div class="element">
@@ -35,6 +62,7 @@ import { CategoryCardComponent } from '../features/category/shared/category-card
     </ng-container>
     <hr />
 
+    <h2>Cateogry card</h2>
     <ng-container *ngIf="categoryCard as card">
       <div class="element">
         <app-category-card
@@ -48,6 +76,24 @@ import { CategoryCardComponent } from '../features/category/shared/category-card
         <app-category-card [name]="'Bardzo ciekawa kategoria'" [usage]="12321" [isActive]="true"> </app-category-card>
       </div>
     </ng-container>
+    <hr />
+
+    <h2>Toggle</h2>
+    <div class="element">
+      <app-toggle (toggleChange)="onToggleChange($event)"></app-toggle>
+    </div>
+    <hr />
+
+    <h2>Wyszukiwarka</h2>
+    <div class="element">
+      <app-search [placeholderValue]="'Wyszukaj'"></app-search>
+    </div>
+    <hr />
+
+    <h2>List item</h2>
+    <mat-list class="list">
+      <app-members-list-item [user]="user"></app-members-list-item>
+    </mat-list>
   `,
 })
 export default class ThemeComponent {
@@ -73,4 +119,37 @@ export default class ThemeComponent {
       this.isActive = state;
     },
   };
+  onToggleChange(isChecked: boolean) {
+    console.log(isChecked);
+  }
+
+  user: User = {
+    id: 1,
+    firstName: 'Ewelina',
+    lastName: 'Mężyk',
+  };
+
+  public dialog = inject(MatDialog);
+  importedDialogData!: string;
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(InputDialogComponent, {
+      data: {
+        title: 'Przykładowy tytuł modala',
+        buttonText: 'Wyślij prośbę',
+        inputLabelText: 'Example label',
+        importedDialogData: this.importedDialogData,
+      },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.importedDialogData = result;
+    });
+  }
+
+  openDialog2() {
+    this.dialog.open(CancelConfirmDialogComponent, {
+      data: { text: 'Przykładowy tekst przekazany z add-category-component' },
+    });
+  }
 }
