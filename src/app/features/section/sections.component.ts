@@ -55,10 +55,10 @@ export class SectionsComponent implements OnInit {
       this.router.navigate([`/${HOME_PATHS.SECTION.SINGLE.SUBPAGES.EDIT}`]);
     },
     Activation: () => {
-      this.store.dispatch(SectionActions.activateSection({ sectionId: +this.id! }));
+      // this.store.dispatch(SectionActions.activateSection({ sectionId: +this.id! }));
     },
     Deactivation: () => {
-      this.store.dispatch(SectionActions.deactivateSection({ sectionId: +this.id! }));
+      // this.store.dispatch(SectionActions.deactivateSection({ sectionId: +this.id! }));
     },
   };
 }
