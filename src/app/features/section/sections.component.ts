@@ -35,6 +35,7 @@ export class SectionsComponent implements OnInit {
   private activeRoute = inject(ActivatedRoute);
 
   allSections$ = this.store.select(selectAllSections);
+  id!: string | null;
 
   public loadSections() {
     this.store.dispatch(SectionActions.getSections());
@@ -42,10 +43,7 @@ export class SectionsComponent implements OnInit {
 
   ngOnInit() {
     this.activeRoute.parent?.paramMap.subscribe(params => {
-      const id = params.get('id');
-
-      const active = this.store.dispatch(SectionActions.activateSection({ sectionId: +id! }));
-      const deactive = this.store.dispatch(SectionActions.deactivateSection({ sectionId: +id! }));
+      this.id = params.get('id');
     });
 
     this.loadSections();
@@ -57,10 +55,10 @@ export class SectionsComponent implements OnInit {
       this.router.navigate([`/${HOME_PATHS.SECTION.SINGLE.SUBPAGES.EDIT}`]);
     },
     Activation: () => {
-      //
+      this.store.dispatch(SectionActions.activateSection({ sectionId: +this.id! }));
     },
     Deactivation: () => {
-      //
+      this.store.dispatch(SectionActions.deactivateSection({ sectionId: +this.id! }));
     },
   };
 }
