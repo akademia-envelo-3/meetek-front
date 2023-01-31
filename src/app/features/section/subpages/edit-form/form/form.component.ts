@@ -46,6 +46,25 @@ export class FormComponent implements OnInit {
   filteredUsers$!: Observable<User[]>;
   editedOwner!: User;
 
+  errorsTree = {
+    name: {
+      required: 'Pole wymagane',
+      minlength: 'Nazwa jest za krótka',
+      maxlength: 'Nazwa jest za długa',
+      invalidCharacters: 'Nazwa zawiera niedozwolone znaki',
+      onlyNumbers: 'Nazwa nie może składać się tylko z cyfr',
+      onlySpaces: 'Nieprawidłowa nazwa',
+    },
+    description: {
+      required: 'Pole wymagane',
+      minlength: 'Opis jest za krótki',
+      maxlength: 'Opis jest za długi',
+      invalidCharacters: 'Opis zawiera niedozwolone znaki',
+      onlyNumbers: 'Opis nie może składać się tylko z cyfr',
+      onlySpaces: 'Nieprawidłowy opis',
+    },
+  }
+
   ngOnInit() {
     this.activeRoute.parent?.paramMap
       .pipe(
@@ -88,47 +107,29 @@ export class FormComponent implements OnInit {
 
   getErrorMessage(formControlName: 'name' | 'description') {
     const control = this.editSectionForm.get(formControlName);
-    const errorsTree = {
-      name: {
-        required: 'Pole wymagane',
-        minlength: 'Nazwa jest za krótka',
-        maxlength: 'Nazwa jest za długa',
-        invalidCharacters: 'Nazwa zawiera niedozwolone znaki',
-        onlyNumbers: 'Nazwa nie może składać się tylko z cyfr',
-        onlySpaces: 'Nieprawidłowa nazwa',
-      },
-      description: {
-        required: 'Pole wymagane',
-        minlength: 'Opis jest za krótki',
-        maxlength: 'Opis jest za długi',
-        invalidCharacters: 'Opis zawiera niedozwolone znaki',
-        onlyNumbers: 'Opis nie może składać się tylko z cyfr',
-        onlySpaces: 'Nieprawidłowy opis',
-      },
-    };
 
     if (control?.hasError('required')) {
-      return errorsTree[formControlName].required;
+      return this.errorsTree[formControlName].required;
     }
 
     if (control?.hasError('minlength')) {
-      return errorsTree[formControlName].minlength;
+      return this.errorsTree[formControlName].minlength;
     }
 
     if (control?.hasError('maxlength')) {
-      return errorsTree[formControlName].maxlength;
+      return this.errorsTree[formControlName].maxlength;
     }
 
     if (control?.hasError('invalidCharacters')) {
-      return errorsTree[formControlName].invalidCharacters;
+      return this.errorsTree[formControlName].invalidCharacters;
     }
 
     if (control?.hasError('onlyNumbers')) {
-      return errorsTree[formControlName].onlyNumbers;
+      return this.errorsTree[formControlName].onlyNumbers;
     }
 
     if (control?.hasError('onlySpaces')) {
-      return errorsTree[formControlName].onlySpaces;
+      return this.errorsTree[formControlName].onlySpaces;
     }
 
     return '';
