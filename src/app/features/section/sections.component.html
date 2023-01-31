@@ -13,9 +13,9 @@
         <app-section-card
           routerlink="section/:id"
           *ngFor="let section of sections"
-          (modification)="card.handleModification()"
-          (activation)="card.handleActivation()"
-          (deactivation)="card.handleDeactivation()"
+          (modification)="card.Modification()"
+          (activation)="card.Activation()"
+          (deactivation)="card.Deactivation()"
           [name]="section.name"
           [numberOfMembers]="section.users.length"
           [isActive]="card.isActive">
