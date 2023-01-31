@@ -7,7 +7,7 @@ import {
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, EMPTY, Observable, retry } from 'rxjs';
+import { catchError, Observable, retry, throwError } from 'rxjs';
 
 import { API_URL } from '@core/env.token';
 import { ToastFacadeService } from '@shared/services';
@@ -37,8 +37,7 @@ class HttpErrorInterceptor implements HttpInterceptor {
           //todo: doprecyzować sposob wyswietlania bledow z backendu https://github.com/akademia-envelo-3/meetek-front/issues/80
           this.toastService.showError('Błąd serwera', 'Błąd');
         }
-
-        return EMPTY;
+        return throwError(errorMsg);
       })
     );
   }
