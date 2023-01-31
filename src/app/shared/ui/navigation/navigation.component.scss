@@ -7,6 +7,10 @@
 .tab-navigation {
   width: 70%;
   margin: 15px 0 20px 0;
+
+  :hover {
+    border-bottom: 2px solid var(--secondary);
+  }
 }
 
 .nav-icon {
@@ -53,7 +57,11 @@
     text-decoration: none;
   }
 
-  .bottom-nav-destination :hover {
+  .active-bottom-link {
+    border-top: 5px solid var(--secondary);
+  }
+
+  .bottom-nav-destination:hover {
     border-top: 5px solid var(--secondary);
   }
 
