@@ -5,24 +5,20 @@
     <div class="search">
       <app-search [placeholderValue]="'Wyszukaj'"></app-search>
     </div>
-    <ng-container *ngIf="sectionCard as card">
-      <div class="sectionCard" *ngIf="allSections$ | async as sections">
-        <app-section-card
-          routerlink="section/:id"
-          *ngFor="let section of sections"
-          (modification)="card.Modification()"
-          (activation)="card.Activation()"
-          (deactivation)="card.Deactivation()"
-          [name]="section.name"
-          [numberOfMembers]="section.users.length"
-          [isActive]="card.isActive">
-        </app-section-card>
-      </div>
+    <ng-container *ngIf="allSections$ | async as sections">
+      <app-section-card
+        *ngFor="let section of sections"
+        [name]="section.name"
+        (modification)="handleModification(section.id)"
+        (activation)="handleActivation(section.id)"
+        (deactivation)="handleDeactivation(section.id)"
+        [numberOfMembers]="section.users.length"
+        [isActive]="section.isActive"
+        (click)="goToSection(section.id)">
+      </app-section-card>
     </ng-container>
   </div>
 </main>
-<a routerLink="section/add">
-  <button mat-fab color="accent" aria-label="Example icon button with a add icon">
-    <mat-icon>add</mat-icon>
-  </button>
-</a>
+<button mat-fab color="accent" aria-label="Example icon button with a add icon" (click)="goToAddSection()">
+  <mat-icon>add</mat-icon>
+</button>
