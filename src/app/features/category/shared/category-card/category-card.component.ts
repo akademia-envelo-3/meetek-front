@@ -2,12 +2,13 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { NgIf } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
+import { BehaviorSubject, debounce, skip, timer } from 'rxjs';
 
 @Component({
   selector: 'app-category-card[name][usage][isActive]',
   standalone: true,
-  imports: [MatCardModule, MatIconModule, FormsModule, NgIf],
+  imports: [ToggleComponent, MatCardModule, MatIconModule, NgIf],
   templateUrl: './category-card.component.html',
   styleUrls: ['./category-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,18 +21,24 @@ export class CategoryCardComponent implements OnInit {
   @Output() activityChange = new EventEmitter<boolean>();
   @Output() modification = new EventEmitter();
 
+  private toggleActivity$$ = new BehaviorSubject<boolean>(this.isActive);
+
   isActivityToggle = false;
   isModification = false;
 
   ngOnInit() {
     if (this.activityChange.observed) this.isActivityToggle = true;
     if (this.modification.observed) this.isModification = true;
+
+    this.toggleActivity$$
+      .pipe(
+        skip(1),
+        debounce(() => timer(1500))
+      )
+      .subscribe(state => this.activityChange.emit(state));
   }
 
-  handleActivityChange(event: Event) {
-    const element = event.target as HTMLInputElement;
-
-    this.activityChange.emit(element.checked);
-    element.checked = !element.checked;
+  handleToggleChange(state: boolean) {
+    this.toggleActivity$$.next(state);
   }
 }

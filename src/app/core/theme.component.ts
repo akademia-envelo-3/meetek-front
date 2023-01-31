@@ -62,7 +62,7 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
     </ng-container>
     <hr />
 
-    <h2>Cateogry card</h2>
+    <h2>Category card</h2>
     <ng-container *ngIf="categoryCard as card">
       <div class="element">
         <app-category-card
@@ -80,7 +80,7 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
 
     <h2>Toggle</h2>
     <div class="element">
-      <app-toggle (toggleChange)="onToggleChange($event)"></app-toggle>
+      <app-toggle [isActive]="false" (toggleChange)="onToggleChange($event)"></app-toggle>
     </div>
     <hr />
 
@@ -97,10 +97,11 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
   `,
 })
 export default class ThemeComponent {
+  // -- SECTION CARD --
   sectionCard = {
     isActive: true,
     handleModification: function () {
-      // modification action
+      console.log('modification');
     },
     handleActivation: function () {
       this.isActive = true;
@@ -110,25 +111,31 @@ export default class ThemeComponent {
     },
   };
 
+  // -- CATEGORY CARD --
   categoryCard = {
     isActive: true,
     handleModification: function () {
       console.log('modification');
     },
     handleActivityChange: function (state: boolean) {
+      if (this.isActive !== state) console.log(state ? 'activation' : 'deactivation');
       this.isActive = state;
     },
   };
+
+  // -- TOGGLE --
   onToggleChange(isChecked: boolean) {
     console.log(isChecked);
   }
 
+  // -- LIST ITEM --
   user: User = {
     id: 1,
     firstName: 'Ewelina',
     lastName: 'Mężyk',
   };
 
+  // -- DIALOG --
   public dialog = inject(MatDialog);
   importedDialogData!: string;
 

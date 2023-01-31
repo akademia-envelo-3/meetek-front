@@ -10,11 +10,10 @@
   </div>
 
   <div class="content-container">
-    <input
+    <app-toggle
       *ngIf="isActivityToggle"
-      type="checkbox"
-      [checked]="isActive"
+      [isActive]="isActive"
       (click)="$event.stopPropagation()"
-      (change)="handleActivityChange($event)" />
+      (toggleChange)="handleToggleChange($event)"></app-toggle>
   </div>
 </mat-card>
