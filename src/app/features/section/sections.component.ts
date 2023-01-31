@@ -10,11 +10,21 @@ import { HOME_PATHS } from '../home';
 import { SectionCardComponent } from 'src/app/features/section';
 import { selectAllSections } from '../section/store/section.selectors';
 import { SectionActions } from 'src/app/features/section';
+import { SearchComponent } from '@shared/ui/search/search.component';
 
 @Component({
   selector: 'app-sections',
   standalone: true,
-  imports: [MatButtonModule, MatInputModule, MatIconModule, SectionCardComponent, NgIf, NgForOf, AsyncPipe],
+  imports: [
+    MatButtonModule,
+    MatInputModule,
+    MatIconModule,
+    SectionCardComponent,
+    NgIf,
+    NgForOf,
+    AsyncPipe,
+    SearchComponent,
+  ],
   templateUrl: './sections.component.html',
   styleUrls: ['./sections.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -41,13 +51,16 @@ export class SectionsComponent implements OnInit {
     this.loadSections();
   }
 
-  public modification = () => {
-    return this.router.navigate([`/${HOME_PATHS.SECTION.SINGLE.SUBPAGES.EDIT}`]);
-  };
-  public activation = () => {
-    //
-  };
-  public deactivation = () => {
-    //
+  sectionCard = {
+    isActive: true,
+    Modification: () => {
+      this.router.navigate([`/${HOME_PATHS.SECTION.SINGLE.SUBPAGES.EDIT}`]);
+    },
+    Activation: () => {
+      //
+    },
+    Deactivation: () => {
+      //
+    },
   };
 }

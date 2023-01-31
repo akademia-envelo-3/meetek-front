@@ -3,10 +3,7 @@
   <div class="content">
     <br />
     <div class="search">
-      <input matInput placeholder="Wyszukaj" />
-      <div class="icon">
-        <mat-icon>search</mat-icon>
-      </div>
+      <app-search [placeholderValue]="'Wyszukaj'"></app-search>
     </div>
     <ng-container *ngIf="sectionCard as card">
       <div class="sectionCard" *ngIf="allSections$ | async as sections">

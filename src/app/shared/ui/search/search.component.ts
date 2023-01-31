@@ -10,7 +10,7 @@ import { MatInputModule } from '@angular/material/input';
     <div class="search">
       <input matInput [placeholder]="placeholderValue" />
       <div class="icon">
-        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="search"></mat-icon>
+        <mat-icon>search</mat-icon>
       </div>
     </div>
   `,
@@ -23,10 +23,11 @@ import { MatInputModule } from '@angular/material/input';
         padding-left: 10px;
         width: 100%;
         outline: none;
+        font-size: var(--S_font-size);
       }
       *:focus {
         outline: none;
-        border: solid 4px var(--primaryDark);
+        border: solid 2px var(--secondaryDark);
       }
       .search {
         position: relative;
@@ -41,6 +42,7 @@ import { MatInputModule } from '@angular/material/input';
       .icon {
         position: absolute;
         right: 5%;
+        cursor: pointer;
       }
     `,
   ],
