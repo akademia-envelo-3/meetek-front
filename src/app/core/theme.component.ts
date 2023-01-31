@@ -7,15 +7,16 @@ import { SectionCardComponent } from 'src/app/features/section';
 import { CancelConfirmDialogComponent, InputDialogComponent } from '../shared/ui/modals/index';
 import { MemberListItemComponent } from '../features/section/shared/list/list-item/member-list-item.component';
 import { MatListModule } from '@angular/material/list';
+
+
 import { User } from '../features/section/shared/interfaces';
-
-
+import { SearchComponent } from '@shared/ui/search/search.component';
+import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
 @Component({
   selector: 'app-theme',
   standalone: true,
-  imports: [SectionCardComponent, NgIf, MemberListItemComponent, MatListModule, MatDialogModule, MatButtonModule],
+  imports: [SectionCardComponent, NgIf, MemberListItemComponent, MatListModule, ToggleComponent, SearchComponent, MatDialogModule, MatButtonModule],
   styleUrls: ['./theme.component.scss'],
-
   template: `
     <h1>Storybook-like route</h1>
     <h3>Dialogi</h3>
@@ -45,6 +46,16 @@ import { User } from '../features/section/shared/interfaces';
       </div>
     </ng-container>
     <hr />
+    <h2>Toggle</h2>
+    <div class="element">
+      <app-toggle (toggleChange)="onToggleChange($event)"></app-toggle>
+    </div>
+    <hr />
+    <h2>Wyszukiwarka</h2>
+    <div class="element">
+      <app-search [placeholderValue]="'Wyszukaj'"></app-search>
+    </div>
+    <hr />
     <h2>List item</h2>
     <mat-list class="list">
       <app-members-list-item [user]="user"></app-members-list-item>
@@ -64,6 +75,9 @@ export default class ThemeComponent {
       this.isActive = false;
     },
   };
+  onToggleChange(isChecked: boolean) {
+    console.log(isChecked);
+  }
 
   user: User = {
     id: 1,
