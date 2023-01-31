@@ -6,7 +6,7 @@
           <mat-form-field appearance="outline">
             <mat-label>Nazwa</mat-label>
             <input matInput placeholder="Nazwa sekcji" type="text" formControlName="name" required />
-            <mat-error *ngIf="getErrorMessage('name')">{{ getErrorMessage('name') }}</mat-error>
+            <mat-error *ngIf="getErrorMessage('name') as message">{{ message }}</mat-error>
           </mat-form-field>
         </div>
         <div class="input textarea">
@@ -21,7 +21,7 @@
               type="text"
               formControlName="description"
               required></textarea>
-            <mat-error *ngIf="getErrorMessage('description')">{{ getErrorMessage('description') }}</mat-error>
+            <mat-error *ngIf="getErrorMessage('description') as message">{{ message }}</mat-error>
           </mat-form-field>
         </div>
         <div class="input">

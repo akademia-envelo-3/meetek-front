@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, map } from 'rxjs';
+import { Observable, map, switchMap, of } from 'rxjs';
 
 import { User, selectSectionDetails, selectAllUsers, SectionActions, sectionDetailsActions } from '../../../';
 import { validateCharacters, validateNotNumbers } from '../';
@@ -47,12 +47,14 @@ export class FormComponent implements OnInit {
   editedOwner!: User;
 
   ngOnInit() {
-    this.activeRoute.parent?.paramMap.subscribe(params => {
-      const id = params.get('id');
-      if (id) {
-        this.store.dispatch(sectionDetailsActions.getSectionDetails({ sectionId: +id }));
-      }
-    });
+    this.activeRoute.parent?.paramMap
+      .pipe(
+        map(params => params?.get('id')),
+        switchMap(id =>
+          id ? of(this.store.dispatch(sectionDetailsActions.getSectionDetails({ sectionId: +id }))) : of([])
+        )
+      )
+      .subscribe();
 
     this.sectionDetails$.subscribe(section => {
       this.editSectionForm.patchValue(section);
@@ -69,65 +71,64 @@ export class FormComponent implements OnInit {
       map(users =>
         users.filter(user => {
           const isSelected = user.id !== this.editedOwner.id;
-          const isIncluded = (user.firstName + ' ' + user.lastName)
-            .toLowerCase()
-            .includes(String(this.editSectionForm.controls.sectionOwner.getRawValue()).toLowerCase());
 
-          return isSelected && isIncluded;
+          if (!isSelected) {
+            return isSelected;
+          } else {
+            const isIncluded = (user.firstName + ' ' + user.lastName)
+              .toLowerCase()
+              .includes(String(this.editSectionForm.controls.sectionOwner.getRawValue()).toLowerCase());
+
+            return isIncluded;
+          }
         })
       )
     );
   }
 
-  getErrorMessage(formControlName: string) {
+  getErrorMessage(formControlName: 'name' | 'description') {
     const control = this.editSectionForm.get(formControlName);
+    const errorsTree = {
+      name: {
+        required: 'Pole wymagane',
+        minlength: 'Nazwa jest za krótka',
+        maxlength: 'Nazwa jest za długa',
+        invalidCharacters: 'Nazwa zawiera niedozwolone znaki',
+        onlyNumbers: 'Nazwa nie może składać się tylko z cyfr',
+        onlySpaces: 'Nieprawidłowa nazwa',
+      },
+      description: {
+        required: 'Pole wymagane',
+        minlength: 'Opis jest za krótki',
+        maxlength: 'Opis jest za długi',
+        invalidCharacters: 'Opis zawiera niedozwolone znaki',
+        onlyNumbers: 'Opis nie może składać się tylko z cyfr',
+        onlySpaces: 'Nieprawidłowy opis',
+      },
+    };
+
     if (control?.hasError('required')) {
-      switch (formControlName) {
-        case 'name':
-          return 'Pole wymagane';
-        case 'description':
-          return 'Pole wymagane';
-      }
+      return errorsTree[formControlName].required;
     }
+
     if (control?.hasError('minlength')) {
-      switch (formControlName) {
-        case 'name':
-          return 'Nazwa jest za krótka';
-        case 'description':
-          return 'Opis jest za krótki';
-      }
+      return errorsTree[formControlName].minlength;
     }
+
     if (control?.hasError('maxlength')) {
-      switch (formControlName) {
-        case 'name':
-          return 'Nazwa jest za długa';
-        case 'description':
-          return 'Opis jest za długi';
-      }
+      return errorsTree[formControlName].maxlength;
     }
+
     if (control?.hasError('invalidCharacters')) {
-      switch (formControlName) {
-        case 'name':
-          return 'Nazwa zawiera niedozwolone znaki';
-        case 'description':
-          return 'Opis zawiera niedozwolone znaki';
-      }
+      return errorsTree[formControlName].invalidCharacters;
     }
+
     if (control?.hasError('onlyNumbers')) {
-      switch (formControlName) {
-        case 'name':
-          return 'Nazwa nie może składać się tylko z cyfr';
-        case 'description':
-          return 'Opis nie może składać się tylko z cyfr';
-      }
+      return errorsTree[formControlName].onlyNumbers;
     }
+
     if (control?.hasError('onlySpaces')) {
-      switch (formControlName) {
-        case 'name':
-          return 'Nieprawidłowa nazwa';
-        case 'description':
-          return 'Nieprawidłowy opis';
-      }
+      return errorsTree[formControlName].onlySpaces;
     }
 
     return '';
@@ -159,13 +160,13 @@ export class FormComponent implements OnInit {
         Validators.minLength(5),
         Validators.maxLength(30),
         validateCharacters,
-        validateNotNumbers
+        validateNotNumbers,
       ]),
       description: this.formBuilder.control('', [
         Validators.required,
         Validators.minLength(20),
         Validators.maxLength(250),
-        validateNotNumbers
+        validateNotNumbers,
       ]),
       sectionOwner: this.formBuilder.control(this.editedOwner),
     });

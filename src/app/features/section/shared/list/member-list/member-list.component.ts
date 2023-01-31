@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { NgFor, AsyncPipe, JsonPipe, NgIf } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map, Observable, of, switchMap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { MatListModule } from '@angular/material/list';
 
@@ -27,12 +27,13 @@ export class MembersListComponent implements OnInit {
   sectionDetails$ = this.sectionStore.select(selectSectionDetails);
 
   ngOnInit() {
-    this.activeRoute.parent?.paramMap.subscribe(params => {
-      const id = params.get('id');
-
-      if (id) {
-        this.sectionStore.dispatch(sectionDetailsActions.getSectionDetails({ sectionId: +id }));
-      }
-    });
+    this.activeRoute.parent?.paramMap
+      .pipe(
+        map(params => params?.get('id')),
+        switchMap(id =>
+          id ? of(this.sectionStore.dispatch(sectionDetailsActions.getSectionDetails({ sectionId: +id }))) : of([])
+        )
+      )
+      .subscribe();
   }
 }
