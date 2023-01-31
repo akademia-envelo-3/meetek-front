@@ -4,9 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { MatListModule } from '@angular/material/list';
 
-import { MemberListItemComponent } from '../list-item/member-list-item.component';
-import { sectionDetailsActions } from '../../../store/section.actions';
-import { selectSectionDetails } from '../../../store/section.selectors';
+import { selectSectionDetails, sectionDetailsActions } from '../../../store';
+import { MemberListItemComponent } from '../list-item';
 
 @Component({
   selector: 'app-members-list',

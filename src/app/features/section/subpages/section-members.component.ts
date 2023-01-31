@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { MatCardModule } from '@angular/material/card';
 import { NavigationComponent, NavigationOption } from '@shared/ui';
 import { MatIconModule } from '@angular/material/icon';
-
-import { SectionCardComponent } from '../shared/section-card/section-card.component';
-import { MembersListComponent } from '../shared/list/member-list/member-list.component';
 import { ActivatedRoute } from '@angular/router';
+
+import { SectionCardComponent } from '../shared/section-card';
+import { MembersListComponent } from '../shared/list/member-list';
 
 @Component({
   selector: 'app-section-members',
