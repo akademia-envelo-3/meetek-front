@@ -2,85 +2,86 @@
 @use 'palette.scss' as palette;
 
 button {
-    border: none;
-    background-color: transparent;
-    font-size: var(--M_font-size);
-    transition: 0.1s;
-    cursor: pointer;
-    color: var(--white);
-  
-    &:hover {
-      text-decoration: underline;
-    }
-  
-    &.modification {
-      color: var(--primary);
-      padding: 0 20px 10px;
-  
-  
-      &:hover {
-        color: var(--primaryDark);
-      }
-    }
-  
-    &.deactivation {
-      color: mat.get-color-from-palette(palette.$error-palette, 500);
-      padding: 0 20px 10px;
-  
-  
-      &:hover {
-        color: mat.get-color-from-palette(palette.$error-palette, 900);
-      }
-    }
-  
-    &.activation {
-      color:  mat.get-color-from-palette(palette.$success-palette, 500);
-      padding: 0 20px 10px;
-  
-  
-      &:hover {
-        color:  mat.get-color-from-palette(palette.$success-palette, 700);
-      } 
-    }
-    &.success {
-      background-color:  mat.get-color-from-palette(palette.$success-palette, 500);
-      text-align: center;
-      padding: 10px 20px;
-      border-radius: 4px;
-      
-      &:hover {
-        background-color:  mat.get-color-from-palette(palette.$success-palette, 700);
-      } 
-    }
-    &.error {
-      background-color:  mat.get-color-from-palette(palette.$error-palette, 500);
-      text-align: center;
-      padding: 10px 20px;
-      border-radius: 4px;
-  
-      &:hover {
-        background-color:  mat.get-color-from-palette(palette.$error-palette, 700);
-      } 
-    }
-    &.warning {
-      background-color:  mat.get-color-from-palette(palette.$warning-palette, 500);
-      text-align: center;
-      padding: 10px 20px;
-      border-radius: 4px;
-  
-      &:hover {
-        background-color:  mat.get-color-from-palette(palette.$warning-palette, 700);
-      } 
-    }
-    &.formButton {
-      border: 2px solid var(--primaryLight);
-      text-align: center;
-      padding: 10px 20px;
-      color: var(--text);
-  
-      &:hover {
-        background-color:  mat.get-color-from-palette(palette.$warning-palette, 700);
-      } 
-    }
-  
+  border: none;
+  background-color: transparent;
+  font-size: var(--M_font-size);
+  transition: 0.1s;
+  cursor: pointer;
+  color: var(--white);
+  text-transform: uppercase;
+
+  &:hover {
+    text-decoration: underline;
   }
+
+  &.modification {
+    color: var(--primary);
+    padding: 0 20px 10px;
+
+    &:hover {
+      color: var(--primaryDark);
+    }
+  }
+
+  &.deactivation {
+    color: mat.get-color-from-palette(palette.$error-palette, 500);
+    padding: 0 20px 10px;
+
+    &:hover {
+      color: mat.get-color-from-palette(palette.$error-palette, 900);
+    }
+  }
+
+  &.activation {
+    color: mat.get-color-from-palette(palette.$success-palette, 500);
+    padding: 0 20px 10px;
+
+    &:hover {
+      color: mat.get-color-from-palette(palette.$success-palette, 700);
+    }
+  }
+  &.success {
+    background-color: mat.get-color-from-palette(palette.$success-palette, 500);
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: mat.get-color-from-palette(palette.$success-palette, 700);
+    }
+  }
+  &.error {
+    background-color: mat.get-color-from-palette(palette.$error-palette, 500);
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: mat.get-color-from-palette(palette.$error-palette, 700);
+    }
+  }
+  &.warning {
+    background-color: mat.get-color-from-palette(palette.$warning-palette, 500);
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: mat.get-color-from-palette(palette.$warning-palette, 700);
+    }
+  }
+  &.formButton {
+    border: 2px solid var(--primaryLight);
+    text-align: center;
+    padding: 10px 20px;
+    color: var(--text);
+
+    &:hover {
+      background-color: mat.get-color-from-palette(palette.$warning-palette, 700);
+    }
+  }
+  &:disabled {
+    background-color: var(--disabledBackground);
+    color: var(--disabledColor);
+  }
+}
