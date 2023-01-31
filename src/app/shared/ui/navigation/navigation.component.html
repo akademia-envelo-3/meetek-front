@@ -1,6 +1,6 @@
 <nav class="bottom-nav">
   <ng-container *ngFor="let option of navigationOptions">
-    <a routerLink="{{ option.link }}" class="bottom-nav-destination">
+    <a [routerLink]="option.link" class="bottom-nav-destination">
       <mat-icon class="nav-icon">{{ option.icon }}</mat-icon>
     </a>
   </ng-container>
