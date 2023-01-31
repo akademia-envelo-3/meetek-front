@@ -59,8 +59,11 @@ export class SectionEffects {
   editSection$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(SectionActions.editSection),
-      switchMap(editedSection => this.sectionService.update(editedSection.sectionId, editedSection.section)),
-      map(section => SectionsApiActions.sectionEditedSuccess({ section })),
+      switchMap(({ sectionId, section }) => this.sectionService.update(sectionId, section)),
+      map(section => {
+        this.router.navigate([HOME_PATHS.SECTION.SINGLE.SUBPAGES.HOME]);
+        return SectionsApiActions.sectionEditedSuccess({ section });
+      }),
       catchError(() => {
         this.toastService.showError('Nie udało się edytować sekcji', 'Błąd');
         return of(SectionsApiActions.sectionEditedFailure());
