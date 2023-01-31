@@ -1,11 +1,12 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { SectionCardComponent } from 'src/app/features/section';
+import { CategoryCardComponent } from '../features/category/shared/category-card/category-card.component';
 
 @Component({
   selector: 'app-theme',
   standalone: true,
-  imports: [SectionCardComponent, NgIf],
+  imports: [SectionCardComponent, CategoryCardComponent, NgIf],
   styles: ['.element { margin: 10px;}'],
   template: `
     <h1>Storybook-like route</h1>
@@ -33,6 +34,20 @@ import { SectionCardComponent } from 'src/app/features/section';
       </div>
     </ng-container>
     <hr />
+
+    <ng-container *ngIf="categoryCard as card">
+      <div class="element">
+        <app-category-card
+          (activityChange)="card.handleActivityChange($event)"
+          (modification)="card.handleModification()"
+          [name]="'Piwo'"
+          [usage]="132"
+          [isActive]="card.isActive"></app-category-card>
+      </div>
+      <div class="element">
+        <app-category-card [name]="'Bardzo ciekawa kategoria'" [usage]="12321" [isActive]="true"> </app-category-card>
+      </div>
+    </ng-container>
   `,
 })
 export default class ThemeComponent {
@@ -46,6 +61,16 @@ export default class ThemeComponent {
     },
     handleDeactivation: function () {
       this.isActive = false;
+    },
+  };
+
+  categoryCard = {
+    isActive: true,
+    handleModification: function () {
+      console.log('modification');
+    },
+    handleActivityChange: function (state: boolean) {
+      this.isActive = state;
     },
   };
 }

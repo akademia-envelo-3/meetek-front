@@ -1,0 +1,20 @@
+<mat-card>
+  <div class="content-container">
+    <p [class.narrow]="isModification || isActivityToggle" class="name">{{ name }}</p>
+
+    <span class="usage"> ({{ usage < 9999 ? usage : '>9999' }})</span>
+
+    <button *ngIf="isModification" (click)="$event.stopPropagation(); modification.emit()">
+      <mat-icon aria-hidden="false" fontIcon="edit"></mat-icon>
+    </button>
+  </div>
+
+  <div class="content-container">
+    <input
+      *ngIf="isActivityToggle"
+      type="checkbox"
+      [checked]="isActive"
+      (click)="$event.stopPropagation()"
+      (change)="handleActivityChange($event)" />
+  </div>
+</mat-card>
