@@ -1,0 +1,22 @@
+<nav class="bottom-nav">
+  <ng-container *ngFor="let option of navigationOptions">
+    <a
+      [routerLink]="option.link"
+      class="bottom-nav-destination"
+      routerLinkActive="active-bottom-link"
+      [routerLinkActiveOptions]="{ exact: true }">
+      <mat-icon class="nav-icon">{{ option.icon }}</mat-icon>
+    </a>
+  </ng-container>
+</nav>
+
+<nav mat-tab-nav-bar class="tab-navigation">
+  <a
+    mat-tab-link
+    *ngFor="let option of navigationOptions"
+    [routerLink]="option.link"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <mat-icon class="nav-icon">{{ option.icon }}</mat-icon>
+  </a>
+</nav>
