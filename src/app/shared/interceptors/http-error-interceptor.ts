@@ -14,7 +14,10 @@ import { ToastFacadeService } from '@shared/services';
 
 @Injectable()
 class HttpErrorInterceptor implements HttpInterceptor {
-  private base_url = inject(API_URL);
+  // private base_url = inject(API_URL);
+
+  private base_url = '';
+
   private toastService = inject(ToastFacadeService);
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -44,4 +47,8 @@ class HttpErrorInterceptor implements HttpInterceptor {
   }
 }
 
-export const HttpErrorInterceptorProvider = { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true };
+export const HttpErrorInterceptorProvider = {
+  provide: HTTP_INTERCEPTORS,
+  useClass: HttpErrorInterceptor,
+  multi: true,
+};
