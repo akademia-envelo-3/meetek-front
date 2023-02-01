@@ -1,14 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { NgFor, AsyncPipe, JsonPipe, NgIf } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { map, Observable, of, switchMap } from 'rxjs';
+import { map, of, switchMap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { MatListModule } from '@angular/material/list';
 
-import { MemberListItemComponent } from '../list-item/member-list-item.component';
-import { sectionDetailsActions } from '../../../store/section.actions';
-import { selectSectionDetails } from '../../../store/section.selectors';
-import { User } from '../../interfaces';
+import { selectSectionDetails, sectionDetailsActions } from '../../../store';
+import { MemberListItemComponent } from '../list-item';
 
 @Component({
   selector: 'app-members-list',
@@ -21,8 +19,6 @@ import { User } from '../../interfaces';
 export class MembersListComponent implements OnInit {
   private sectionStore = inject(Store);
   private activeRoute = inject(ActivatedRoute);
-
-  usersOfSection$!: Observable<User[] | undefined>;
 
   sectionDetails$ = this.sectionStore.select(selectSectionDetails);
 
