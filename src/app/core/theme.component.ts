@@ -8,20 +8,28 @@ import { CancelConfirmDialogComponent, InputDialogComponent } from '../shared/ui
 import { MemberListItemComponent } from '../features/section/shared/list/list-item/member-list-item.component';
 import { MatListModule } from '@angular/material/list';
 
-
 import { User } from '../features/section/shared/interfaces';
 import { SearchComponent } from '@shared/ui/search/search.component';
 import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
 @Component({
   selector: 'app-theme',
   standalone: true,
-  imports: [SectionCardComponent, NgIf, MemberListItemComponent, MatListModule, ToggleComponent, SearchComponent, MatDialogModule, MatButtonModule],
+  imports: [
+    SectionCardComponent,
+    NgIf,
+    MemberListItemComponent,
+    MatListModule,
+    ToggleComponent,
+    SearchComponent,
+    MatDialogModule,
+    MatButtonModule,
+  ],
   styleUrls: ['./theme.component.scss'],
   template: `
     <h1>Storybook-like route</h1>
     <h3>Dialogi</h3>
     <button mat-raised-button (click)="openDialog()">Dialog z inputem</button>
-      <button mat-raised-button (click)="openDialog2()">Dialog z przyciskami</button>
+    <button mat-raised-button (click)="openDialog2()">Dialog z przyciskami</button>
     <hr />
     <h2>Section card</h2>
     <ng-container *ngIf="sectionCard as card">
@@ -60,6 +68,15 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
     <mat-list class="list">
       <app-members-list-item [user]="user"></app-members-list-item>
     </mat-list>
+    <h2>Przyciski</h2>
+    <button class="modification">Modyfikuj</button>
+    <button class="deactivation">Dezaktywuj</button>
+    <button class="activation">Aktywuj</button>
+    <button class="success">Zatwierdź</button>
+    <button class="error">Odrzuć</button>
+    <button class="warning">Nie wiem</button>
+    <button class="formButton">Formularze</button>
+    <button class="success" disabled>Nieaktywny</button>
   `,
 })
 export default class ThemeComponent {
@@ -85,7 +102,7 @@ export default class ThemeComponent {
     lastName: 'Mężyk',
   };
 
- public dialog = inject(MatDialog)
+  public dialog = inject(MatDialog);
   importedDialogData!: string;
 
   openDialog(): void {
