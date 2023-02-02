@@ -72,11 +72,10 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
     <button class="modification">Modyfikuj</button>
     <button class="deactivation">Dezaktywuj</button>
     <button class="activation">Aktywuj</button>
-    <button class="success">Zatwierdź</button>
-    <button class="error">Odrzuć</button>
-    <button class="warning">Nie wiem</button>
-    <button class="formButton">Formularze</button>
-    <button class="success" disabled>Nieaktywny</button>
+    <button class="success largeButton">Zatwierdź</button>
+    <button class="error mediumButton">Odrzuć</button>
+    <button class="warning mediumButton">Nie wiem</button>
+    <button class="success smallButton" disabled>Nieaktywny</button>
   `,
 })
 export default class ThemeComponent {

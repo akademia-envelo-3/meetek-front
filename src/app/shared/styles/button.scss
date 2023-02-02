@@ -9,7 +9,6 @@ button {
   cursor: pointer;
   color: var(--white);
   text-transform: uppercase;
-  padding: 10px 20px;
   text-align: center;
   border-radius: 4px;
 
@@ -19,6 +18,7 @@ button {
 
     &:hover {
       color: var(--primaryDark);
+      text-decoration: underline;
     }
   }
 
@@ -28,6 +28,7 @@ button {
 
     &:hover {
       color: mat.get-color-from-palette(palette.$error-palette, 900);
+      text-decoration: underline;
     }
   }
 
@@ -37,8 +38,10 @@ button {
 
     &:hover {
       color: mat.get-color-from-palette(palette.$success-palette, 700);
+      text-decoration: underline;
     }
   }
+
   &.success {
     background-color: mat.get-color-from-palette(palette.$success-palette, 500);
 
@@ -46,6 +49,7 @@ button {
       background-color: mat.get-color-from-palette(palette.$success-palette, 700);
     }
   }
+
   &.error {
     background-color: mat.get-color-from-palette(palette.$error-palette, 500);
 
@@ -53,6 +57,7 @@ button {
       background-color: mat.get-color-from-palette(palette.$error-palette, 700);
     }
   }
+
   &.warning {
     background-color: mat.get-color-from-palette(palette.$warning-palette, 500);
 
@@ -60,14 +65,7 @@ button {
       background-color: mat.get-color-from-palette(palette.$warning-palette, 700);
     }
   }
-  &.formButton {
-    border: 2px solid var(--primaryLight);
-    color: var(--text);
 
-    &:hover {
-      background-color: rgb(240, 238, 238);
-    }
-  }
   &:disabled {
     background-color: var(--disabledBackground);
     color: var(--disabledColor);
@@ -76,4 +74,22 @@ button {
       background-color: var(--disabledBackground);
     }
   }
+
+  &.largeButton{
+    width: 250px;
+    height: 45px;
+    font-size: var(--L_font-size);
+  }
+
+  &.mediumButton{
+    width: 120px;
+    height: 35px;
+  }
+
+  &.smallButton{
+    width: 80px;
+    height: 25px;
+    font-size: var(--XXS_font-size);
+  }
+
 }
