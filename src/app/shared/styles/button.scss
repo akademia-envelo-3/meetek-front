@@ -10,10 +10,6 @@ button {
   color: var(--white);
   text-transform: uppercase;
 
-  &:hover {
-    text-decoration: underline;
-  }
-
   &.modification {
     color: var(--primary);
     padding: 0 20px 10px;
@@ -75,13 +71,18 @@ button {
     text-align: center;
     padding: 10px 20px;
     color: var(--text);
+    border-radius: 4px;
 
     &:hover {
-      background-color: mat.get-color-from-palette(palette.$warning-palette, 700);
+      background-color: rgb(240, 238, 238);
     }
   }
   &:disabled {
     background-color: var(--disabledBackground);
     color: var(--disabledColor);
+
+    &:hover{
+      background-color: var(--disabledBackground);
+    }
   }
 }
