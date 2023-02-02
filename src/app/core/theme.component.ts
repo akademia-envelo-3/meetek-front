@@ -14,7 +14,17 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
 @Component({
   selector: 'app-theme',
   standalone: true,
-  imports: [SectionCardComponent, NgIf, MemberListItemComponent, MatListModule, ToggleComponent, SearchComponent, MatDialogModule, MatButtonModule, HeaderComponent],
+  imports: [
+    SectionCardComponent,
+    NgIf,
+    MemberListItemComponent,
+    MatListModule,
+    ToggleComponent,
+    SearchComponent,
+    MatDialogModule,
+    MatButtonModule,
+    HeaderComponent,
+  ],
   styleUrls: ['./theme.component.scss'],
   template: `
     <h1>Storybook-like route</h1>
@@ -22,7 +32,7 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
     <app-header></app-header>
     <h3>Dialogi</h3>
     <button mat-raised-button (click)="openDialog()">Dialog z inputem</button>
-      <button mat-raised-button (click)="openDialog2()">Dialog z przyciskami</button>
+    <button mat-raised-button (click)="openDialog2()">Dialog z przyciskami</button>
     <hr />
     <h2>Section card</h2>
     <ng-container *ngIf="sectionCard as card">
@@ -61,6 +71,19 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
     <mat-list class="list">
       <app-members-list-item [user]="user"></app-members-list-item>
     </mat-list>
+    <hr />
+    <h2>Przyciski</h2>
+    <button class="modification">Modyfikuj</button>
+    <button class="deactivation">Dezaktywuj</button>
+    <button class="activation">Aktywuj</button>
+    <button class="success mediumButton">Zatwierdź</button>
+    <button class="error mediumButton">Odrzuć</button>
+    <button class="warning mediumButton">Nie wiem</button>
+    <button class="success mediumButton" disabled>Nieaktywny</button>
+    <hr />
+    <button class="success largeButton">Zatwierdź</button>
+    <button class="success mediumButton">Zatwierdź</button>
+    <button class="success smallButton">Zatwierdź</button>
   `,
 })
 export default class ThemeComponent {
@@ -86,7 +109,7 @@ export default class ThemeComponent {
     lastName: 'Mężyk',
   };
 
- public dialog = inject(MatDialog)
+  public dialog = inject(MatDialog);
   importedDialogData!: string;
 
   openDialog(): void {
