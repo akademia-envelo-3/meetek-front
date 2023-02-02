@@ -11,15 +11,17 @@ import { MemberListItemComponent } from '../features/section/shared/list/list-it
 import { User } from '../features/section/shared/interfaces';
 import { SearchComponent } from '@shared/ui/search/search.component';
 import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
+import { EventCardComponent } from '@shared/ui/event-card/event-card.component';
 @Component({
   selector: 'app-theme',
   standalone: true,
-  imports: [SectionCardComponent, NgIf, MemberListItemComponent, MatListModule, ToggleComponent, SearchComponent, MatDialogModule, MatButtonModule, HeaderComponent],
+  imports: [SectionCardComponent, NgIf, MemberListItemComponent, MatListModule, ToggleComponent, SearchComponent, MatDialogModule, MatButtonModule, HeaderComponent, EventCardComponent],
   styleUrls: ['./theme.component.scss'],
   template: `
     <h1>Storybook-like route</h1>
     <h2>Header</h2>
     <app-header></app-header>
+    <app-event-card></app-event-card>
     <h3>Dialogi</h3>
     <button mat-raised-button (click)="openDialog()">Dialog z inputem</button>
       <button mat-raised-button (click)="openDialog2()">Dialog z przyciskami</button>
