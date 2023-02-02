@@ -9,6 +9,9 @@ button {
   cursor: pointer;
   color: var(--white);
   text-transform: uppercase;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 4px;
 
   &.modification {
     color: var(--primary);
@@ -38,9 +41,6 @@ button {
   }
   &.success {
     background-color: mat.get-color-from-palette(palette.$success-palette, 500);
-    text-align: center;
-    padding: 10px 20px;
-    border-radius: 4px;
 
     &:hover {
       background-color: mat.get-color-from-palette(palette.$success-palette, 700);
@@ -48,9 +48,6 @@ button {
   }
   &.error {
     background-color: mat.get-color-from-palette(palette.$error-palette, 500);
-    text-align: center;
-    padding: 10px 20px;
-    border-radius: 4px;
 
     &:hover {
       background-color: mat.get-color-from-palette(palette.$error-palette, 700);
@@ -58,9 +55,6 @@ button {
   }
   &.warning {
     background-color: mat.get-color-from-palette(palette.$warning-palette, 500);
-    text-align: center;
-    padding: 10px 20px;
-    border-radius: 4px;
 
     &:hover {
       background-color: mat.get-color-from-palette(palette.$warning-palette, 700);
@@ -68,10 +62,7 @@ button {
   }
   &.formButton {
     border: 2px solid var(--primaryLight);
-    text-align: center;
-    padding: 10px 20px;
     color: var(--text);
-    border-radius: 4px;
 
     &:hover {
       background-color: rgb(240, 238, 238);
