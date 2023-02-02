@@ -68,14 +68,19 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
     <mat-list class="list">
       <app-members-list-item [user]="user"></app-members-list-item>
     </mat-list>
+    <hr />
     <h2>Przyciski</h2>
     <button class="modification">Modyfikuj</button>
     <button class="deactivation">Dezaktywuj</button>
     <button class="activation">Aktywuj</button>
-    <button class="success largeButton">Zatwierdź</button>
+    <button class="success mediumButton">Zatwierdź</button>
     <button class="error mediumButton">Odrzuć</button>
     <button class="warning mediumButton">Nie wiem</button>
-    <button class="success smallButton" disabled>Nieaktywny</button>
+    <button class="success mediumButton" disabled>Nieaktywny</button>
+    <hr />
+    <button class="success largeButton">Zatwierdź</button>
+    <button class="success mediumButton">Zatwierdź</button>
+    <button class="success smallButton">Zatwierdź</button>
   `,
 })
 export default class ThemeComponent {
