@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { CategoryHashtagCardComponent } from '../features/category/shared/category-hashtag-card/category-hashtag-card.component';
+import { CategoryHashtagCardComponent } from '../shared/ui/category-hashtag-card/category-hashtag-card.component';
 import { Component, inject } from '@angular/core';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
