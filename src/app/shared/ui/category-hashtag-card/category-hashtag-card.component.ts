@@ -2,8 +2,10 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { NgIf } from '@angular/common';
+import { BehaviorSubject, debounceTime, distinctUntilChanged, skip, takeUntil } from 'rxjs';
+
 import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
-import { BehaviorSubject, debounce, skip, timer } from 'rxjs';
+import { useDestroy } from '@shared/hooks';
 
 @Component({
   selector: 'app-category-hashtag-card[name][usage][isActive]',
@@ -22,6 +24,7 @@ export class CategoryHashtagCardComponent implements OnInit {
   @Output() modification = new EventEmitter();
 
   private toggleActivity$$ = new BehaviorSubject<boolean>(this.isActive);
+  private destroy$ = useDestroy();
 
   isActivityToggle = false;
   isModification = false;
@@ -31,10 +34,7 @@ export class CategoryHashtagCardComponent implements OnInit {
     if (this.modification.observed) this.isModification = true;
 
     this.toggleActivity$$
-      .pipe(
-        skip(1),
-        debounce(() => timer(1500))
-      )
+      .pipe(skip(1), debounceTime(1500), distinctUntilChanged(), takeUntil(this.destroy$))
       .subscribe(state => this.activityChange.emit(state));
   }
 

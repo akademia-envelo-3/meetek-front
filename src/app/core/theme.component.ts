@@ -1,16 +1,20 @@
 import { NgIf } from '@angular/common';
-import { CategoryHashtagCardComponent } from '../shared/ui/category-hashtag-card/category-hashtag-card.component';
 import { Component, inject } from '@angular/core';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
-import { HeaderComponent } from '@shared/ui/header/header.component';
-import { SectionCardComponent } from 'src/app/features/section';
-import { CancelConfirmDialogComponent, InputDialogComponent } from '../shared/ui/modals/index';
-import { MemberListItemComponent } from '../features/section/shared/list/list-item/member-list-item.component';
+
+import { MemberListItemComponent, SectionCardComponent } from '../features/section';
 import { User } from '../features/section/shared/interfaces';
-import { SearchComponent } from '@shared/ui/search/search.component';
-import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
+import {
+  SearchComponent,
+  ToggleComponent,
+  CategoryHashtagCardComponent,
+  CancelConfirmDialogComponent,
+  InputDialogComponent,
+  HeaderComponent,
+} from '@shared/ui';
+
 @Component({
   selector: 'app-theme',
   standalone: true,
@@ -64,7 +68,7 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
     <hr />
 
     <h2>Category/hashtag card</h2>
-    <ng-container *ngIf="categoryCard as card">
+    <ng-container *ngIf="categoryHashtagCard as card">
       <div class="element">
         <app-category-hashtag-card
           (activityChange)="card.handleActivityChange($event)"
@@ -116,14 +120,14 @@ export default class ThemeComponent {
     },
   };
 
-  // -- CATEGORY CARD --
-  categoryCard = {
+  // -- CATEGORY/HASHTAG CARD --
+  categoryHashtagCard = {
     isActive: true,
     handleModification: function () {
       console.log('modification');
     },
     handleActivityChange: function (state: boolean) {
-      if (this.isActive !== state) console.log(state ? 'activation' : 'deactivation');
+      console.log(state ? 'activation' : 'deactivation');
       this.isActive = state;
     },
   };
