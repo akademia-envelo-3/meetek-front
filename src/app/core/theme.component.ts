@@ -1,13 +1,13 @@
 import { NgIf } from '@angular/common';
-import { SectionCardComponent } from 'src/app/features/section';
 import { CategoryHashtagCardComponent } from '../features/category/shared/category-hashtag-card/category-hashtag-card.component';
 import { Component, inject } from '@angular/core';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+import { HeaderComponent } from '@shared/ui/header/header.component';
+import { SectionCardComponent } from 'src/app/features/section';
 import { CancelConfirmDialogComponent, InputDialogComponent } from '../shared/ui/modals/index';
 import { MemberListItemComponent } from '../features/section/shared/list/list-item/member-list-item.component';
-import { MatListModule } from '@angular/material/list';
-
 import { User } from '../features/section/shared/interfaces';
 import { SearchComponent } from '@shared/ui/search/search.component';
 import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
@@ -21,17 +21,18 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
     MemberListItemComponent,
     MatListModule,
     ToggleComponent,
+    HeaderComponent,
     SearchComponent,
     MatDialogModule,
     MatButtonModule,
   ],
   styles: ['.element { margin: 10px;}'],
-
   styleUrls: ['./theme.component.scss'],
   template: `
     <h1>Storybook-like route</h1>
-
-    <h2>Dialogi</h2>
+    <h2>Header</h2>
+    <app-header></app-header>
+    <h3>Dialogi</h3>
     <div class="element">
       <button mat-raised-button (click)="openDialog()">Dialog z inputem</button>
       <button mat-raised-button (click)="openDialog2()">Dialog z przyciskami</button>

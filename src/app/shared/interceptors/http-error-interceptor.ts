@@ -9,20 +9,14 @@ import {
 import { inject, Injectable } from '@angular/core';
 import { catchError, Observable, retry, throwError } from 'rxjs';
 
-import { API_URL } from '@core/env.token';
 import { ToastFacadeService } from '@shared/services';
 
 @Injectable()
 class HttpErrorInterceptor implements HttpInterceptor {
-  private base_url = inject(API_URL);
   private toastService = inject(ToastFacadeService);
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const clone = request.clone({
-      url: `${this.base_url}${request.url}`,
-    });
-
-    return next.handle(clone).pipe(
+    return next.handle(request).pipe(
       retry(1),
       catchError((error: HttpErrorResponse) => {
         let errorMsg = '';
@@ -43,4 +37,8 @@ class HttpErrorInterceptor implements HttpInterceptor {
   }
 }
 
-export const HttpErrorInterceptorProvider = { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true };
+export const HttpErrorInterceptorProvider = {
+  provide: HTTP_INTERCEPTORS,
+  useClass: HttpErrorInterceptor,
+  multi: true,
+};
