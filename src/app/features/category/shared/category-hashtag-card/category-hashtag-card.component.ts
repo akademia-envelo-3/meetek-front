@@ -6,14 +6,14 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
 import { BehaviorSubject, debounce, skip, timer } from 'rxjs';
 
 @Component({
-  selector: 'app-category-card[name][usage][isActive]',
+  selector: 'app-category-hashtag-card[name][usage][isActive]',
   standalone: true,
   imports: [ToggleComponent, MatCardModule, MatIconModule, NgIf],
-  templateUrl: './category-card.component.html',
-  styleUrls: ['./category-card.component.scss'],
+  templateUrl: './category-hashtag-card.component.html',
+  styleUrls: ['./category-hashtag-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CategoryCardComponent implements OnInit {
+export class CategoryHashtagCardComponent implements OnInit {
   @Input() name!: string;
   @Input() usage!: number;
   @Input() isActive!: boolean;

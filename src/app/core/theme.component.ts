@@ -1,6 +1,6 @@
 import { NgIf } from '@angular/common';
 import { SectionCardComponent } from 'src/app/features/section';
-import { CategoryCardComponent } from '../features/category/shared/category-card/category-card.component';
+import { CategoryHashtagCardComponent } from '../features/category/shared/category-hashtag-card/category-hashtag-card.component';
 import { Component, inject } from '@angular/core';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,7 +15,7 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
   selector: 'app-theme',
   standalone: true,
   imports: [
-    CategoryCardComponent,
+    CategoryHashtagCardComponent,
     SectionCardComponent,
     NgIf,
     MemberListItemComponent,
@@ -62,18 +62,22 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
     </ng-container>
     <hr />
 
-    <h2>Category card</h2>
+    <h2>Category/hashtag card</h2>
     <ng-container *ngIf="categoryCard as card">
       <div class="element">
-        <app-category-card
+        <app-category-hashtag-card
           (activityChange)="card.handleActivityChange($event)"
           (modification)="card.handleModification()"
           [name]="'Piwo'"
           [usage]="132"
-          [isActive]="card.isActive"></app-category-card>
+          [isActive]="card.isActive"></app-category-hashtag-card>
       </div>
       <div class="element">
-        <app-category-card [name]="'Bardzo ciekawa kategoria'" [usage]="12321" [isActive]="true"> </app-category-card>
+        <app-category-hashtag-card [name]="'Bardzo ciekawa kategoria'" [usage]="12321" [isActive]="false">
+        </app-category-hashtag-card>
+      </div>
+      <div class="element">
+        <app-category-hashtag-card [name]="'#popcorn'" [usage]="328" [isActive]="true"> </app-category-hashtag-card>
       </div>
     </ng-container>
     <hr />

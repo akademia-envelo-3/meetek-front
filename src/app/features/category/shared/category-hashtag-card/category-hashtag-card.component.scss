@@ -7,7 +7,11 @@ mat-card {
   width: 280px;
   padding: 0 15px;
   overflow: hidden;
-  cursor: pointer;
+  cursor: default;
+
+  &.active {
+    cursor: pointer;
+  }
 
   .content-container {
     display: flex;
