@@ -1,0 +1,5 @@
+<router-outlet>
+  <div class="menu-container">
+    <app-menu *ngIf="userRole$ | async as role" [role]="role" [class.active]="isMenuActive$ | async"></app-menu>
+  </div>
+</router-outlet>

@@ -1,9 +1,11 @@
-import { NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { MenuComponent, MenuInputs, MenuService } from '@shared/ui';
+import { map } from 'rxjs';
+import { NgIf } from '@angular/common';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
-
 import { HeaderComponent } from '@shared/ui/header/header.component';
 import { SectionCardComponent } from 'src/app/features/section';
 import { CancelConfirmDialogComponent, InputDialogComponent } from '../shared/ui/modals/index';
@@ -11,9 +13,11 @@ import { MemberListItemComponent } from '../features/section/shared/list/list-it
 import { User } from '../features/section/shared/interfaces';
 import { SearchComponent } from '@shared/ui/search/search.component';
 import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
+
 @Component({
   selector: 'app-theme',
   standalone: true,
+  styles: ['.element { margin: 10px; position: relative;}'],
   imports: [
     SectionCardComponent,
     NgIf,
@@ -24,6 +28,8 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
     MatDialogModule,
     MatButtonModule,
     HeaderComponent,
+    MenuComponent,
+    CommonModule,
   ],
   styleUrls: ['./theme.component.scss'],
   template: `
@@ -34,6 +40,7 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
     <button mat-raised-button (click)="openDialog()">Dialog z inputem</button>
     <button mat-raised-button (click)="openDialog2()">Dialog z przyciskami</button>
     <hr />
+
     <h2>Section card</h2>
     <ng-container *ngIf="sectionCard as card">
       <div class="element">
@@ -57,6 +64,14 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
       </div>
     </ng-container>
     <hr />
+
+    <h2>Menu</h2>
+    <div class="element">
+      <button (click)="menuService.toggleMenu()" class="warning mediumButton">Toggle menu</button>
+      <app-menu [user]="userMockMenu" [class.active]="isMenuActive | async"></app-menu>
+    </div>
+    <hr />
+
     <h2>Toggle</h2>
     <div class="element">
       <app-toggle (toggleChange)="onToggleChange($event)"></app-toggle>
@@ -99,6 +114,15 @@ export default class ThemeComponent {
       this.isActive = false;
     },
   };
+
+  // -- MENU --
+  menuService = inject(MenuService);
+  isMenuActive = this.menuService.menu$.pipe(map(menu => menu.isActive));
+  userMockMenu: MenuInputs = {
+    userData: { fullName: 'test user hahahadsdssdsdsdsddh', email: 'test@gmail.com', initials: 'TU' },
+    role: 'admin',
+  };
+
   onToggleChange(isChecked: boolean) {
     console.log(isChecked);
   }

@@ -32,7 +32,7 @@ export class SectionEffects {
       switchMap(({ sectionId }) => this.sectionService.getOne(sectionId)),
       map(section => SectionDetilsApiActions.sectionDetailsSuccess({ section })),
       catchError(() => {
-        this.router.navigate([HOME_PATHS.SECTION.SINGLE.SUBPAGES.HOME]);
+        this.router.navigate([HOME_PATHS.SECTIONS.SINGLE.SUBPAGES.HOME]);
         return of(SectionDetilsApiActions.sectionDetailsFailure());
       })
     );
