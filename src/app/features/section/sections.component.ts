@@ -7,10 +7,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
 
 import { HOME_PATHS } from '../home';
-import { SectionCardComponent } from 'src/app/features/section';
-import { selectAllSections } from '../section/store/section.selectors';
-import { SectionActions } from 'src/app/features/section';
-import { SearchComponent } from '@shared/ui/search/search.component';
+import { SectionCardComponent } from '../section';
+import { selectAllSections } from '../section';
+import { SectionActions } from '../section';
+import { SearchComponent } from '@shared/ui';
 
 @Component({
   selector: 'app-sections',
