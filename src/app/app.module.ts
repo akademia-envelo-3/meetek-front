@@ -17,6 +17,8 @@ import { UserEffects } from '@core/store/user.effects';
 import { UserState } from '@core/store/user.interfaces';
 import { TokenInterceptorProvider } from '@shared/interceptors';
 import { HttpErrorInterceptorProvider } from '@shared/interceptors';
+import { LoadingInterceptorProvider } from '@shared/interceptors';
+import { SpinnerComponent } from '@shared/ui';
 
 export interface AppState {
   user?: UserState;
@@ -33,6 +35,7 @@ export const APP_PATH = {
   imports: [
     BrowserModule,
     HttpClientModule,
+    SpinnerComponent,
     ToastrModule.forRoot(),
     StoreModule.forRoot({
       user: userReducer,
@@ -76,6 +79,7 @@ export const APP_PATH = {
     CookieService,
     TokenInterceptorProvider,
     HttpErrorInterceptorProvider,
+    LoadingInterceptorProvider,
   ],
   bootstrap: [AppComponent],
 })
