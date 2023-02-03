@@ -1,7 +1,7 @@
 <div class="box">
 <div class="container">
     
-    <mat-icon *ngIf="event.participation!=='inactive'" class="container-icon" [ngClass]="{'container-icon-past': event.participation=='past'}">check-circle</mat-icon>
+    <mat-icon *ngIf="event.participation!=='inactive'" class="container-icon" [ngClass]="{'container-icon-past': event.participation==='past'}">check-circle</mat-icon>
     
 <div class="event-card__container">
     
@@ -10,9 +10,9 @@
         <div class="event-card__info-title">
             <p class="event-card-info-title-paragraph">
                 {{ event.title }} 
-                <mat-icon class="event-card__info-title-icon" *ngIf="event.type == 'public'">lock_open</mat-icon>
-                <mat-icon class="event-card__info-title-icon" *ngIf="event.type == 'private'">lock</mat-icon>
-                <mat-icon class="event-card__info-title-icon" *ngIf="event.type == 'worldwide'">public</mat-icon>
+                <mat-icon class="event-card__info-title-icon" *ngIf="event.type === 'public'">lock_open</mat-icon>
+                <mat-icon class="event-card__info-title-icon" *ngIf="event.type === 'private'">lock</mat-icon>
+                <mat-icon class="event-card__info-title-icon" *ngIf="event.type === 'worldwide'">public</mat-icon>
                 
             </p>
         </div>

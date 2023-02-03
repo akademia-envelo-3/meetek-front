@@ -5,14 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { EventSpecs } from './event-card.interface';
 import * as L from 'leaflet';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { LayerGroup } from 'leaflet';
-
-
-
-
-
-
-
 
 @Component({
   selector: 'app-event-card',
