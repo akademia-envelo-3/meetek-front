@@ -81,7 +81,9 @@
     right: 0px;
     top: -8px;
     z-index: 100;
-    
+}
+.container-icon-past{
+    background-color: var(--divider) !important;
 }
 .event-card__container{
     position: relative;
@@ -122,8 +124,14 @@
 
 .event-card__info-hash{
     font-size: var(--XS_font-size);
-    margin-left: 10px;
-    margin-top:25px;
+    margin-left: 5px;
+    max-width: 300px;
+    margin-top: 15px;
+    max-height: 32px;
+    overflow: hidden;
+    
+    
+
 }
 .event-card__map-container{
     position: absolute;
@@ -153,6 +161,9 @@ left: 300px;
         top: -8px;
         z-index: 100;
         
+    }
+    .container-icon-past{
+        background-color: var(--divider) !important;
     }
     .event-card__container{
         position: relative;
@@ -192,9 +203,17 @@ left: 300px;
 
 
     .event-card__info-hash{
-        font-size: var(--XS_font-size);
-        margin-left: 10px;
-        margin-top:25px;
+        .event-card__info-hash{
+            font-size: var(--XS_font-size);
+            margin-left: 5px;
+            max-width: 200px;
+            margin-top: 15px;
+            max-height: 32px;
+            overflow: hidden;
+            
+            
+        
+        }
     }
     .event-card__map-container{
         position: absolute;
@@ -223,6 +242,9 @@ left: 220px;
             top: -8px;
             z-index: 100;
             
+        }
+        .container-icon-past{
+            background-color: var(--divider) !important;
         }
         .event-card__container{
             position: relative;
@@ -270,3 +292,16 @@ left: 220px;
     }
 }
 
+.dupa{
+    background-color: black;
+}
+.map-container {
+}
+
+.map-frame {
+  height: 120px;
+}
+
+#map {
+  height: 120px;
+}
