@@ -44,16 +44,6 @@ import { TestWithRouterComponent } from '@shared/test/test-router.component';
           { path: HOME_PATHS.MEENDER, component: TestComponent },
         ],
       },
-      {
-        path: HOME_PATHS.SECTIONS.SINGLE.CORE,
-        component: HomeComponent, //todo: zmienić, jak już będziemy mieli komponent dla sekcji task FT017 https://github.com/akademia-envelo-3/meetek-front/issues/18
-        children: [
-          {
-            path: HOME_PATHS.SECTIONS.SINGLE.SUBPAGES.MEMBERS,
-            component: SectionMembersComponent,
-          },
-        ],
-      },
     ]),
   ],
 })
