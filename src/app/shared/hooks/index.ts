@@ -1,1 +1,1 @@
-export * from './useDestroy.hook';
+export * from './use-destroy.hook';
