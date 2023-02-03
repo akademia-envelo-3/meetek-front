@@ -11,17 +11,7 @@ import { HeaderComponent, MenuComponent, MenuService } from '@shared/ui';
   selector: 'app-home',
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, MenuComponent, AsyncPipe, NgIf],
-  template: `
-    <div class="wrapper">
-      <app-header></app-header>
-      <div class="content-container">
-        <div *ngIf="userData$ | async as user" [class.active]="isMenuActive$ | async" class="menu-container">
-          <app-menu [user]="user"></app-menu>
-        </div>
-        <router-outlet> </router-outlet>
-      </div>
-    </div>
-  `,
+  templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -1,5 +1,9 @@
-<router-outlet>
-  <div class="menu-container">
-    <app-menu *ngIf="userRole$ | async as role" [role]="role" [class.active]="isMenuActive$ | async"></app-menu>
+<div class="wrapper">
+  <app-header></app-header>
+  <div class="content-container">
+    <div *ngIf="userData$ | async as user" [class.active]="isMenuActive$ | async" class="menu-container">
+      <app-menu [user]="user"></app-menu>
+    </div>
+    <router-outlet> </router-outlet>
   </div>
-</router-outlet>
+</div>
