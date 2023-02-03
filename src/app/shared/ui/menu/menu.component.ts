@@ -4,11 +4,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
-import { MenuService } from './menu.service';
-import { menuItems } from './menu-items';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter, map } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+
+import { MenuService } from './menu.service';
+import { menuItems } from './menu-items';
 import { UserRole } from '@core/store/user.interfaces';
 import { UserInitialsButtonComponent } from '../user-initials-button/user-initials-button.component';
 import { UserMenuComponent, UserMenuInputs } from '../user-menu';

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+
 import { HomeComponent } from './home.component';
 import { SectionEffects, sectionReducer, sectionDetailsReducer, SectionMembersComponent } from '../section';
 import { HOME_PATHS } from './home-paths';
