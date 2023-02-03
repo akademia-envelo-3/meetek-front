@@ -1,4 +1,4 @@
-import { NgIf, AsyncPipe, NgForOf } from '@angular/common';
+import { NgIf, AsyncPipe, NgFor } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,7 +21,7 @@ import { SearchComponent } from '@shared/ui/search/search.component';
     MatIconModule,
     SectionCardComponent,
     NgIf,
-    NgForOf,
+    NgFor,
     AsyncPipe,
     SearchComponent,
   ],
@@ -35,8 +35,12 @@ export class SectionsComponent implements OnInit {
 
   allSections$ = this.store.select(selectAllSections);
 
+  ngOnInit() {
+    this.loadSections();
+  }
+
   handleModification(id: number) {
-    this.router.navigate([`./section/${id}/edit`]);
+    this.router.navigate([`section/${id}/edit`]);
   }
   handleActivation(id: number) {
     this.store.dispatch(SectionActions.activateSection({ sectionId: Number(id) }));
@@ -45,17 +49,14 @@ export class SectionsComponent implements OnInit {
     this.store.dispatch(SectionActions.deactivateSection({ sectionId: Number(id) }));
   }
 
-  public loadSections() {
+  loadSections() {
     this.store.dispatch(SectionActions.getSections());
-  }
-
-  ngOnInit() {
-    this.loadSections();
   }
 
   goToSection(id: number) {
     this.router.navigate([`/section/${id}`]);
   }
+
   goToAddSection() {
     this.router.navigate([`/${HOME_PATHS.SECTION.ADD}`]);
   }

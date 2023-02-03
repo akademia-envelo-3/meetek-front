@@ -34,7 +34,6 @@ export const HOME_PATHS = {
       SUBPAGES: {
         HOME: '',
         MEMBERS: 'members',
-        EDIT: 'section/:id/edit',
       },
     },
     ALL: 'sections',
@@ -75,6 +74,10 @@ export const HOME_PATHS = {
       {
         path: HOME_PATHS.SECTION.ALL,
         component: SectionsComponent,
+      },
+      {
+        path: HOME_PATHS.SECTION.EDIT,
+        component: HomeComponent, //todo: zmienić jak bedzie zrobiony task FT032 https://github.com/akademia-envelo-3/meetek-front/issues/41
       },
       {
         path: HOME_PATHS.SECTION.SINGLE.CORE,
