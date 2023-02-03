@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class MenuService {
-  private menu$$ = new BehaviorSubject({ isActive: true });
+  private menu$$ = new BehaviorSubject({ isActive: false });
 
   get menu$() {
     return this.menu$$.asObservable();

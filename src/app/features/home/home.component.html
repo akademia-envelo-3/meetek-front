@@ -4,6 +4,8 @@
     <div *ngIf="userData$ | async as user" [class.active]="isMenuActive$ | async" class="menu-container">
       <app-menu [user]="user"></app-menu>
     </div>
-    <router-outlet> </router-outlet>
+    <div class="router-container">
+      <router-outlet> </router-outlet>
+    </div>
   </div>
 </div>
