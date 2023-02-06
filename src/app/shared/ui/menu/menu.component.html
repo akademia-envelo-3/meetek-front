@@ -10,7 +10,7 @@
     </button>
   </div>
 
-  <div *ngIf="user.userData as userData" class="user-info-container">
+  <div *ngIf="user?.userData as userData" class="user-info-container">
     <app-user-initials-button [initials]="userData.initials"></app-user-initials-button>
     <div>
       <p class="user-fullName">{{ userData.fullName }}</p>
@@ -18,7 +18,7 @@
     </div>
   </div>
 
-  <mat-list *ngIf="user.role as role">
+  <mat-list *ngIf="user?.role as role">
     <div *ngFor="let item of menuItems[role]" class="item-container">
       <ng-container *ngIf="item.subpages?.length; else withoutSubpages">
         <mat-expansion-panel class="menu">
