@@ -1,24 +1,25 @@
 <nav class="wrapper">
   <div class="top-section">
     <div class="toggle-mode-container">
+      <!-- Oczekuje na wykonanie taska FT057: https://github.com/akademia-envelo-3/meetek-front/issues/95 -->
       <mat-slide-toggle></mat-slide-toggle>
       <p>Dark mode</p>
     </div>
     <button (click)="closeMenu()" class="close-button">
-      <mat-icon fontIcon="close" [style]="{ padding: '10px' }"></mat-icon>
+      <mat-icon fontIcon="close" class="close-button-icon"></mat-icon>
     </button>
   </div>
 
   <div *ngIf="user.userData as userData" class="user-info-container">
     <app-user-initials-button [initials]="userData.initials"></app-user-initials-button>
     <div>
-      <p class="title">{{ userData.fullName }}</p>
-      <p class="subtitle">{{ userData.email }}</p>
+      <p class="user-fullName">{{ userData.fullName }}</p>
+      <p class="user-email">{{ userData.email }}</p>
     </div>
   </div>
 
   <mat-list *ngIf="user.role as role">
-    <div *ngFor="let item of menuItems[role]" [class.only-mobile]="item.onlyMobile" class="item-container">
+    <div *ngFor="let item of menuItems[role]" class="item-container">
       <ng-container *ngIf="item.subpages?.length; else withoutSubpages">
         <mat-expansion-panel class="menu">
           <mat-expansion-panel-header>
@@ -31,7 +32,7 @@
           </mat-expansion-panel-header>
           <mat-list-item
             *ngFor="let subpage of item.subpages"
-            class="small"
+            class="subpage"
             [class.active]="subpage.path === currentRoute">
             <p class="item-content subpage" [routerLink]="subpage.path">
               <mat-icon [fontIcon]="'keyboard_arrow_right'"></mat-icon>
@@ -42,7 +43,7 @@
       </ng-container>
 
       <ng-template #withoutSubpages>
-        <mat-list-item *ngIf="!item.subpages?.length" [class.active]="item.path === currentRoute">
+        <mat-list-item [class.active]="item.path === currentRoute">
           <div (click)="item.name === 'Wyloguj' ? logout() : null" [routerLink]="[item.path]" class="item-content">
             <mat-icon [fontIcon]="item.icon || 'close'"></mat-icon>
             {{ item.name }}

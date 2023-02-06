@@ -1,17 +1,5 @@
 import { HOME_PATHS } from 'src/app/features/home/home-paths';
-
-interface MenuItem {
-  name: string;
-  icon: string;
-  path?: string;
-  subpages?: { name: string; path: string }[];
-  onlyMobile?: boolean;
-}
-
-export interface MenuItems {
-  user: MenuItem[];
-  admin: MenuItem[];
-}
+import { MenuItems } from './menu.interface';
 
 export const menuItems: MenuItems = {
   user: [

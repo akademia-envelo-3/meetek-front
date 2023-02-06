@@ -35,7 +35,8 @@
         transform: rotate(90deg);
       }
 
-      & mat-icon {
+      &-icon {
+        padding: 10px;
         color: var(--text);
         font-size: var(--medium-icon);
         height: var(--medium-icon);
@@ -86,7 +87,7 @@
       font-size: var(--h2_font-size);
       cursor: pointer;
 
-      &.small {
+      &.subpage {
         margin: 5px;
         height: 30px;
       }
@@ -170,11 +171,11 @@
         overflow: hidden;
         max-width: 210px;
 
-        &.title {
+        &.user-fullName {
           font-size: var(--L_font-size);
         }
 
-        &.subtitle {
+        &.user-email {
           font-size: var(--XS_font-size);
         }
       }
