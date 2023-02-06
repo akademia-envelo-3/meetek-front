@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MenuComponent, MenuInputs, MenuService } from '@shared/ui';
 import { map } from 'rxjs';
@@ -29,7 +29,7 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
     MatButtonModule,
     HeaderComponent,
     MenuComponent,
-    CommonModule,
+    AsyncPipe,
   ],
   styleUrls: ['./theme.component.scss'],
   template: `

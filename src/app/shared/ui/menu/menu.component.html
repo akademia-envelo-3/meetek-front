@@ -5,7 +5,7 @@
       <p>Dark mode</p>
     </div>
     <button (click)="closeMenu()" class="close-button">
-      <mat-icon aria-hidden="false" fontIcon="close" [style]="{ padding: '10px' }"></mat-icon>
+      <mat-icon fontIcon="close" [style]="{ padding: '10px' }"></mat-icon>
     </button>
   </div>
 
@@ -24,7 +24,7 @@
           <mat-expansion-panel-header>
             <mat-panel-title>
               <p class="item-content">
-                <mat-icon aria-hidden="false" [fontIcon]="item.icon"></mat-icon>
+                <mat-icon [fontIcon]="item.icon"></mat-icon>
                 {{ item.name }}
               </p>
             </mat-panel-title>
@@ -34,7 +34,7 @@
             class="small"
             [class.active]="subpage.path === currentRoute">
             <p class="item-content subpage" [routerLink]="subpage.path">
-              <mat-icon aria-hidden="false" [fontIcon]="'keyboard_arrow_right'"></mat-icon>
+              <mat-icon [fontIcon]="'keyboard_arrow_right'"></mat-icon>
               {{ subpage.name }}
             </p>
           </mat-list-item>
@@ -44,7 +44,7 @@
       <ng-template #withoutSubpages>
         <mat-list-item *ngIf="!item.subpages?.length" [class.active]="item.path === currentRoute">
           <div (click)="item.name === 'Wyloguj' ? logout() : null" [routerLink]="[item.path]" class="item-content">
-            <mat-icon aria-hidden="false" [fontIcon]="item.icon || 'close'"></mat-icon>
+            <mat-icon [fontIcon]="item.icon || 'close'"></mat-icon>
             {{ item.name }}
           </div>
         </mat-list-item>
