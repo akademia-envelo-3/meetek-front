@@ -4,18 +4,20 @@
     <div class="search">
       <app-search [placeholderValue]="'Wyszukaj'"></app-search>
     </div>
-    <ng-container *ngIf="allSections$ | async as sections">
-      <app-section-card
-        *ngFor="let section of sections"
-        [name]="section.name"
-        (modification)="handleModification(section.id)"
-        (activation)="handleActivation(section.id)"
-        (deactivation)="handleDeactivation(section.id)"
-        [numberOfMembers]="section.users.length"
-        [isActive]="section.isActive"
-        (click)="goToSection(section.id)">
-      </app-section-card>
-    </ng-container>
+    <mat-list class="list">
+      <ng-container *ngIf="allSections$ | async as sections">
+        <app-section-card
+          *ngFor="let section of sections"
+          [name]="section.name"
+          (modification)="modification(section.id)"
+          (activation)="handleActivation(section.id)"
+          (deactivation)="handleDeactivation(section.id)"
+          [numberOfMembers]="section.users.length"
+          [isActive]="section.isActive"
+          (click)="goToSection(section.id)">
+        </app-section-card>
+      </ng-container>
+    </mat-list>
   </div>
 </main>
 <button mat-fab color="accent" (click)="goToAddSection()">

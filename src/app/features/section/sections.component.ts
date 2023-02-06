@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
 
@@ -19,6 +20,7 @@ import { SearchComponent } from '@shared/ui';
     MatButtonModule,
     MatInputModule,
     MatIconModule,
+    MatListModule,
     SectionCardComponent,
     NgIf,
     NgFor,
@@ -39,12 +41,14 @@ export class SectionsComponent implements OnInit {
     this.loadSections();
   }
 
-  handleModification(id: number) {
+  modification(id: number) {
     this.router.navigate([`section/${id}/edit`]);
   }
+
   handleActivation(id: number) {
     this.store.dispatch(SectionActions.activateSection({ sectionId: Number(id) }));
   }
+
   handleDeactivation(id: number) {
     this.store.dispatch(SectionActions.deactivateSection({ sectionId: Number(id) }));
   }

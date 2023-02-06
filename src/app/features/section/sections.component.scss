@@ -5,7 +5,6 @@ main{
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  min-height: 100vh;
   background-color: var(--background);
 }
 .content{
@@ -13,11 +12,18 @@ main{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 24px;
   background-color: var(--surface);
-  width: 500px;
   box-shadow: 0 5px 4px -2px rgba(0, 0, 0, 0.3);
   padding: 20px;
+}
+.list{
+  height: 60vh;
+  width: 320px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+  overflow: scroll;
 }
 .search {
   display: flex;
@@ -26,39 +32,11 @@ main{
   position: absolute;
   top: 10px;
   right: 5%;
-  width: 90%;
-}
-
-.sectionCard {
-  gap: 24px;
 }
 h1{
   font-weight: normal;
   margin: 30px;
   font-size: var(--L_font-size);
-}
-.sectionName {
-  font-size: var(--L_font-size);
-}
-.numberOfMembers {
-  font-size: var(--XS_font-size);
-}
-mat-card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 230px;
-  text-align: center;
-  margin: 10px;
-}
-p {
-  font-size: var(--L_font-size);
-}
-div {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 input {
   border: solid 2px var(--primaryDark);
