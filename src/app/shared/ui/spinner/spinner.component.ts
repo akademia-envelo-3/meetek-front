@@ -13,5 +13,7 @@ import { LoaderService } from '@shared/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpinnerComponent {
-  loaderService = inject(LoaderService);
+  private loaderService = inject(LoaderService);
+
+  isLoading$ = this.loaderService.loader$;
 }
