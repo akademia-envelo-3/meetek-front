@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+import { NgIf, NgFor } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,12 +11,15 @@ import { MemberListItemComponent } from '../features/section/shared/list/list-it
 import { User } from '../features/section/shared/interfaces';
 import { SearchComponent } from '@shared/ui/search/search.component';
 import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
+import { CommentItemComponent } from '../features/events/comments/comment-item/comment-item.component';
+import { CommentItemRequiredInputs } from '../features/events/comments/comment-item/comment-item.interface';
 @Component({
   selector: 'app-theme',
   standalone: true,
   imports: [
     SectionCardComponent,
     NgIf,
+    NgFor,
     MemberListItemComponent,
     MatListModule,
     ToggleComponent,
@@ -24,12 +27,14 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
     MatDialogModule,
     MatButtonModule,
     HeaderComponent,
+    CommentItemComponent
   ],
   styleUrls: ['./theme.component.scss'],
   template: `
     <h1>Storybook-like route</h1>
     <h2>Header</h2>
     <app-header></app-header>
+    <app-comment-item [commentItem]="commentItem" *ngFor="let commentItem of CommentItems"></app-comment-item>
     <h3>Dialogi</h3>
     <button mat-raised-button (click)="openDialog()">Dialog z inputem</button>
     <button mat-raised-button (click)="openDialog2()">Dialog z przyciskami</button>
@@ -132,4 +137,35 @@ export default class ThemeComponent {
       data: { text: 'Przykładowy tekst przekazany z add-category-component' },
     });
   }
+
+
+
+
+  CommentItems : CommentItemRequiredInputs [] = [
+    {
+      firstName: 'Krzysztof',
+      lastName: 'Lipiec',
+      date: '23.02.2023',
+      hour: '13:37',
+      amIAuthour: true,
+      text:'Jeszcze gdy chodziłem do podstawówki To był tam taki Paweł I ja jechałem na rowerze i go spotkałem I potem jeszcze pojechałem do Biedronki na lody I po drodze do domu wtedy jeszcze już do domu pojechałem'
+    },
+    {
+      firstName: 'Marek',
+      lastName: 'Aureliusz',
+      date: '17.03.181',
+      hour: '13:37',
+      amIAuthour: false,
+      text:'Ale kto czci duszę rozumną, ogarniającą wszechświat i społeczeństwo, o żadną z innych rzeczy już się nie troszczy. Ponad wszystko duszę własną utrzymuje w takim stanie, aby była rozumna i społeczna i czynna, i śpieszyła z pomocą bliźniemu, który do tego samego celu dąży.'
+    },
+    {
+      firstName: 'Mariusz',
+      lastName: 'Pudzianowski',
+      date: '21.03.2023',
+      hour: '19:30',
+      amIAuthour: false,
+      attachment:'https://www.google.pl/url?sa=i&url=https%3A%2F%2Fm.imdb.com%2Fname%2Fnm2785793%2Ftrivia%2F%3Fref_%3Dnm_ql_3&psig=AOvVaw1nsGh03E81fcmagybXlQku&ust=1675777740129000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCPDKiNmEgf0CFQAAAAAdAAAAABAE'
+    }
+      
+  ]
 }
