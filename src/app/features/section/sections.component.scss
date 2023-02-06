@@ -12,6 +12,7 @@ main{
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 550px;
   background-color: var(--surface);
   box-shadow: 0 5px 4px -2px rgba(0, 0, 0, 0.3);
   padding: 20px;
@@ -24,6 +25,7 @@ main{
   flex-direction: column;
   gap: 24px;
   overflow: scroll;
+  overflow-x: hidden;
 }
 .search {
   display: flex;
