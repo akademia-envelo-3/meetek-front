@@ -8,24 +8,24 @@ main {
   background-color: var(--background);
 }
 
-.nav {
-  height: 60px;
-}
-
-.section-wrapper {
+mat-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
-  padding: 24px 60px;
-  background-color: var(--surface);
-  width: 570px;
-  min-height: 550px;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  height: 600px;
+  width: 550px;
 }
 
 .status {
   font-size: var(--L_font-size);
+}
+
+app-navigation {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .info-wrapper {
