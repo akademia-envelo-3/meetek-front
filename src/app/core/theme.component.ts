@@ -23,6 +23,7 @@ import { EventSpecs } from '@shared/ui/event-card/event-card.interface';
     <h1>Storybook-like route</h1>
     <h2>Header</h2>
     <app-header></app-header>
+    <h2>Event card</h2>
     <app-event-card *ngFor="let event of Events" [event]="event" ></app-event-card>
     <h3>Dialogi</h3>
     <button mat-raised-button (click)="openDialog()">Dialog z inputem</button>
@@ -83,16 +84,12 @@ export default class ThemeComponent {
   onToggleChange(isChecked: boolean) {
     console.log(isChecked);
   }
-
   
   user: User = {
     id: 1,
     firstName: 'Ewelina',
     lastName: 'Mężyk',
   };
-
-
-
 
   Events : EventSpecs [] = [
     {
@@ -107,7 +104,7 @@ export default class ThemeComponent {
     mapCords: [52.2297, 21.0122]
     },
     {
-      id:1,
+    id:1,
     title: 'Piwo pod żabką',
     type: 'public',
     date: '02.03.2023',
@@ -129,9 +126,6 @@ export default class ThemeComponent {
     mapCords: [54.5189,18.5305]
     } 
   ]
-
-
-  
 
  public dialog = inject(MatDialog)
   importedDialogData!: string;

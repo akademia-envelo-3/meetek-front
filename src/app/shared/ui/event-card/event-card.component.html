@@ -1,40 +1,42 @@
 <div class="box">
-<div class="container">
-    
-    <mat-icon *ngIf="event.participation!=='inactive'" class="container-icon" [ngClass]="{'container-icon-past': event.participation==='past'}">check-circle</mat-icon>
-    
-<div class="event-card__container">
-    
-    <mat-icon class="event-card__container-icon">arrow_forward_ios</mat-icon>
-    <div class="event-card__info-container">
+  <div class="container">
+    <mat-icon
+      *ngIf="event.participation !== 'inactive'"
+      class="container-icon"
+      [ngClass]="{ 'container-icon-past': event.participation === 'past' }"
+      >check-circle</mat-icon
+    >
+
+    <div class="event-card__container">
+      <mat-icon class="event-card__container-icon">arrow_forward_ios</mat-icon>
+      <div class="event-card__info-container">
         <div class="event-card__info-title">
-            <p class="event-card-info-title-paragraph">
-                {{ event.title }} 
-                <mat-icon class="event-card__info-title-icon" *ngIf="event.type === 'public'">lock_open</mat-icon>
-                <mat-icon class="event-card__info-title-icon" *ngIf="event.type === 'private'">lock</mat-icon>
-                <mat-icon class="event-card__info-title-icon" *ngIf="event.type === 'worldwide'">public</mat-icon>
-                
-            </p>
+          <p class="event-card-info-title-paragraph">
+            {{ event.title }}
+            <mat-icon class="event-card__info-title-icon" *ngIf="event.type === 'public'">lock_open</mat-icon>
+            <mat-icon class="event-card__info-title-icon" *ngIf="event.type === 'private'">lock</mat-icon>
+            <mat-icon class="event-card__info-title-icon" *ngIf="event.type === 'worldwide'">language</mat-icon>
+          </p>
         </div>
         <div class="event-card__info-specs">
-            <p class="event-card-info-specs-paragraph">
-                {{ event.date }}, {{event.hour}}<br>
-                {{ event.address }}
-            </p>
+          <p class="event-card-info-specs-paragraph">
+            {{ event.date }}, {{ event.hour }}<br />
+            {{ event.address }}
+          </p>
         </div>
         <div class="event-card__info-hash">
-            <p class="event-card__info-hash">
-                {{event.hashtags}}
-            </p>
-            
+          <p class="event-card__info-hash">
+            {{ event.hashtags }}
+          </p>
         </div>
-         <div class="event-card__map-container" > 
-            <div class="map-container">
-                <div class="map-frame">
-                  <div id="map"></div>
-                </div>
-              </div>
-       </div>
+        <div class="event-card__map-container">
+          <div class="map-container">
+            <div class="map-frame">
+              <div class="map-frame" id="{{ mapId }}"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 </div>

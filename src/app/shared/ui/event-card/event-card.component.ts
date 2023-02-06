@@ -1,41 +1,45 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { NgIf } from '@angular/common';
-import { NgClass } from '@angular/common';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { NgIf, NgClass } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { EventSpecs } from './event-card.interface';
 import * as L from 'leaflet';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
+import { EventSpecs } from './event-card.interface';
+
 @Component({
-  selector: 'app-event-card',
+  selector: 'app-event-card[event]',
   standalone: true,
-  imports: [MatIconModule,NgIf,NgClass, LeafletModule],
+  imports: [MatIconModule, NgIf, NgClass, LeafletModule],
   templateUrl: './event-card.component.html',
   styleUrls: ['./event-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EventCardComponent implements OnInit {
-@Input() event! : EventSpecs;
+export class EventCardComponent implements OnInit, AfterViewInit {
+  @Input() event!: EventSpecs;
 
-mapId! : string;
-private map!: L.Map | L.LayerGroup;
+  mapId!: string;
+  private map!: L.Map | L.LayerGroup;
   private initMap(): void {
-    this.map = L.map('map', {
+    this.map = L.map(this.mapId, {
       center: this.event.mapCords,
       zoom: 12,
-      zoomControl:false
+      zoomControl: false,
     });
 
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     });
 
     tiles.addTo(this.map);
   }
- 
 
   ngOnInit(): void {
-    this.mapId ="map" + this.event.id;
+    {
+      this.mapId = 'map' + this.event.id;
+    }
+  }
+
+  ngAfterViewInit(): void {
     this.initMap();
   }
 }
