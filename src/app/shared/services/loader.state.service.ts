@@ -5,17 +5,17 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class LoaderService {
-  private loader$$ = new Subject<boolean>();
+  private isLoading$$ = new Subject<boolean>();
 
-  get loader$() {
-    return this.loader$$.asObservable();
+  get isLoading$() {
+    return this.isLoading$$.asObservable();
   }
 
   showLoader() {
-    this.loader$$.next(true);
+    this.isLoading$$.next(true);
   }
 
   hideLoader() {
-    this.loader$$.next(false);
+    this.isLoading$$.next(false);
   }
 }

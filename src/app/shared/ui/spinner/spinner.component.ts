@@ -15,5 +15,5 @@ import { LoaderService } from '@shared/services';
 export class SpinnerComponent {
   private loaderService = inject(LoaderService);
 
-  isLoading$ = this.loaderService.loader$;
+  isLoading$ = this.loaderService.isLoading$;
 }
