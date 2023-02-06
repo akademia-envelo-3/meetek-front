@@ -7,12 +7,13 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, map, switchMap, of } from 'rxjs';
 
 import { User, selectSectionDetails, selectAllUsers, SectionActions, sectionDetailsActions } from '../../../';
 import { validateCharacters, validateNotNumbers } from '../';
+import { HOME_PATHS } from 'src/app/features/home';
 
 @Component({
   selector: 'app-form',
@@ -30,6 +31,7 @@ import { validateCharacters, validateNotNumbers } from '../';
     FormsModule,
     MatChipsModule,
     MatAutocompleteModule,
+    RouterModule
   ],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
@@ -44,6 +46,7 @@ export class FormComponent implements OnInit {
   allUsers$ = this.store.select(selectAllUsers);
   editSectionForm = this.editSectionsForm();
   filteredUsers$!: Observable<User[]>;
+  HomePaths = HOME_PATHS;
   editedOwner!: User;
 
   errorsTree = {
@@ -63,7 +66,7 @@ export class FormComponent implements OnInit {
       onlyNumbers: 'Opis nie może składać się tylko z cyfr',
       onlySpaces: 'Nieprawidłowy opis',
     },
-  }
+  };
 
   ngOnInit() {
     this.activeRoute.parent?.paramMap
@@ -79,6 +82,18 @@ export class FormComponent implements OnInit {
       this.editSectionForm.patchValue(section);
       this.editedOwner = section.sectionOwner;
     });
+  }
+
+  preventLongTitle(event: KeyboardEvent) {
+    if (this.editSectionForm.getRawValue().name.length >= 30) {
+      event.preventDefault();
+    }
+  }
+
+  preventLongDescription(event: KeyboardEvent) {
+    if (this.editSectionForm.getRawValue().description.length >= 250) {
+      event.preventDefault();
+    }
   }
 
   selectedUser(event: MatAutocompleteSelectedEvent) {

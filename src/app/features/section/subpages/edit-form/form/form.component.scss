@@ -20,13 +20,6 @@
   position: relative;
 }
 
-.icon {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-}
-
 .form {
   display: flex;
   flex-direction: column;
@@ -62,7 +55,7 @@ mat-form-field {
 
 .button-wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
