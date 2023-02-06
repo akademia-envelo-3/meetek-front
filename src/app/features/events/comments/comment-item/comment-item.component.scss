@@ -9,9 +9,11 @@
     &__mycoment{
         border: 2px solid var(--secondary) !important;
     }
+
     &__container{
         width: 450px;
     }
+
     &__name{
         color: black;
         font-size: var(--M_font-size);
@@ -36,16 +38,25 @@
         }
 
     }
+    
     &__text{
         border: 2px solid var(--primary);
         border-radius: 0 10px 10px 10px;
-        padding: 5px;
+        padding: 10px;
+     
 
         &-paragraph{
-            padding: 5px;
             font-size: var(--M_font-size);
         }
+
+        &-img{
+            max-width: 400px;
+            display: block;
+            margin: auto;
+            padding: 3px;
+        }
     }
+
     &__date{
         display: flex;
         justify-content: flex-end;
@@ -68,6 +79,10 @@
 
         &__name-paragraph{
             margin-left: 45px;
+        }
+
+        &__text-img{
+            max-width: 250px;
         }
     }
 }

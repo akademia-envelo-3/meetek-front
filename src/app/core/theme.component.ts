@@ -13,6 +13,7 @@ import { SearchComponent } from '@shared/ui/search/search.component';
 import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
 import { CommentItemComponent } from '../features/events/comments/comment-item/comment-item.component';
 import { CommentItemRequiredInputs } from '../features/events/comments/comment-item/comment-item.interface';
+
 @Component({
   selector: 'app-theme',
   standalone: true,
@@ -164,8 +165,8 @@ export default class ThemeComponent {
       date: '21.03.2023',
       hour: '19:30',
       amIAuthour: false,
-      attachment:'https://www.google.pl/url?sa=i&url=https%3A%2F%2Fm.imdb.com%2Fname%2Fnm2785793%2Ftrivia%2F%3Fref_%3Dnm_ql_3&psig=AOvVaw1nsGh03E81fcmagybXlQku&ust=1675777740129000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCPDKiNmEgf0CFQAAAAAdAAAAABAE'
-    }
-      
+      text:'POLSKA GUROM',
+      attachment:'assets/images/pudzian.jpg'
+    }  
   ]
 }
