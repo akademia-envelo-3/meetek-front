@@ -1,10 +1,13 @@
+@import 'breakpoints.scss';
+
 .wrapper {
   box-sizing: border-box;
   width: 290px;
   min-height: 100%;
   padding: 10px 15px;
-  background-color: var(--primary);
   color: var(--surface);
+  border-right: 2px solid var(--primary);
+  background-color: var(--surface);
 
   .top-section {
     display: flex;
@@ -18,7 +21,7 @@
       p {
         margin-left: 8px;
         transform: translateY(1px);
-        color: var(--surface);
+        color: var(--text);
       }
     }
 
@@ -33,7 +36,7 @@
       }
 
       & mat-icon {
-        color: var(--surface);
+        color: var(--text);
         font-size: var(--medium-icon);
         height: var(--medium-icon);
         width: var(--medium-icon);
@@ -42,34 +45,18 @@
   }
 
   .user-info-container {
-    display: flex;
-    align-items: center;
-    margin: 10px 0;
-
-    p {
-      margin-left: 6px;
-      color: var(--surface);
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-      max-width: 210px;
-
-      &.title {
-        font-size: var(--L_font-size);
-      }
-
-      &.subtitle {
-        font-size: var(--XS_font-size);
-      }
-    }
+    display: none;
   }
 
   .item-container {
-    border-bottom: 1px solid var(--surface);
+    border-bottom: 1px solid var(--primaryLight);
+
+    &:nth-last-of-type(2) {
+      border-bottom: none;
+    }
 
     &:nth-last-of-type(1) {
-      border-bottom: none;
+      display: none;
     }
 
     mat-list-item {
@@ -77,11 +64,15 @@
       transition: 0.1s;
 
       &:hover {
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: var(--primaryLight);
       }
 
-      &.active {
-        background-color: rgba(0, 0, 0, 0.15);
+      &:hover .item-content {
+        color: var(--surface);
+
+        & > mat-icon {
+          color: var(--surface);
+        }
       }
     }
 
@@ -104,12 +95,12 @@
     .item-content {
       height: 50px;
       padding: 0 5px;
-      color: var(--surface);
+      color: var(--text);
       display: flex;
       align-items: center;
 
       & > mat-icon {
-        color: var(--surface);
+        color: var(--text);
         font-size: var(--medium-icon);
         height: var(--medium-icon);
         width: 30px;
@@ -129,7 +120,7 @@
     }
 
     mat-expansion-panel {
-      color: var(--surface);
+      color: var(--text);
       background-color: transparent;
       box-shadow: none;
 
@@ -146,67 +137,81 @@
   }
 }
 
-@media (min-width: '567px') {
+@include breakpoint('mobile') {
   .wrapper {
-    border-right: 2px solid var(--primary);
-    background-color: var(--surface);
+    background-color: var(--primary);
+    color: var(--surface);
 
     .top-section {
       .toggle-mode-container {
         p {
-          color: var(--text);
+          color: var(--surface);
         }
       }
 
       .close-button {
         & mat-icon {
-          color: var(--text);
+          color: var(--surface);
         }
       }
     }
 
     .user-info-container {
-      display: none;
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+
+      p {
+        margin-left: 6px;
+        color: var(--surface);
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 210px;
+
+        &.title {
+          font-size: var(--L_font-size);
+        }
+
+        &.subtitle {
+          font-size: var(--XS_font-size);
+        }
+      }
     }
 
     .item-container {
-      border-bottom: 1px solid var(--primaryLight);
+      border-bottom: 1px solid var(--surface);
 
       &:nth-last-of-type(2) {
-        border-bottom: none;
+        border-bottom: 1px solid var(--surface);
       }
 
       &:nth-last-of-type(1) {
-        display: none;
+        display: block;
+        border-bottom: none;
       }
 
       mat-list-item {
-        border-radius: 5px;
-        transition: 0.1s;
-
         &:hover {
-          background-color: var(--primaryLight);
+          background-color: rgba(255, 255, 255, 0.1);
         }
 
-        &:hover .item-content {
-          color: var(--surface);
-
-          & > mat-icon {
-            color: var(--surface);
-          }
+        &.active {
+          background-color: rgba(0, 0, 0, 0.15);
         }
       }
 
       .item-content {
-        color: var(--text);
+        color: var(--surface);
 
         & > mat-icon {
-          color: var(--text);
+          color: var(--surface);
         }
       }
 
       mat-expansion-panel {
-        color: var(--text);
+        color: var(--surface);
       }
     }
   }

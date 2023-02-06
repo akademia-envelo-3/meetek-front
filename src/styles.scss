@@ -3,6 +3,7 @@
 
 @use 'app/shared/styles/button.scss';
 @use 'app/shared/styles/palette.scss';
+@use 'app/shared/styles/material.scss';
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
@@ -130,13 +131,3 @@ body {
   height: 100%;
   background-color: var(--background);
 }
-
-mat-expansion-panel.menu .mat-expansion-indicator::after {
-  color: var(--surface);
-}
-
-@media (min-width: '578px') {
-  mat-expansion-panel.menu .mat-expansion-indicator::after {
-    color: var(--text);
-  }
- }
