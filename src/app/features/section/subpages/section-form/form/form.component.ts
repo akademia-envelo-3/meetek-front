@@ -43,10 +43,22 @@ export class FormComponent implements OnInit {
     this.loggedInUser$.subscribe(user => {
       this.organizers = {
         firstName: user.firstName,
-        lastName: user.lastName,
+        lastName: user.lastName.length > 12 ? user.lastName.slice(0, 12) + '...' : user.lastName,
         id: user.id,
-      }
+      };
     });
+  }
+
+  preventLongTitle(event: KeyboardEvent) {
+    if (this.newSectionForm.getRawValue().name.length >= 30) {
+      event.preventDefault();
+    }
+  }
+
+  preventLongDescription(event: KeyboardEvent) {
+    if (this.newSectionForm.getRawValue().description.length >= 250) {
+      event.preventDefault();
+    }
   }
 
   getErrorMessage(formControlName: string) {

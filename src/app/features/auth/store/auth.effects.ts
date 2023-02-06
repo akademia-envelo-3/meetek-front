@@ -24,7 +24,7 @@ export class AuthEffects {
         const { email, password } = loginData;
         return this.authService.login(email, password).pipe(
           tap(({ accessToken }) => {
-            this.cookieService.set('token', accessToken, 1);
+            this.cookieService.set('token', accessToken, 1, '/');
           }),
           map(({ user }) => {
             this.router.navigate([HOME_PATHS.DEFAULT]);

@@ -5,7 +5,13 @@
         <div class="input">
           <mat-form-field appearance="outline">
             <mat-label>Nazwa</mat-label>
-            <input matInput placeholder="Nazwa sekcji" type="text" formControlName="name" required />
+            <input
+              matInput
+              placeholder="Nazwa sekcji"
+              type="text"
+              formControlName="name"
+              (keypress)="preventLongTitle($event)"
+              required />
             <mat-error *ngIf="getErrorMessage('name')">{{ getErrorMessage('name') }}</mat-error>
           </mat-form-field>
         </div>
@@ -20,7 +26,9 @@
               placeholder="Opis sekcji"
               type="text"
               formControlName="description"
-              required></textarea>
+              (keypress)="preventLongDescription($event)"
+              required>
+            </textarea>
             <mat-error *ngIf="getErrorMessage('description')">{{ getErrorMessage('description') }}</mat-error>
           </mat-form-field>
         </div>
@@ -29,12 +37,10 @@
             <mat-label>Organizator</mat-label>
             <mat-chip-grid #chipGrid>
               <mat-chip-row>
+                <mat-icon matChipAvatar>person</mat-icon>
                 {{ organizers.firstName }} {{ organizers.lastName }}
               </mat-chip-row>
-              <input
-                placeholder="Organizator"
-                [matChipInputFor]="chipGrid"
-                [disabled]="!!organizers" />
+              <input [matChipInputFor]="chipGrid" [disabled]="!!organizers" />
             </mat-chip-grid>
           </mat-form-field>
         </div>
