@@ -50,13 +50,13 @@ export class FormComponent implements OnInit {
   }
 
   preventLongTitle(event: KeyboardEvent) {
-    if (this.newSectionForm.getRawValue().name.length >= 30) {
+    if (this.newSectionForm.getRawValue().name.length > 30) {
       event.preventDefault();
     }
   }
 
   preventLongDescription(event: KeyboardEvent) {
-    if (this.newSectionForm.getRawValue().description.length >= 250) {
+    if (this.newSectionForm.getRawValue().description.length > 250) {
       event.preventDefault();
     }
   }
@@ -82,9 +82,9 @@ export class FormComponent implements OnInit {
     if (control?.hasError('maxlength')) {
       switch (formControlName) {
         case 'name':
-          return 'Nazwa jest za długa';
+          return 'Maksymalna liczba znaków to 30';
         case 'description':
-          return 'Opis jest za długi';
+          return 'Maksymalna liczba znaków to 250';
       }
     }
     if (control?.hasError('invalidCharacters')) {
