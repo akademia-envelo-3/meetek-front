@@ -4,17 +4,22 @@ import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 
-import { HeaderComponent } from '@shared/ui/header/header.component';
-import { SectionCardComponent } from 'src/app/features/section';
-import { CancelConfirmDialogComponent, InputDialogComponent } from '../shared/ui/modals/index';
-import { MemberListItemComponent } from '../features/section/shared/list/list-item/member-list-item.component';
+import { MemberListItemComponent, SectionCardComponent } from '../features/section';
 import { User } from '../features/section/shared/interfaces';
-import { SearchComponent } from '@shared/ui/search/search.component';
-import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
+import {
+  SearchComponent,
+  ToggleComponent,
+  CategoryHashtagCardComponent,
+  CancelConfirmDialogComponent,
+  InputDialogComponent,
+  HeaderComponent,
+} from '@shared/ui';
+
 @Component({
   selector: 'app-theme',
   standalone: true,
   imports: [
+    CategoryHashtagCardComponent,
     SectionCardComponent,
     NgIf,
     MemberListItemComponent,
@@ -31,9 +36,12 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
     <h2>Header</h2>
     <app-header></app-header>
     <h3>Dialogi</h3>
-    <button mat-raised-button (click)="openDialog()">Dialog z inputem</button>
-    <button mat-raised-button (click)="openDialog2()">Dialog z przyciskami</button>
+    <div class="element">
+      <button mat-raised-button (click)="openDialog()">Dialog z inputem</button>
+      <button mat-raised-button (click)="openDialog2()">Dialog z przyciskami</button>
+    </div>
     <hr />
+
     <h2>Section card</h2>
     <ng-container *ngIf="sectionCard as card">
       <div class="element">
@@ -57,16 +65,39 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
       </div>
     </ng-container>
     <hr />
+
+    <h2>Category/hashtag card</h2>
+    <ng-container *ngIf="categoryHashtagCard as card">
+      <div class="element">
+        <app-category-hashtag-card
+          (activityChange)="card.handleActivityChange($event)"
+          (modification)="card.handleModification()"
+          [name]="'Piwo'"
+          [usage]="132"
+          [isActive]="card.isActive"></app-category-hashtag-card>
+      </div>
+      <div class="element">
+        <app-category-hashtag-card [name]="'Bardzo ciekawa kategoria'" [usage]="12321" [isActive]="false">
+        </app-category-hashtag-card>
+      </div>
+      <div class="element">
+        <app-category-hashtag-card [name]="'#popcorn'" [usage]="328" [isActive]="true"> </app-category-hashtag-card>
+      </div>
+    </ng-container>
+    <hr />
+
     <h2>Toggle</h2>
     <div class="element">
-      <app-toggle (toggleChange)="onToggleChange($event)"></app-toggle>
+      <app-toggle [isActive]="false" (toggleChange)="onToggleChange($event)"></app-toggle>
     </div>
     <hr />
+
     <h2>Wyszukiwarka</h2>
     <div class="element">
       <app-search [placeholderValue]="'Wyszukaj'"></app-search>
     </div>
     <hr />
+
     <h2>List item</h2>
     <mat-list class="list">
       <app-members-list-item [user]="user"></app-members-list-item>
@@ -87,10 +118,11 @@ import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
   `,
 })
 export default class ThemeComponent {
+  // -- SECTION CARD --
   sectionCard = {
     isActive: true,
     handleModification: function () {
-      // modification action
+      console.log('modification');
     },
     handleActivation: function () {
       this.isActive = true;
@@ -99,16 +131,32 @@ export default class ThemeComponent {
       this.isActive = false;
     },
   };
+
+  // -- CATEGORY/HASHTAG CARD --
+  categoryHashtagCard = {
+    isActive: true,
+    handleModification: function () {
+      console.log('modification');
+    },
+    handleActivityChange: function (state: boolean) {
+      console.log(state ? 'activation' : 'deactivation');
+      this.isActive = state;
+    },
+  };
+
+  // -- TOGGLE --
   onToggleChange(isChecked: boolean) {
     console.log(isChecked);
   }
 
+  // -- LIST ITEM --
   user: User = {
     id: 1,
     firstName: 'Ewelina',
     lastName: 'Mężyk',
   };
 
+  // -- DIALOG --
   public dialog = inject(MatDialog);
   importedDialogData!: string;
 
