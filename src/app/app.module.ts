@@ -12,11 +12,9 @@ import { AppComponent } from './app.component';
 import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
 import { noProductionGuard } from '@shared/no-production.guard';
-import { userReducer } from './core/store/user.reducer';
-import { UserEffects } from '@core/store/user.effects';
-import { UserState } from '@core/store/user.interfaces';
-import { TokenInterceptorProvider } from '@shared/interceptors';
-import { HttpErrorInterceptorProvider } from '@shared/interceptors';
+import { userReducer, UserEffects, UserState } from '@core/store';
+import { TokenInterceptorProvider, HttpErrorInterceptorProvider } from '@shared/interceptors';
+import { NotFoundComponent } from './features/404/not-found.component';
 
 export interface AppState {
   user?: UserState;
@@ -58,7 +56,7 @@ export const APP_PATH = {
           },
           {
             path: '**',
-            redirectTo: '',
+            component: NotFoundComponent,
           },
         ],
       },
