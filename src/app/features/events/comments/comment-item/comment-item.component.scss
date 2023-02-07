@@ -1,0 +1,83 @@
+@import 'breakpoints.scss';
+
+.comment-item {
+    &__mycoment{
+        border: 2px solid var(--secondary) !important;
+    }
+
+    &__container{
+        width: 450px;
+    }
+
+    &__name{
+        color: black;
+        font-size: var(--M_font-size);
+        
+        &-initials{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--divider);
+            border: 1px solid var(--disabled);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            position: relative;
+            top: 35px;
+            left: 10px;
+        }
+
+        &-paragraph{
+            padding: 1px;
+            margin-left: 55px;
+        }
+
+    }
+
+    &__text{
+        border: 2px solid var(--primary);
+        border-radius: 0 10px 10px 10px;
+        padding: 10px;
+     
+
+        &-paragraph{
+            font-size: var(--M_font-size);
+        }
+
+        &-img{
+            max-width: 400px;
+            display: block;
+            margin: auto;
+            padding: 3px;
+        }
+    }
+
+    &__date{
+        display: flex;
+        justify-content: flex-end;
+        align-items: baseline;
+
+        &-paragraph{
+            font-size: var(--XS_font-size);
+            padding: 3px;
+        }
+    }
+
+    @include breakpoint ('mobile'){
+        &__container{
+            width: 305px;
+        }
+
+        &__name-initials{
+            left: 0px
+        }
+
+        &__name-paragraph{
+            margin-left: 45px;
+        }
+
+        &__text-img{
+            max-width: 250px;
+        }
+    }
+}

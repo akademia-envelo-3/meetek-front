@@ -1,0 +1,17 @@
+
+  <div  class="comment-item__container">
+    <div class="comment-item__name">
+      <p class="comment-item__name-initials">{{ commentItem | commentItemUserInitials }}</p>
+      <p class="comment-item__name-paragraph">{{ commentItem | commentItemUserFullname }} <span *ngIf="commentItem.amIAuthour">(ja)</span></p>
+    </div>
+    <div class="comment-item__text" [ngClass]="{ 'comment-item__mycoment': commentItem.amIAuthour }">
+      <p  class="comment-item__text-paragraph">
+        {{ commentItem.text }}
+        <img *ngIf="commentItem.attachment" class="comment-item__text-img" src="{{commentItem.attachment}}">
+      </p>
+      <div class="comment-item__date">
+        <p class="comment-item__date-paragraph">{{commentItem.date}} {{commentItem.hour}}</p>
+      </div>
+    </div>
+  </div>
+
