@@ -53,7 +53,7 @@ export class FormComponent implements OnInit {
     name: {
       required: 'Pole wymagane',
       minlength: 'Nazwa jest za krótka',
-      maxlength: 'Nazwa jest za długa',
+      maxlength: 'Maksymalna liczba znaków to 30',
       invalidCharacters: 'Nazwa zawiera niedozwolone znaki',
       onlyNumbers: 'Nazwa nie może składać się tylko z cyfr',
       onlySpaces: 'Nieprawidłowa nazwa',
@@ -61,7 +61,7 @@ export class FormComponent implements OnInit {
     description: {
       required: 'Pole wymagane',
       minlength: 'Opis jest za krótki',
-      maxlength: 'Opis jest za długi',
+      maxlength: 'Maksymalna liczba znaków to 250',
       invalidCharacters: 'Opis zawiera niedozwolone znaki',
       onlyNumbers: 'Opis nie może składać się tylko z cyfr',
       onlySpaces: 'Nieprawidłowy opis',
@@ -85,13 +85,13 @@ export class FormComponent implements OnInit {
   }
 
   preventLongTitle(event: KeyboardEvent) {
-    if (this.editSectionForm.getRawValue().name.length >= 30) {
+    if (this.editSectionForm.getRawValue().name.length > 30) {
       event.preventDefault();
     }
   }
 
   preventLongDescription(event: KeyboardEvent) {
-    if (this.editSectionForm.getRawValue().description.length >= 250) {
+    if (this.editSectionForm.getRawValue().description.length > 250) {
       event.preventDefault();
     }
   }
