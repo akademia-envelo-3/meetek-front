@@ -40,7 +40,7 @@
                 <mat-icon matChipAvatar>person</mat-icon>
                 {{ organizers.firstName }} {{ organizers.lastName }}
               </mat-chip-row>
-              <input [matChipInputFor]="chipGrid" [disabled]="!!organizers" />
+              <input class="organizer-input" [matChipInputFor]="chipGrid" [disabled]="!!organizers" />
             </mat-chip-grid>
           </mat-form-field>
         </div>
