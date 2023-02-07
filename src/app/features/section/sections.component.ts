@@ -8,10 +8,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
 
 import { HOME_PATHS } from '../home';
+import { User } from './shared/interfaces';
 import { SectionCardComponent } from '../section';
 import { selectAllSections } from '../section';
 import { SectionActions } from '../section';
 import { SearchComponent } from '@shared/ui';
+import { selectLoggedUser } from '@core/store/user.selectors';
 
 @Component({
   selector: 'app-sections',
@@ -36,9 +38,19 @@ export class SectionsComponent implements OnInit {
   private store = inject(Store);
 
   allSections$ = this.store.select(selectAllSections);
+  loggedUserId!: number;
 
   ngOnInit() {
     this.loadSections();
+    this.store.select(selectLoggedUser).subscribe(user => {
+      if (user) {
+        this.loggedUserId = user.id;
+      }
+    });
+  }
+
+  isOwner(owners: User[]) {
+    return owners.some(owner => owner.id === this.loggedUserId);
   }
 
   modification(id: number) {
