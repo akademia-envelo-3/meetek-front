@@ -7,7 +7,7 @@
     <mat-list class="list">
       <ng-container *ngFor="let section of allSections$ | async as sections">
         <app-section-card
-          *ngIf="isOwner(section.sectionOwner); else notOwn"
+          *ngIf="isOwner(section.sectionOwner); else notOwner"
           [name]="section.name"
           (modification)="modification(section.id)"
           (activation)="activation(section.id)"
@@ -17,7 +17,7 @@
           (click)="goToSection(section.id)">
         </app-section-card>
 
-        <ng-template #notOwn>
+        <ng-template #notOwner>
           <app-section-card
             [name]="section.name"
             [numberOfMembers]="section.users.length"

@@ -1,4 +1,4 @@
-import { AsyncPipe, NgFor } from '@angular/common';
+import { NgIf, AsyncPipe, NgFor } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,12 +9,14 @@ import { Store } from '@ngrx/store';
 
 import { HOME_PATHS } from '../home';
 import { User } from './shared/interfaces';
-import { SectionCardComponent, selectAllSections, SectionActions } from '../section';
+import { SectionCardComponent } from '../section';
+import { selectAllSections } from '../section';
+import { SectionActions } from '../section';
 import { SearchComponent } from '@shared/ui';
 import { selectLoggedUser } from '@core/store/user.selectors';
 
 @Component({
-  selector: 'app-sections',
+  selector: 'app-sections[loggedUserId]',
   standalone: true,
   imports: [
     MatButtonModule,
@@ -22,6 +24,7 @@ import { selectLoggedUser } from '@core/store/user.selectors';
     MatIconModule,
     MatListModule,
     SectionCardComponent,
+    NgIf,
     NgFor,
     AsyncPipe,
     SearchComponent,
@@ -62,15 +65,15 @@ export class SectionsComponent implements OnInit {
     this.store.dispatch(SectionActions.deactivateSection({ sectionId: Number(id) }));
   }
 
+  loadSections() {
+    this.store.dispatch(SectionActions.getSections());
+  }
+
   goToSection(id: number) {
     this.router.navigate([`/section/${id}`]);
   }
 
   goToAddSection() {
     this.router.navigate([`/${HOME_PATHS.SECTION.ADD}`]);
-  }
-
-  private loadSections() {
-    this.store.dispatch(SectionActions.getSections());
   }
 }
