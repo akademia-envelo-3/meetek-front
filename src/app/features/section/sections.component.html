@@ -5,28 +5,26 @@
       <app-search [placeholderValue]="'Wyszukaj'"></app-search>
     </div>
     <mat-list class="list">
-      <ng-container *ngIf="allSections$ | async as sections">
-        <ng-container *ngFor="let section of sections">
+      <ng-container *ngFor="let section of allSections$ | async as sections">
+        <app-section-card
+          *ngIf="isOwner(section.sectionOwner); else notOwn"
+          [name]="section.name"
+          (modification)="modification(section.id)"
+          (activation)="activation(section.id)"
+          (deactivation)="deactivation(section.id)"
+          [numberOfMembers]="section.users.length"
+          [isActive]="section.isActive"
+          (click)="goToSection(section.id)">
+        </app-section-card>
+
+        <ng-template #notOwn>
           <app-section-card
-            *ngIf="isOwner(section.sectionOwner); else notOwn"
             [name]="section.name"
-            (modification)="modification(section.id)"
-            (activation)="handleActivation(section.id)"
-            (deactivation)="handleDeactivation(section.id)"
             [numberOfMembers]="section.users.length"
             [isActive]="section.isActive"
             (click)="goToSection(section.id)">
           </app-section-card>
-
-          <ng-template #notOwn>
-            <app-section-card
-              [name]="section.name"
-              [numberOfMembers]="section.users.length"
-              [isActive]="section.isActive"
-              (click)="goToSection(section.id)">
-            </app-section-card>
-          </ng-template>
-        </ng-container>
+        </ng-template>
       </ng-container>
     </mat-list>
   </div>
