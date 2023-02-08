@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { Section } from 'src/app/features/section/shared/interfaces';
+import { Section } from '@shared/interfaces';
 
 export const SectionActions = createActionGroup({
   source: 'Sections',

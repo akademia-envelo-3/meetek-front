@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+
 import { HomeComponent } from './home.component';
 import { SectionEffects } from '../section/store/section.effects';
 import { sectionDetailsReducer, sectionReducer } from '../section/store/section.reducer';
 import { SectionMembersComponent } from '../section/subpages/section-members.component';
+import { eventReducer } from '../event';
+import { EventEffects } from '../event/store/event.effects';
 
 export const HOME_PATHS = {
   DEFAULT: '',
@@ -52,6 +55,8 @@ export const HOME_PATHS = {
     StoreModule.forFeature('sections', sectionReducer),
     StoreModule.forFeature('sectionDetails', sectionDetailsReducer),
     EffectsModule.forFeature([SectionEffects]),
+    StoreModule.forFeature('events', eventReducer),
+    EffectsModule.forFeature([EventEffects]),
     RouterModule.forChild([
       {
         path: HOME_PATHS.DEFAULT,

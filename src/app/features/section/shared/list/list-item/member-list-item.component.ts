@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { User } from '../../interfaces';
+import { User } from '../../../../../shared/interfaces';
 
 @Component({
   selector: 'app-members-list-item[user]',

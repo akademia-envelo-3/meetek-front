@@ -8,7 +8,7 @@ import { HeaderComponent } from '@shared/ui/header/header.component';
 import { SectionCardComponent } from 'src/app/features/section';
 import { CancelConfirmDialogComponent, InputDialogComponent } from '../shared/ui/modals/index';
 import { MemberListItemComponent } from '../features/section/shared/list/list-item/member-list-item.component';
-import { User } from '../features/section/shared/interfaces';
+import { User } from '../shared/interfaces';
 import { SearchComponent } from '@shared/ui/search/search.component';
 import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
 @Component({
