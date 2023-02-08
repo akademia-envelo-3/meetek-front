@@ -80,7 +80,8 @@ $front-theme: mat.define-dark-theme(
   --background: #fafafa;
   --surface: #ffffff;
   --divider: #bababa;
-  --disabled: #868686;
+  --disabledBackground: #868686b5;
+  --disabledColor: #404040b9;
   --darkModeBackground: #303030;
   --darkModeSurface: #414148;
   --list-circle: #d9d9d9;
@@ -100,11 +101,6 @@ $front-theme: mat.define-dark-theme(
   --XS_font-size: 13px;
   --XXS_font-size: 11px;
   --button_font-size: 14px;
-
-  //breakpoints
-  --mobile-breakpoint: max-width: 568px;
-  --laptop-breakpoint: max-width: 1024px;
-
   //font-weight
   --bold: bold;
 
