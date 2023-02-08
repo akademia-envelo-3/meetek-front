@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+
 import { HomeComponent } from './home.component';
-import { SectionEffects } from '../section/store/section.effects';
-import { sectionDetailsReducer, sectionReducer } from '../section/store/section.reducer';
+
+import { SectionEffects, sectionReducer, SectionFormComponent, sectionDetailsReducer } from '../section';
+import { UserEffects } from '@core/store/user.effects';
 import { SectionMembersComponent } from '../section/subpages/section-members.component';
 
 export const HOME_PATHS = {
@@ -51,12 +53,16 @@ export const HOME_PATHS = {
   imports: [
     StoreModule.forFeature('sections', sectionReducer),
     StoreModule.forFeature('sectionDetails', sectionDetailsReducer),
-    EffectsModule.forFeature([SectionEffects]),
+    EffectsModule.forFeature([SectionEffects, UserEffects]),
     RouterModule.forChild([
       {
         path: HOME_PATHS.DEFAULT,
         component: HomeComponent,
         children: [],
+      },
+      {
+        path: HOME_PATHS.SECTION.ADD,
+        component: SectionFormComponent,
       },
       {
         path: HOME_PATHS.EVENT.SINGLE.CORE,
