@@ -37,4 +37,8 @@ class HttpErrorInterceptor implements HttpInterceptor {
   }
 }
 
-export const HttpErrorInterceptorProvider = { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true };
+export const HttpErrorInterceptorProvider = {
+  provide: HTTP_INTERCEPTORS,
+  useClass: HttpErrorInterceptor,
+  multi: true,
+};

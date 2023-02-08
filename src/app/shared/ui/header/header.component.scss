@@ -1,0 +1,52 @@
+@import 'breakpoints.scss';
+
+@include breakpoint('mobile') {
+  .header__initials {
+    display: none;
+  }
+
+  .header__title {
+    font-size: var(--h2_font-size);
+    margin: none !important;
+  }
+
+  .header__title-container {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .header__notifications-btn {
+    position: relative;
+    margin: -10px;
+  }
+
+  .header__menu-btn {
+    margin: -10px;
+  }
+}
+
+.header__initials {
+  margin-left: 15px;
+}
+
+.header__example-spacer {
+  flex: auto;
+}
+
+header {
+  min-width: 320px;
+}
+
+@media screen and (min-width: 568px) {
+  .header__notifications-btn {
+    position: relative;
+    margin: -10px;
+  }
+  
+  .header__title {
+    font-size: var(--h1_font-size);
+    margin-left: 10px;
+  }
+}
