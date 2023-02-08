@@ -7,11 +7,14 @@
             <mat-label>Nazwa</mat-label>
             <input
               matInput
+              #nameInput
               placeholder="Nazwa sekcji"
               type="text"
               formControlName="name"
               (keypress)="preventLongTitle($event)"
+              (input)="nameLetterCounter = nameInput.value.length"
               required />
+            <div class="letter-counter">{{ nameLetterCounter }}/30</div>
             <mat-error *ngIf="getErrorMessage('name') as message">{{ message }}</mat-error>
           </mat-form-field>
         </div>
@@ -20,6 +23,7 @@
             <mat-label>Opis</mat-label>
             <textarea
               matInput
+              #descriptionInput
               cdkTextareaAutosize
               cdkAutosizeMinRows="11"
               cdkAutosizeMaxRows="11"
@@ -27,8 +31,10 @@
               type="text"
               formControlName="description"
               (keypress)="preventLongDescription($event)"
+              (input)="descriptionLetterCounter = descriptionInput.value.length"
               required>
             </textarea>
+            <div class="letter-counter">{{ descriptionLetterCounter }}/250</div>
             <mat-error *ngIf="getErrorMessage('description') as message">{{ message }}</mat-error>
           </mat-form-field>
         </div>

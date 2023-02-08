@@ -70,6 +70,14 @@ button {
   color: var(--surface) !important;
 }
 
+.letter-counter {
+  position: absolute;
+  right: -14px;
+  bottom: 0;
+  font-size: var(--XS_font-size);
+  color: #000000b8;
+}
+
 @include breakpoint('laptop') {
   .form-wrapper {
     box-shadow: none;

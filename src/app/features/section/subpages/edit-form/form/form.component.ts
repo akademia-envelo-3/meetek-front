@@ -48,6 +48,8 @@ export class FormComponent implements OnInit {
   filteredUsers$!: Observable<User[]>;
   HomePaths = HOME_PATHS;
   editedOwner!: User;
+  nameLetterCounter!: number;
+  descriptionLetterCounter!: number;
 
   errorsTree = {
     name: {
@@ -81,17 +83,19 @@ export class FormComponent implements OnInit {
     this.sectionDetails$.subscribe(section => {
       this.editSectionForm.patchValue(section);
       this.editedOwner = section.sectionOwner;
+      this.nameLetterCounter = section.name.length;
+    this.descriptionLetterCounter = section.description.length;
     });
   }
 
   preventLongTitle(event: KeyboardEvent) {
-    if (this.editSectionForm.getRawValue().name.length > 30) {
+    if (this.editSectionForm.getRawValue().name.length >= 30) {
       event.preventDefault();
     }
   }
 
   preventLongDescription(event: KeyboardEvent) {
-    if (this.editSectionForm.getRawValue().description.length > 250) {
+    if (this.editSectionForm.getRawValue().description.length >= 250) {
       event.preventDefault();
     }
   }
