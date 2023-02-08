@@ -2,16 +2,20 @@
   <div>
     <form [formGroup]="newSectionForm" (ngSubmit)="createSection()">
       <div class="input-wrapper">
+        <div>{{nameCounter}}</div>
         <div class="input">
           <mat-form-field appearance="outline">
             <mat-label>Nazwa</mat-label>
             <input
               matInput
+              #nameInput
               placeholder="Nazwa sekcji"
               type="text"
               formControlName="name"
               (keypress)="preventLongTitle($event)"
+              (input)="letterCount = nameInput.value.length"
               required />
+              <div class="letter-counter">{{ letterCount }}/30</div>
             <mat-error *ngIf="getErrorMessage('name')">{{ getErrorMessage('name') }}</mat-error>
           </mat-form-field>
         </div>
@@ -21,14 +25,17 @@
             <textarea
               matInput
               cdkTextareaAutosize
+              #descriptionInput
               cdkAutosizeMinRows="11"
               cdkAutosizeMaxRows="11"
               placeholder="Opis sekcji"
               type="text"
               formControlName="description"
               (keypress)="preventLongDescription($event)"
+              (input)="descriptionLetterCount = descriptionInput.value.length"
               required>
             </textarea>
+            <div class="letter-counter">{{ descriptionLetterCount }}/250</div>
             <mat-error *ngIf="getErrorMessage('description')">{{ getErrorMessage('description') }}</mat-error>
           </mat-form-field>
         </div>

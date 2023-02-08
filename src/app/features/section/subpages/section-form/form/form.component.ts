@@ -1,5 +1,5 @@
 import { AsyncPipe, NgIf, NgForOf } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { ReactiveFormsModule, FormsModule, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
@@ -32,12 +32,17 @@ import { validateCharacters, validateNotNumbers } from '../../section-form';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormComponent implements OnInit {
+  @ViewChild('nameInput') nameInput!: ElementRef;
+
+  nameCounter!: number;
   private formBuilder = inject(NonNullableFormBuilder);
   private store = inject(Store);
 
   loggedInUser$ = this.store.select(selectLoggedUser);
   newSectionForm = this.createNewSectionForm();
   organizers!: Organizer;
+  letterCount = 0;
+  descriptionLetterCount = 0;
 
   ngOnInit() {
     this.loggedInUser$.subscribe(user => {
@@ -49,14 +54,18 @@ export class FormComponent implements OnInit {
     });
   }
 
+  nameLetterCounter() {
+    this.nameCounter = this.newSectionForm.getRawValue().name.length;
+  }
+
   preventLongTitle(event: KeyboardEvent) {
-    if (this.newSectionForm.getRawValue().name.length > 30) {
+    if (this.newSectionForm.getRawValue().name.length >= 30) {
       event.preventDefault();
     }
   }
 
   preventLongDescription(event: KeyboardEvent) {
-    if (this.newSectionForm.getRawValue().description.length > 250) {
+    if (this.newSectionForm.getRawValue().description.length >= 250) {
       event.preventDefault();
     }
   }
