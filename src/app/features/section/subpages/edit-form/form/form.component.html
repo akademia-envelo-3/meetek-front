@@ -1,0 +1,76 @@
+<div class="form-wrapper">
+  <div>
+    <form [formGroup]="editSectionForm" (ngSubmit)="editSection()">
+      <div class="input-wrapper">
+        <div class="input">
+          <mat-form-field appearance="outline">
+            <mat-label>Nazwa</mat-label>
+            <input
+              matInput
+              #nameInput
+              placeholder="Nazwa sekcji"
+              type="text"
+              formControlName="name"
+              (keypress)="preventLongTitle($event)"
+              (input)="nameLetterCounter = nameInput.value.length"
+              required />
+            <div class="letter-counter">{{ nameLetterCounter }}/30</div>
+            <mat-error *ngIf="getErrorMessage('name') as message">{{ message }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="input textarea">
+          <mat-form-field appearance="outline">
+            <mat-label>Opis</mat-label>
+            <textarea
+              matInput
+              #descriptionInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="11"
+              cdkAutosizeMaxRows="11"
+              placeholder="Opis sekcji"
+              type="text"
+              formControlName="description"
+              (keypress)="preventLongDescription($event)"
+              (input)="descriptionLetterCounter = descriptionInput.value.length"
+              required>
+            </textarea>
+            <div class="letter-counter">{{ descriptionLetterCounter }}/250</div>
+            <mat-error *ngIf="getErrorMessage('description') as message">{{ message }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="input">
+          <mat-form-field class="chip-list" appearance="fill">
+            <mat-label>Organizator</mat-label>
+            <mat-chip-grid #chipGrid>
+              <mat-chip-row>
+                <mat-icon matChipAvatar>person</mat-icon>
+                {{ editedOwner.firstName }}
+                {{
+                  editedOwner.lastName.length > 13 ? editedOwner.lastName.slice(0, 13) + '...' : editedOwner.lastName
+                }}
+              </mat-chip-row>
+              <input
+                class="chip-input"
+                placeholder="Organizator"
+                formControlName="sectionOwner"
+                #sectionOwnerInput
+                [matChipInputFor]="chipGrid"
+                [matAutocomplete]="auto"
+                (ngModelChange)="getFilteredUsers()"
+                (blur)="sectionOwnerInput.value = ''" />
+            </mat-chip-grid>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedUser($event)">
+              <mat-option *ngFor="let users of filteredUsers$ | async" [value]="users">
+                {{ users.firstName }} {{ users.lastName }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="button-wrapper">
+        <button mat-stroked-button color="warn" type="button" [routerLink]="[HomePaths.SECTION.ALL]">Anuluj</button>
+        <button mat-raised-button type="submit" [disabled]="editSectionForm.invalid">zapisz</button>
+      </div>
+    </form>
+  </div>
+</div>

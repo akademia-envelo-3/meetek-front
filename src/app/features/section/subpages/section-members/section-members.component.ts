@@ -4,8 +4,10 @@ import { NavigationComponent, NavigationOption } from '@shared/ui';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute } from '@angular/router';
 
-import { SectionCardComponent } from '../shared/section-card';
-import { MembersListComponent } from '../shared/list/member-list';
+import { SectionCardComponent } from '../../shared/section-card';
+import { MembersListComponent } from '../../shared/list/member-list';
+
+
 
 @Component({
   selector: 'app-section-members',

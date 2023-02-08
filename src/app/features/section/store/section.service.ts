@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { API_URL } from '@core/env.token';
 
-import { Section, CreateSection } from '..';
+import { Section, User, CreateSection } from '..';
 
 @Injectable({ providedIn: 'root' })
 export class SectionService {
@@ -24,8 +24,8 @@ export class SectionService {
     });
   }
 
-  update(section: Partial<Section>) {
-    return this.http.patch<Section>(`${this.BASE_URL}/sections/${section.id}`, section);
+  update(sectionId: number, section: Partial<Section>) {
+    return this.http.patch<Section>(`${this.BASE_URL}/sections/${sectionId}`, section);
   }
 
   activate(sectionId: number) {
@@ -47,5 +47,9 @@ export class SectionService {
 
   leave(sectionId: number, userId: number) {
     return this.http.delete<Section>(`${this.BASE_URL}/sections/${sectionId}/users/${userId}`);
+  }
+
+  getAllUsers() {
+    return this.http.get<User[]>(`${this.BASE_URL}/users`);
   }
 }

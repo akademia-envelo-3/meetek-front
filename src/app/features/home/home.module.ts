@@ -4,10 +4,10 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { HomeComponent } from './home.component';
-
-import { SectionEffects, sectionReducer, SectionFormComponent, sectionDetailsReducer } from '../section';
+import { SectionEffects } from '../section/store/section.effects';
+import { sectionDetailsReducer, sectionReducer, SectionFormComponent, SectionMembersComponent, sectionAllUsersReducer } from '../section';
 import { UserEffects } from '@core/store/user.effects';
-import { SectionMembersComponent } from '../section/subpages/section-members.component';
+import { EditFormComponent } from '../section/subpages/edit-form';
 
 export const HOME_PATHS = {
   DEFAULT: '',
@@ -34,13 +34,13 @@ export const HOME_PATHS = {
       SUBPAGES: {
         HOME: '',
         MEMBERS: 'members',
+        EDIT: 'edit',
       },
     },
     ALL: 'sections',
     MY: 'sections/my',
     OWNED: 'sections/owned',
     ADD: 'section/add',
-    EDIT: 'section/:id/edit',
   },
   CATEGORIES: 'categories',
   HASHTAGS: 'hashtags',
@@ -53,6 +53,7 @@ export const HOME_PATHS = {
   imports: [
     StoreModule.forFeature('sections', sectionReducer),
     StoreModule.forFeature('sectionDetails', sectionDetailsReducer),
+    StoreModule.forFeature('users', sectionAllUsersReducer),
     EffectsModule.forFeature([SectionEffects, UserEffects]),
     RouterModule.forChild([
       {
@@ -72,7 +73,7 @@ export const HOME_PATHS = {
             path: HOME_PATHS.EVENT.SINGLE.SUBPAGES.PARTICIPANTS,
             component: HomeComponent,
             title: 'Uczestnicy',
-          },
+          }
         ],
       },
       {
@@ -83,6 +84,10 @@ export const HOME_PATHS = {
             path: HOME_PATHS.SECTION.SINGLE.SUBPAGES.MEMBERS,
             component: SectionMembersComponent,
           },
+          {
+            path: HOME_PATHS.SECTION.SINGLE.SUBPAGES.EDIT,
+            component: EditFormComponent
+          }
         ],
       },
     ]),

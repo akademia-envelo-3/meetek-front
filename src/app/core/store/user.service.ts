@@ -1,7 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { CookieService } from "ngx-cookie-service";
 
 import { API_URL } from "@core/env.token";
 import { ENDPOINTS } from "@shared/api/endpoints";
