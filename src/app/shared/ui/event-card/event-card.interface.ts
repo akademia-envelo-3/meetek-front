@@ -1,9 +1,8 @@
-
 export type participationType = 'active' | 'inactive' | 'past';
 export type eventType = 'public' | 'private' | 'worldwide';
 
 export interface EventSpecs {
-id:number
+  id: number;
   title: string;
   type: eventType;
   date: string;
@@ -11,5 +10,5 @@ id:number
   address: string;
   participation: participationType;
   hashtags: string;
-  mapCords: [number,number];
+  mapCords: [number, number];
 }

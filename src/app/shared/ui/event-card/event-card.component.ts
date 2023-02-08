@@ -21,7 +21,7 @@ export class EventCardComponent implements OnInit, AfterViewInit {
   mapId!: string;
 
   ngOnInit(): void {
-      this.mapId = 'map' + this.event.id;
+    this.mapId = 'map' + this.event.id;
   }
 
   ngAfterViewInit(): void {
