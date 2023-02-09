@@ -20,7 +20,7 @@ import { TokenInterceptorProvider } from '@shared/interceptors';
 import { HttpErrorInterceptorProvider } from '@shared/interceptors';
 
 export interface AppState {
-  user?: UserState;
+  user: UserState;
 }
 
 @NgModule({

@@ -2,7 +2,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
-import { FormComponent } from './form/form.component';
+import { FormComponent } from '../auth';
 
 @Component({
   selector: 'app-auth',
