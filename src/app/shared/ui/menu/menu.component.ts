@@ -3,14 +3,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
-import { NgClass, NgFor, NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
 import { UserInitialsButtonComponent } from '../user-initials-button/user-initials-button.component';
 import { MenuService } from './menu.service';
 import { menuItems } from './menu-items';
-import { UserMenuComponent } from '../user-menu';
 import { MenuInputs } from './menu.interface';
 
 @Component({
@@ -19,7 +18,6 @@ import { MenuInputs } from './menu.interface';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
   imports: [
-    NgClass,
     NgIf,
     NgFor,
     MatListModule,
@@ -28,7 +26,6 @@ import { MenuInputs } from './menu.interface';
     MatIconModule,
     RouterModule,
     UserInitialsButtonComponent,
-    UserMenuComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
