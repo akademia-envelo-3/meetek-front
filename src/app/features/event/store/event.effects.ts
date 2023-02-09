@@ -30,9 +30,7 @@ export class EventEffects {
   getEvent$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EventActions.getEvent),
-      switchMap(({ eventId }) => {
-        return this.eventService.getOne(eventId);
-      }),
+      switchMap(({ eventId }) => this.eventService.getOne(eventId)),
       map(event => EventApiActions.eventLoadedSuccess({ event })),
       catchError(() => {
         this.router.navigate([HOME_PATHS.EVENT.SINGLE.SUBPAGES.HOME]);

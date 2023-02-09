@@ -6,11 +6,7 @@ import { initialEventState, EventState } from './event.state';
 export const eventReducer = createReducer(
   initialEventState,
 
-  on(EventApiActions.eventsLoadedSuccess, (state, { events }): EventState => {
-    return { ...state, events };
-  }),
+  on(EventApiActions.eventsLoadedSuccess, (state, { events }): EventState => ({ ...state, events })),
 
-  on(EventApiActions.eventLoadedSuccess, (state, { event }): EventState => {
-    return { ...state, event };
-  })
+  on(EventApiActions.eventLoadedSuccess, (state, { event }): EventState => ({ ...state, event }))
 );

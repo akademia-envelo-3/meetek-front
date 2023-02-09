@@ -1,7 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Section } from '../../../shared/interfaces';
+
 import { API_URL } from '@core/env.token';
+import { Section } from '@shared/interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class SectionService {
