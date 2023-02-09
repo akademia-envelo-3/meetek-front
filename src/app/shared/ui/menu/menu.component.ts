@@ -4,8 +4,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { NgClass, NgFor, NgIf } from '@angular/common';
-import { NavigationEnd, Router, RouterModule } from '@angular/router';
-import { filter, map } from 'rxjs';
+import { RouterModule } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
 import { UserInitialsButtonComponent } from '../user-initials-button/user-initials-button.component';
@@ -38,21 +37,8 @@ export class MenuComponent {
 
   private menuService = inject(MenuService);
   private cookieService = inject(CookieService);
-  private router = inject(Router);
 
   menuItems = menuItems;
-  currentRoute = '';
-
-  constructor() {
-    this.router.events
-      .pipe(
-        filter(event => event instanceof NavigationEnd),
-        map(() => this.router.url)
-      )
-      .subscribe(route => {
-        this.currentRoute = route.slice(1);
-      });
-  }
 
   logout() {
     this.cookieService.delete('token');

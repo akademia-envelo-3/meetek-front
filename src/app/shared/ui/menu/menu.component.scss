@@ -65,14 +65,26 @@
       transition: 0.1s;
 
       &:hover {
-        background-color: var(--primaryLight);
+        background-color: rgba(0, 0, 0, 0.15);
       }
 
       &:hover .item-content {
-        color: var(--surface);
+        color: var(--disabled);
 
         & > mat-icon {
+          color: var(--disabled);
+        }
+      }
+
+      &.active {
+        background-color: var(--primaryLight);
+
+        .item-content {
           color: var(--surface);
+
+          & > mat-icon {
+            color: var(--surface);
+          }
         }
       }
     }

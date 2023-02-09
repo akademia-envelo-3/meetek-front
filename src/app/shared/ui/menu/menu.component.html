@@ -33,7 +33,8 @@
           <mat-list-item
             *ngFor="let subpage of item.subpages"
             class="subpage"
-            [class.active]="subpage.path === currentRoute">
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">
             <p class="item-content subpage" [routerLink]="subpage.path">
               <mat-icon [fontIcon]="'keyboard_arrow_right'"></mat-icon>
               {{ subpage.name }}
@@ -43,7 +44,7 @@
       </ng-container>
 
       <ng-template #withoutSubpages>
-        <mat-list-item [class.active]="item.path === currentRoute">
+        <mat-list-item routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           <div (click)="item.name === 'Wyloguj' ? logout() : null" [routerLink]="[item.path]" class="item-content">
             <mat-icon [fontIcon]="item.icon || 'close'"></mat-icon>
             {{ item.name }}
