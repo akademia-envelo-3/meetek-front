@@ -1,0 +1,40 @@
+@import 'breakpoints';
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  height: 500px;
+  width: 400px;
+  overflow: auto;
+}
+
+.categories-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px
+}
+
+.category {
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+@include breakpoint('laptop') {
+  mat-card {
+    box-shadow: none;
+    max-height: 400px;
+  }
+}
+
+@include breakpoint('mobile') {
+  mat-card {
+    width: 300px;
+    max-height: 400px;
+    padding: 0;
+  }
+}

@@ -1,23 +1,23 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { NgIf } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, skip, takeUntil } from 'rxjs';
 
 import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
 import { useDestroy } from '@shared/hooks';
 
 @Component({
-  selector: 'app-category-hashtag-card[name][usage][isActive]',
+  selector: 'app-category-hashtag-card[name][isActive]',
   standalone: true,
-  imports: [ToggleComponent, MatCardModule, MatIconModule, NgIf],
+  imports: [ToggleComponent, MatCardModule, MatIconModule, NgIf, NgClass],
   templateUrl: './category-hashtag-card.component.html',
   styleUrls: ['./category-hashtag-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryHashtagCardComponent implements OnInit {
   @Input() name!: string;
-  @Input() usage!: number;
+  @Input() usage?: number;
   @Input() isActive!: boolean;
 
   @Output() activityChange = new EventEmitter<boolean>();

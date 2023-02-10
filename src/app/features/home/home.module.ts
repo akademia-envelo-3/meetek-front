@@ -8,6 +8,7 @@ import { SectionEffects } from '../section/store/section.effects';
 import { sectionDetailsReducer, sectionReducer, SectionFormComponent, SectionMembersComponent, sectionAllUsersReducer } from '../section';
 import { UserEffects } from '@core/store/user.effects';
 import { EditFormComponent } from '../section/subpages/edit-form';
+import { CategoriesComponent } from '../categories';
 
 export const HOME_PATHS = {
   DEFAULT: '',
@@ -90,6 +91,10 @@ export const HOME_PATHS = {
           }
         ],
       },
+      {
+        path: HOME_PATHS.CATEGORIES,
+        component: CategoriesComponent
+      }
     ]),
   ],
 })

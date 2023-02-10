@@ -1,0 +1,37 @@
+import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { CategoryHashtagCardComponent } from '@shared/ui';
+import { Observable } from 'rxjs';
+
+import { MatCardModule } from '@angular/material/card';
+import { Category } from '../..';
+
+@Component({
+  selector: 'app-categories-card',
+  standalone: true,
+  imports: [
+    AsyncPipe,
+    MatCardModule,
+    CategoryHashtagCardComponent,
+    NgForOf,
+    NgIf
+  ],
+  templateUrl: 'categories-card.component.html',
+  styleUrls: ['categories-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class CategoriesCardComponent {
+  @Input() categories$!: Observable<Category[]>
+  @Input() isAdmin$!: Observable<boolean>
+
+  @Output() activityChange = new EventEmitter<{ active: boolean, id: number }>()
+  @Output() modification = new EventEmitter<number>()
+
+  handleActivityChange(active: boolean, id: number) {
+    this.activityChange.emit({ active, id })
+  }
+
+  handleModification(id: number) {
+    this.modification.emit(id)
+  }
+}

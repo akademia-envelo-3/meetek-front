@@ -1,0 +1,12 @@
+<main>
+  <h2>Kategorie</h2>
+  <app-search [placeholderValue]="'Wyszukaj'"></app-search>
+  <app-categories-card
+    [categories$]="categories$"
+    [isAdmin$]="isUserAdmin$"
+    (activityChange)="handleActivate($event)"
+    (modification)="handleModification($event)"></app-categories-card>
+  <button class="add-button" mat-fab>
+    <mat-icon>add</mat-icon>
+  </button>
+</main>
