@@ -3,51 +3,20 @@ import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
+import { HOME_PATHS } from './home-paths';
 import { HomeComponent } from './home.component';
-import { SectionEffects } from '../section/store/section.effects';
-import { sectionDetailsReducer, sectionReducer, SectionFormComponent, SectionMembersComponent, sectionAllUsersReducer } from '../section';
+import {
+  SectionEffects,
+  sectionReducer,
+  sectionDetailsReducer,
+  SectionFormComponent,
+  SectionMembersComponent,
+  sectionAllUsersReducer,
+} from '../section';
+import { TestComponent } from '@shared/test/test.component';
+import { TestWithRouterComponent } from '@shared/test/test-router.component';
 import { UserEffects } from '@core/store/user.effects';
 import { EditFormComponent } from '../section/subpages/edit-form';
-
-export const HOME_PATHS = {
-  DEFAULT: '',
-  EVENT: {
-    SINGLE: {
-      CORE: 'event/:id',
-      SUBPAGES: {
-        HOME: '',
-        PARTICIPANTS: 'participants',
-        CHAT: 'chat',
-        ATTACHMENTS: 'attachments',
-      },
-    },
-    ALL: 'events',
-    MY: 'events/my',
-    OWNED: 'events/owned',
-    ADD: 'event/add',
-    REDO: 'event/:id/redo',
-    EDIT: 'event/:id/edit',
-  },
-  SECTION: {
-    SINGLE: {
-      CORE: 'section/:id',
-      SUBPAGES: {
-        HOME: '',
-        MEMBERS: 'members',
-        EDIT: 'edit',
-      },
-    },
-    ALL: 'sections',
-    MY: 'sections/my',
-    OWNED: 'sections/owned',
-    ADD: 'section/add',
-  },
-  CATEGORIES: 'categories',
-  HASHTAGS: 'hashtags',
-  NOTIFICATIONS: 'notifications',
-  REQUEST_BOX: 'request-box',
-  MEENDER: 'meender',
-} as const;
 
 @NgModule({
   imports: [
@@ -59,35 +28,35 @@ export const HOME_PATHS = {
       {
         path: HOME_PATHS.DEFAULT,
         component: HomeComponent,
-        children: [],
-      },
-      {
-        path: HOME_PATHS.SECTION.ADD,
-        component: SectionFormComponent,
-      },
-      {
-        path: HOME_PATHS.EVENT.SINGLE.CORE,
-        component: HomeComponent,
         children: [
+          { path: HOME_PATHS.EVENTS.SINGLE.CORE, component: TestComponent, children: [] },
+          { path: HOME_PATHS.EVENTS.ALL, component: TestComponent },
+          { path: HOME_PATHS.EVENTS.MY, component: TestComponent },
+          { path: HOME_PATHS.EVENTS.OWNED, component: TestComponent },
+          { path: HOME_PATHS.EVENTS.ADD, component: TestComponent },
           {
-            path: HOME_PATHS.EVENT.SINGLE.SUBPAGES.PARTICIPANTS,
-            component: HomeComponent,
-            title: 'Uczestnicy',
-          }
-        ],
-      },
-      {
-        path: HOME_PATHS.SECTION.SINGLE.CORE,
-        component: HomeComponent, //todo: zmienić, jak już będziemy mieli komponent dla sekcji task FT017 https://github.com/akademia-envelo-3/meetek-front/issues/18
-        children: [
-          {
-            path: HOME_PATHS.SECTION.SINGLE.SUBPAGES.MEMBERS,
-            component: SectionMembersComponent,
+            path: HOME_PATHS.SECTIONS.SINGLE.CORE,
+            component: TestWithRouterComponent, //todo: zmienić, jak już będziemy mieli komponent dla sekcji task FT017 https://github.com/akademia-envelo-3/meetek-front/issues/18
+            children: [
+              {
+                path: HOME_PATHS.SECTIONS.SINGLE.SUBPAGES.MEMBERS,
+                component: SectionMembersComponent,
+              },
+              {
+                path: HOME_PATHS.SECTIONS.SINGLE.SUBPAGES.EDIT,
+                component: EditFormComponent,
+              },
+            ],
           },
-          {
-            path: HOME_PATHS.SECTION.SINGLE.SUBPAGES.EDIT,
-            component: EditFormComponent
-          }
+          { path: HOME_PATHS.SECTIONS.ALL, component: TestComponent },
+          { path: HOME_PATHS.SECTIONS.MY, component: TestComponent },
+          { path: HOME_PATHS.SECTIONS.OWNED, component: TestComponent },
+          { path: HOME_PATHS.SECTIONS.ADD, component: SectionFormComponent },
+          { path: HOME_PATHS.CATEGORIES, component: TestComponent },
+          { path: HOME_PATHS.HASHTAGS, component: TestComponent },
+          { path: HOME_PATHS.NOTIFICATIONS, component: TestComponent },
+          { path: HOME_PATHS.REQUEST_BOX, component: TestComponent },
+          { path: HOME_PATHS.MEENDER, component: TestComponent },
         ],
       },
     ]),

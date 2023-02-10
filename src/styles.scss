@@ -3,6 +3,7 @@
 
 @use 'app/shared/styles/button.scss';
 @use 'app/shared/styles/palette.scss';
+@use 'app/shared/styles/material.scss';
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
@@ -107,6 +108,11 @@ $front-theme: mat.define-dark-theme(
   //font-family
   --roboto: Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol';
+
+  //icon-size
+  --small-icon: 25px;
+  --medium-icon: 30px;
+  --big-icon: 40px;
 }
 
 * {
@@ -120,4 +126,3 @@ body {
   height: 100%;
   background-color: var(--background);
 }
-

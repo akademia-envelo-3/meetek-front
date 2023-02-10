@@ -1,0 +1,42 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  .content-container {
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+
+    .menu-container {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      overflow: auto;
+      transition: 0.3s;
+      overflow-x: hidden;
+      z-index: 99;
+
+      &.active {
+        width: 290px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1023px) {
+  .wrapper {
+    .content-container {
+      .menu-container {
+        position: relative;
+      }
+
+      .router-container {
+        max-width: calc(1023px - 290px);
+        overflow: hidden;
+      }
+    }
+  }
+}

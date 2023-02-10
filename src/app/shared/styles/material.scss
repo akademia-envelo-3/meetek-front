@@ -1,0 +1,11 @@
+@import 'breakpoints.scss';
+
+mat-expansion-panel.menu .mat-expansion-indicator::after {
+  color: var(--text);
+}
+
+@include breakpoint('mobile') {
+  mat-expansion-panel.menu .mat-expansion-indicator::after {
+    color: var(--surface);
+  }
+}

@@ -1,6 +1,9 @@
-import { NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { MenuComponent, MenuInputs, MenuService } from '@shared/ui';
+import { map } from 'rxjs';
+import { NgIf } from '@angular/common';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 
@@ -18,6 +21,7 @@ import {
 @Component({
   selector: 'app-theme',
   standalone: true,
+  styles: ['.element { margin: 10px; position: relative;}'],
   imports: [
     CategoryHashtagCardComponent,
     SectionCardComponent,
@@ -29,6 +33,8 @@ import {
     MatDialogModule,
     MatButtonModule,
     HeaderComponent,
+    MenuComponent,
+    AsyncPipe,
   ],
   styleUrls: ['./theme.component.scss'],
   template: `
@@ -64,6 +70,13 @@ import {
         <app-section-card [name]="'Rowerzyści'" [numberOfMembers]="24" [isActive]="true"></app-section-card>
       </div>
     </ng-container>
+    <hr />
+
+    <h2>Menu</h2>
+    <div class="element">
+      <button (click)="menuService.toggleMenu()" class="warning mediumButton">Toggle menu</button>
+      <app-menu [user]="userMockMenu" [class.active]="isMenuActive | async"></app-menu>
+    </div>
     <hr />
 
     <h2>Category/hashtag card</h2>
@@ -130,6 +143,14 @@ export default class ThemeComponent {
     handleDeactivation: function () {
       this.isActive = false;
     },
+  };
+
+  // -- MENU --
+  menuService = inject(MenuService);
+  isMenuActive = this.menuService.menu$.pipe(map(menu => menu.isActive));
+  userMockMenu: MenuInputs = {
+    userData: { fullName: 'test user hahahadsdssdsdsdsddh', email: 'test@gmail.com', initials: 'TU' },
+    role: 'admin',
   };
 
   // -- CATEGORY/HASHTAG CARD --
