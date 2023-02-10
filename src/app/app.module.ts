@@ -15,16 +15,11 @@ import { noProductionGuard } from '@shared/no-production.guard';
 import { userReducer, UserEffects, UserState } from '@core/store';
 import { TokenInterceptorProvider, HttpErrorInterceptorProvider } from '@shared/interceptors';
 import { NotFoundComponent } from './features/404/not-found.component';
+import { APP_PATHS } from './app-paths';
 
 export interface AppState {
-  user?: UserState;
+  user: UserState;
 }
-
-export const APP_PATH = {
-  HOME: '',
-  AUTH: 'auth',
-  THEME: 'theme',
-} as const;
 
 @NgModule({
   declarations: [AppComponent],
@@ -46,11 +41,11 @@ export const APP_PATH = {
             loadChildren: () => import('./features/home/home.module'),
           },
           {
-            path: APP_PATH.AUTH,
+            path: APP_PATHS.AUTH,
             loadChildren: () => import('./features/auth/auth.module'),
           },
           {
-            path: APP_PATH.THEME,
+            path: APP_PATHS.THEME,
             canMatch: [noProductionGuard],
             loadComponent: () => import('./core/theme.component'),
           },
