@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { APP_PATH } from 'src/app/app.module';
+import { APP_PATHS } from 'src/app/app-paths';
 
 @Component({
   selector: 'app-not-found',
@@ -12,5 +12,5 @@ import { APP_PATH } from 'src/app/app.module';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotFoundComponent {
-  homePath = APP_PATH.HOME;
+  homePath = APP_PATHS.HOME;
 }
