@@ -47,4 +47,8 @@ export class HashtagsService {
     //for json-server
     return this.http.patch(`${this.BASE_URL}/hashtags/${hashtagId}`, { name });
   }
+
+  constructor() {
+    this.getAll().subscribe(console.log);
+  }
 }
