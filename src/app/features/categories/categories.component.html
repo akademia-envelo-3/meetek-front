@@ -6,7 +6,7 @@
     [isAdmin$]="isUserAdmin$"
     (activityChange)="handleActivate($event)"
     (modification)="handleModification($event)"></app-categories-card>
-  <button class="add-button" mat-fab>
+  <button class="add-button" mat-fab (click)="openAddModal()">
     <mat-icon>add</mat-icon>
   </button>
 </main>
