@@ -2,12 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { SectionEffects } from '../section';
-import { sectionDetailsReducer, sectionReducer } from '../section';
 
+import {
+  sectionDetailsReducer,
+  sectionReducer,
+  SectionEffects,
+  SectionMembersComponent,
+  SectionsComponent,
+} from '../section';
 import { HomeComponent } from './home.component';
-import { SectionMembersComponent } from '../section/subpages/section-members.component';
-import { SectionsComponent } from '../section';
 
 export const HOME_PATHS = {
   DEFAULT: '',

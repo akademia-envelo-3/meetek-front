@@ -9,9 +9,7 @@ import { Store } from '@ngrx/store';
 
 import { HOME_PATHS } from '../home';
 import { User } from './shared/interfaces';
-import { SectionCardComponent } from '../section';
-import { selectAllSections } from '../section';
-import { SectionActions } from '../section';
+import { SectionCardComponent, selectAllSections, SectionActions } from '../section';
 import { SearchComponent } from '@shared/ui';
 import { selectLoggedUser } from '@core/store/user.selectors';
 
