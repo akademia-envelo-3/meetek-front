@@ -8,3 +8,4 @@ export * from './store/section.service';
 export * from './subpages/section-members.component';
 export * from './shared/list/list-item/member-list-item.component';
 export * from './shared/list/member-list/member-list.component';
+export * from './sections.component';

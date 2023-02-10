@@ -16,7 +16,7 @@ import { SearchComponent } from '@shared/ui';
 import { selectLoggedUser } from '@core/store/user.selectors';
 
 @Component({
-  selector: 'app-sections',
+  selector: 'app-sections[loggedUserId]',
   standalone: true,
   imports: [
     MatButtonModule,
@@ -57,11 +57,11 @@ export class SectionsComponent implements OnInit {
     this.router.navigate([`section/${id}/edit`]);
   }
 
-  handleActivation(id: number) {
+  activation(id: number) {
     this.store.dispatch(SectionActions.activateSection({ sectionId: Number(id) }));
   }
 
-  handleDeactivation(id: number) {
+  deactivation(id: number) {
     this.store.dispatch(SectionActions.deactivateSection({ sectionId: Number(id) }));
   }
 
