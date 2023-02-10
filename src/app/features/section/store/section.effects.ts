@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap, of } from 'rxjs';
+import { catchError, map, switchMap, of, mergeMap } from 'rxjs';
 import { SectionService } from './section.service';
 import { SectionActions, sectionDetailsActions, SectionDetilsApiActions, SectionsApiActions } from './section.actions';
 import { Router } from '@angular/router';
@@ -66,7 +66,10 @@ export class SectionEffects {
     return this.actions$.pipe(
       ofType(SectionActions.activateSection),
       switchMap(({ sectionId }) => this.sectionService.activate(sectionId)),
-      map(section => SectionsApiActions.sectionActivatedSuccess({ sectionId: section.id })),
+      mergeMap(section => [
+        SectionsApiActions.sectionActivatedSuccess({ sectionId: section.id }),
+        SectionActions.getSections(),
+      ]),
       catchError(() => {
         this.toastService.showError('Nie udało się aktywować sekcji', 'Błąd');
         return of(SectionsApiActions.sectionActivatedFailure());
@@ -78,7 +81,10 @@ export class SectionEffects {
     return this.actions$.pipe(
       ofType(SectionActions.deactivateSection),
       switchMap(({ sectionId }) => this.sectionService.deactivate(sectionId)),
-      map(section => SectionsApiActions.sectionDeactivatedSuccess({ sectionId: section.id })),
+      mergeMap(section => [
+        SectionsApiActions.sectionDeactivatedSuccess({ sectionId: section.id }),
+        SectionActions.getSections(),
+      ]),
       catchError(() => {
         this.toastService.showError('Nie udało się dezaktywować sekcji', 'Błąd');
         return of(SectionsApiActions.sectionDeactivatedFailure());
