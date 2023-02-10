@@ -17,7 +17,7 @@ import { CategoriesCardComponent } from './shared/categories-card/categories-car
     MatButtonModule,
     MatIconModule,
     InputDialogComponent,
-    MatDialogModule
+    MatDialogModule,
   ],
   templateUrl: 'categories.component.html',
   styleUrls: ['categories.component.scss'],
@@ -31,7 +31,7 @@ export class CategoriesComponent {
   categories$ = this.categoriesStore.categories$;
   isUserAdmin$ = this.categoriesStore.isAdmin$;
 
-  handleActivate({ active, id }: { active: boolean, id: number }) {
+  handleActivate({ active, id }: { active: boolean; id: number }) {
     // brak taska?
     console.log('handleActivate', active, id);
   }
@@ -44,25 +44,34 @@ export class CategoriesComponent {
   openAddModal() {
     this.isUserAdmin$.pipe(take(1)).subscribe(isAdmin => {
       if (isAdmin) {
-        this.openDialog('Dodaj kategorię', 'Wpisz nazwę kategorii', 'Dodaj', 'test');
+        this.openDialog('Dodaj kategorię', 'Wpisz nazwę kategorii', 'Dodaj');
       } else {
-        this.openDialog('Dodaj kategorię', 'Wpisz nazwę kategorii', 'Dodaj', 'test');
+        this.openDialog('Nazwa kategorii', 'Wpisz nazwę kategorii', 'wyślij prośbę');
       }
     });
   }
 
-  private openDialog(title: string, inputLabelText: string, buttonText: string, importedDialogData: string) {
+  private openDialog(title: string, inputLabelText: string, buttonText: string, importedDialogData?: string) {
     const dialogRef = this.dialog.open(InputDialogComponent, {
       data: {
-        title: title,
-        inputLabelText: inputLabelText,
-        importedDialogData: importedDialogData,
-        buttonText: buttonText
-      }
-    })
+        title,
+        inputLabelText,
+        importedDialogData,
+        buttonText,
+      },
+    });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    })
+      this.isUserAdmin$.pipe(take(1)).subscribe(isAdmin => {
+        if (isAdmin && result) {
+          // FT005 - feat: formularz dodawania nowych kategorii
+          console.log('add category', result);
+        }
+        if (!isAdmin && result) {
+          // FT009 - feat: wysłanie prośby o dodanie kategorii
+          console.log('send request', result);
+        }
+      });
+    });
   }
 }
