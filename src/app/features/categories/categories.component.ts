@@ -68,7 +68,7 @@ export class CategoriesComponent {
           console.log('add category', result);
         }
         if (!isAdmin && result) {
-          // FT009 - feat: wysłanie prośby o dodanie kategorii
+          // brak taska: wysłanie prośby o dodanie kategorii
           console.log('send request', result);
         }
       });
