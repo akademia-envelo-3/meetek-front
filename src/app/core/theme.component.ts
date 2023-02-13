@@ -12,7 +12,7 @@ import { User } from '../features/section/shared/interfaces';
 import { SearchComponent } from '@shared/ui/search/search.component';
 import { ToggleComponent } from '@shared/ui/toggle/toggle.component';
 import { CommentItemComponent } from '../features/events/comments/comment-item/comment-item.component';
-import { CommentItemRequiredInputs } from '../features/events/comments/comment-item/comment-item.interface';
+import { Comment } from '../features/events/comments/comment-item/comment-item.interface';
 
 @Component({
   selector: 'app-theme',
@@ -28,7 +28,7 @@ import { CommentItemRequiredInputs } from '../features/events/comments/comment-i
     MatDialogModule,
     MatButtonModule,
     HeaderComponent,
-    CommentItemComponent
+    CommentItemComponent,
   ],
   styleUrls: ['./theme.component.scss'],
   template: `
@@ -139,34 +139,57 @@ export default class ThemeComponent {
     });
   }
 
-
-
-
-  CommentItems : CommentItemRequiredInputs [] = [
+  CommentItems: Comment[] = [
     {
-      firstName: 'Krzysztof',
-      lastName: 'Lipiec',
+      id: '1',
+      comentOwner: {
+        id: 0,
+        firstName: 'Krzysztof',
+        lastName: 'Lipiec',
+        email: 'kyzuxxl@gmail.com',
+        role: 'user',
+      },
       date: '23.02.2023',
       hour: '13:37',
-      amIAuthour: true,
-      text:'Jeszcze gdy chodziłem do podstawówki To był tam taki Paweł I ja jechałem na rowerze i go spotkałem I potem jeszcze pojechałem do Biedronki na lody I po drodze do domu wtedy jeszcze już do domu pojechałem'
+      eventId: 0,
+      attachmentList: {
+        attachment: '',
+        text: 'Jeszcze gdy chodziłem do podstawówki To był tam taki Paweł I ja jechałem na rowerze i go spotkałem I potem jeszcze pojechałem do Biedronki na lody I po drodze do domu wtedy jeszcze już do domu pojechałem',
+      },
     },
     {
-      firstName: 'Marek',
-      lastName: 'Aureliusz',
-      date: '17.03.181',
-      hour: '13:37',
-      amIAuthour: false,
-      text:'Ale kto czci duszę rozumną, ogarniającą wszechświat i społeczeństwo, o żadną z innych rzeczy już się nie troszczy. Ponad wszystko duszę własną utrzymuje w takim stanie, aby była rozumna i społeczna i czynna, i śpieszyła z pomocą bliźniemu, który do tego samego celu dąży.'
+      id: '2',
+      comentOwner: {
+        id: 1,
+        firstName: 'Marek',
+        lastName: 'Aureliusz',
+        email: 'mareka@rzym.pl',
+        role: 'user',
+      },
+      date: '19.01.187',
+      hour: '16:52',
+      eventId: 1,
+      attachmentList: {
+        attachment: '',
+        text: 'Ale kto czci duszę rozumną, ogarniającą wszechświat i społeczeństwo, o żadną z innych rzeczy już się nie troszczy. Ponad wszystko duszę własną utrzymuje w takim stanie, aby była rozumna i społeczna i czynna, i śpieszyła z pomocą bliźniemu, który do tego samego celu dąży',
+      },
     },
     {
-      firstName: 'Mariusz',
-      lastName: 'Pudzianowski',
-      date: '21.03.2023',
-      hour: '19:30',
-      amIAuthour: false,
-      text:'POLSKA GUROM',
-      attachment:'assets/images/pudzian.jpg'
-    }  
-  ]
+      id: '3',
+      comentOwner: {
+        id: 2,
+        firstName: 'Mariusz',
+        lastName: 'Pudzianowski',
+        email: 'pudzian@gmail.pl',
+        role: 'user',
+      },
+      date: '06.02.2023',
+      hour: '12:33',
+      eventId: 2,
+      attachmentList: {
+        attachment: 'assets/images/pudzian.jpg',
+        text: 'POOOOOOOOOOOOOOOOOLSKA GUROOOOOOOOOOOOOOOOOOOOOOOOOOOOOM',
+      },
+    },
+  ];
 }

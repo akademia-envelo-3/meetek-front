@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CommentItemRequiredInputs } from '../../features/events/comments/comment-item/comment-item.interface';
+import { UserResponse } from '@core/store/user.interfaces';
 
 @Pipe({
   name: 'commentItemUserFullname',
   standalone: true,
 })
 export class CommentItemUserFullnamePipe implements PipeTransform {
-  transform(value: CommentItemRequiredInputs) {
+  transform(value: UserResponse) {
     return `${value.firstName} ${value.lastName}`;
   }
 }

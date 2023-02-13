@@ -1,11 +1,16 @@
+import { UserResponse } from '@core/store/user.interfaces';
 
-export interface CommentItemRequiredInputs  {
-    firstName: string,
-    lastName: string,
-    date: string,
-    hour: string,
-    amIAuthour: boolean,
-    text?: string,
-    attachment?: string,
-} 
+export type AttachmentListType = {
+  attachment: string;
+  text: string;
+};
 
+export interface Comment {
+  id: string;
+  comentOwner: UserResponse;
+  date: string;
+  hour: string;
+  eventId: number;
+  attachmentList: AttachmentListType;
+  // replyToComment:
+}
