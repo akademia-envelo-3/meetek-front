@@ -1,7 +1,7 @@
 <main>
   <mat-card>
     <p class="status">{{ userStatus$ | async }}</p>
-    <app-navigation [navigationOptions]="navigationOptions"></app-navigation>
+    <app-navigation [navigationOptions]="navigationOptions$ | async"></app-navigation>
     <div class="info-wrapper" *ngIf="sectionDetails$ | async as section">
       <div class="info">
         <h2>{{ section.name }}</h2>

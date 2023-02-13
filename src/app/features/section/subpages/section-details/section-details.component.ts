@@ -5,7 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute } from '@angular/router';
 import { selectLoggedUser } from '@core/store/user.selectors';
 import { Store } from '@ngrx/store';
-import { combineLatest, map, of, take } from 'rxjs';
+import { combineLatest, map, Observable, of, take } from 'rxjs';
 
 import { NavigationComponent, NavigationOption } from '@shared/ui';
 import { sectionDetailsActions, selectSectionDetails } from '../../store';
@@ -24,7 +24,7 @@ export class SectionDetailsComponent implements OnInit {
 
   sectionDetails$ = this.store.select(selectSectionDetails);
   loggedInUser$ = this.store.select(selectLoggedUser);
-  navigationOptions!: NavigationOption[];
+  navigationOptions$!: Observable<NavigationOption[]>;
 
   userStatus$ = combineLatest([this.loggedInUser$, this.sectionDetails$]).pipe(
     map(([loggedInUser, sectionDetails]) => {
@@ -47,35 +47,30 @@ export class SectionDetailsComponent implements OnInit {
     this.activeRoute.parent?.paramMap
       .pipe(
         take(1),
-        map(params => {
-          const id = params.get('id');
+        map(params => params.get('id')),
+        map(id => {
+          if (id) {
+            this.store.dispatch(sectionDetailsActions.getSectionDetails({ sectionId: +id }));
 
-          if (!id) {
-            return;
+            return [
+              {
+                icon: 'keyboard_backspace',
+                link: '/sections',
+              },
+              {
+                icon: 'info',
+                link: `/section/${id}`,
+              },
+              {
+                icon: 'people',
+                link: `/section/${id}/members`,
+              },
+            ];
           }
 
-          this.store.dispatch(sectionDetailsActions.getSectionDetails({ sectionId: +id }));
-
-          return [
-            {
-              icon: 'keyboard_backspace',
-              link: '/sections',
-            },
-            {
-              icon: 'info',
-              link: `/section/${id}`,
-            },
-            {
-              icon: 'people',
-              link: `/section/${id}/members`,
-            },
-          ];
+          return [];
         })
       )
-      .subscribe(options => {
-        if (options) {
-          this.navigationOptions = options;
-        }
-      });
+      .subscribe(options => (this.navigationOptions$ = of(options)));
   }
 }
