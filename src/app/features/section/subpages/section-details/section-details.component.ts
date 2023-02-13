@@ -1,14 +1,14 @@
-import { AsyncPipe, JsonPipe, NgIf } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute } from '@angular/router';
 import { selectLoggedUser } from '@core/store/user.selectors';
 import { Store } from '@ngrx/store';
-import { NavigationComponent, NavigationOption } from '@shared/ui';
 import { combineLatest, map } from 'rxjs';
-import { sectionDetailsActions } from '../../store/section.actions';
-import { selectSectionDetails } from '../../store/section.selectors';
+
+import { NavigationComponent, NavigationOption } from '@shared/ui';
+import { sectionDetailsActions, selectSectionDetails } from '../../store';
 
 @Component({
   selector: 'app-section-details',
@@ -16,7 +16,6 @@ import { selectSectionDetails } from '../../store/section.selectors';
   imports: [
     NgIf,
     AsyncPipe,
-    JsonPipe,
     NavigationComponent,
     MatButtonModule,
     MatCardModule
@@ -67,6 +66,8 @@ export class SectionDetailsComponent implements OnInit {
           },
         ];
       }
+
+      this.sectionDetails$.subscribe(sectionDetails => console.log(sectionDetails));
     });
   }
 }

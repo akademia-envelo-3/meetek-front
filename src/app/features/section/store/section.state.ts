@@ -1,4 +1,4 @@
-import { Section } from '../shared/interfaces';
+import { Section, User } from '../';
 
 export interface SectionState {
   sections: Section[];
@@ -6,6 +6,10 @@ export interface SectionState {
 
 export interface SectionDetailsState {
   section: Section;
+}
+
+export interface SectionAllUsersState {
+  users: User[];
 }
 
 export const initialSectionState: SectionState = {
@@ -41,3 +45,7 @@ export const initialSectionDetailsState: SectionDetailsState = {
       },
   },
 };
+
+export const initialSectionAllUsersState: SectionAllUsersState = {
+  users: []
+}

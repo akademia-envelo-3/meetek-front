@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 80vh;
+
+  .title {
+    margin: 5px 0 25px;
+    color: var(--error);
+    font-size: var(--h1_font-size);
+    font-weight: normal;
+  }
+
+  a {
+    font-size: var(--S_font-size);
+    color: var(--text);
+  }
+}
