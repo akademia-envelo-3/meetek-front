@@ -20,7 +20,7 @@
       z-index: 99;
 
       &.active {
-        width: 290px;
+        min-width: 290px;
       }
     }
   }
@@ -34,7 +34,7 @@
       }
 
       .router-container {
-        max-width: calc(1023px - 290px);
+        min-width: calc(1023px - 290px);
         overflow: hidden;
       }
     }

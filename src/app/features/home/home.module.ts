@@ -53,7 +53,7 @@ import { CategoriesComponent } from '../categories';
           { path: HOME_PATHS.SECTIONS.MY, component: TestComponent },
           { path: HOME_PATHS.SECTIONS.OWNED, component: TestComponent },
           { path: HOME_PATHS.SECTIONS.ADD, component: SectionFormComponent },
-          { path: HOME_PATHS.CATEGORIES, component: TestComponent },
+          { path: HOME_PATHS.CATEGORIES, component: CategoriesComponent },
           { path: HOME_PATHS.HASHTAGS, component: TestComponent },
           { path: HOME_PATHS.NOTIFICATIONS, component: TestComponent },
           { path: HOME_PATHS.REQUEST_BOX, component: TestComponent },
