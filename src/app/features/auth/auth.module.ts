@@ -2,12 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 
-import { AuthComponent } from './auth.component';
-import { AuthEffects } from './store/auth.effects';
-
-export const AUTH_PATHS = {
-  DEFAULT: '',
-} as const;
+import { AuthEffects, AuthComponent } from '../auth';
+import { AUTH_PATHS } from './auth-paths';
 
 @NgModule({
   imports: [
