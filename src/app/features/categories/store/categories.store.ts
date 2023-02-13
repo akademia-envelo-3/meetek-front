@@ -7,36 +7,32 @@ import { map } from 'rxjs';
 import { CategoriesService, Category } from '../';
 
 export interface CategoriesState {
-  categories: Category[]
-  isAdmin: boolean
+  categories: Category[];
+  isAdmin: boolean;
 }
 
 @Injectable()
 export class CategoriesStore extends ComponentStore<CategoriesState> {
   private categoriesService = inject(CategoriesService);
-  private store = inject(Store)
+  private store = inject(Store);
 
   constructor() {
     super({
       categories: [],
-      isAdmin: false
+      isAdmin: false,
     });
   }
 
-  loggedUser$ = this.store.select(selectLoggedUser)
+  loggedUser$ = this.store.select(selectLoggedUser);
 
   readonly categories$ = this.select(state => state.categories);
-  readonly isAdmin$ = this.select(state => state.isAdmin)
+  readonly isAdmin$ = this.select(state => state.isAdmin);
 
   readonly getAllCategories = this.effect(() => {
-    return this.categoriesService.getAllCategories().pipe(
-      map(categories => this.patchState({ categories }))
-    );
-  })
+    return this.categoriesService.getAllCategories().pipe(map(categories => this.patchState({ categories })));
+  });
 
   readonly getIsAdmin = this.effect(() => {
-    return this.loggedUser$.pipe(
-      map(user => this.patchState({ isAdmin: user?.role === 'admin' }))
-    )
-  })
+    return this.loggedUser$.pipe(map(user => this.patchState({ isAdmin: user?.role === 'admin' })));
+  });
 }

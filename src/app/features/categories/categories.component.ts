@@ -33,12 +33,10 @@ export class CategoriesComponent {
 
   handleActivate({ active, id }: { active: boolean; id: number }) {
     // brak taska?
-    console.log('handleActivate', active, id);
   }
 
   handleModification(id: number) {
     // FT010 - feat: dodanie edycji kategorii + effect
-    console.log('handleModification', id);
   }
 
   openAddModal() {
@@ -65,11 +63,9 @@ export class CategoriesComponent {
       this.isUserAdmin$.pipe(take(1)).subscribe(isAdmin => {
         if (isAdmin && result) {
           // FT005 - feat: formularz dodawania nowych kategorii
-          console.log('add category', result);
         }
         if (!isAdmin && result) {
           // brak taska: wysłanie prośby o dodanie kategorii
-          console.log('send request', result);
         }
       });
     });
