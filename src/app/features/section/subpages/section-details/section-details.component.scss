@@ -68,6 +68,10 @@ button {
   .section-wrapper {
     box-shadow: none;
   }
+
+  mat-card {
+    box-shadow: none;
+  }
 }
 
 @include breakpoint('mobile') {

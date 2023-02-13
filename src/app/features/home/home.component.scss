@@ -26,7 +26,7 @@
   }
 }
 
-@media (max-width: 1023px) {
+@media (min-width: 1023px) {
   .wrapper {
     .content-container {
       .menu-container {
@@ -34,7 +34,7 @@
       }
 
       .router-container {
-        max-width: calc(1023px - 290px);
+        min-width: calc(1023px - 290px);
         overflow: hidden;
       }
     }
