@@ -1,13 +1,12 @@
-<main>
+<main *ngIf="state$ | async as state">
   <h2>Kategorie</h2>
   <app-search [placeholderValue]="'Wyszukaj'"></app-search>
   <app-categories-card
-    *ngIf="state$ | async as state"
     [categories]="state.categories"
     [isAdmin]="state.isAdmin"
     (activityChange)="handleActivate($event)"
     (modification)="handleModification($event)"></app-categories-card>
-  <button class="add-button" mat-fab (click)="openAddModal()">
+  <button class="add-button" mat-fab (click)="openAddModal(state)">
     <mat-icon>add</mat-icon>
   </button>
 </main>

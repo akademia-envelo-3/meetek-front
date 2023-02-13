@@ -3,10 +3,9 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { take } from 'rxjs';
 
 import { InputDialogComponent, SearchComponent } from '@shared/ui';
-import { CategoriesStore } from '.';
+import { CategoriesState, CategoriesStore } from '.';
 import { CategoriesCardComponent } from './shared/categories-card/categories-card.component';
 
 @Component({
@@ -20,7 +19,7 @@ import { CategoriesCardComponent } from './shared/categories-card/categories-car
     InputDialogComponent,
     MatDialogModule,
     AsyncPipe,
-    NgIf
+    NgIf,
   ],
   templateUrl: 'categories.component.html',
   styleUrls: ['categories.component.scss'],
@@ -41,17 +40,22 @@ export class CategoriesComponent {
     // FT010 - feat: dodanie edycji kategorii + effect
   }
 
-  openAddModal() {
-    this.state$.pipe(take(1)).subscribe(({ isAdmin }) => {
-      if (isAdmin) {
-        this.openDialog('Dodaj kategorię', 'Wpisz nazwę kategorii', 'Dodaj');
-      } else {
-        this.openDialog('Nazwa kategorii', 'Wpisz nazwę kategorii', 'wyślij prośbę');
-      }
-    });
+  openAddModal(state: CategoriesState) {
+    const { isAdmin } = state;
+    if (isAdmin) {
+      this.openDialog('Dodaj kategorię', 'Wpisz nazwę kategorii', 'Dodaj', isAdmin);
+    } else {
+      this.openDialog('Nazwa kategorii', 'Wpisz nazwę kategorii', 'wyślij prośbę', isAdmin);
+    }
   }
 
-  private openDialog(title: string, inputLabelText: string, buttonText: string, importedDialogData?: string) {
+  private openDialog(
+    title: string,
+    inputLabelText: string,
+    buttonText: string,
+    isAdmin: boolean,
+    importedDialogData?: string
+  ) {
     const dialogRef = this.dialog.open(InputDialogComponent, {
       data: {
         title,
@@ -62,14 +66,12 @@ export class CategoriesComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.state$.pipe(take(1)).subscribe(({ isAdmin }) => {
-        if (isAdmin && result) {
-          // FT005 - feat: formularz dodawania nowych kategorii
-        }
-        if (!isAdmin && result) {
-          // brak taska: wysłanie prośby o dodanie kategorii
-        }
-      });
+      if (isAdmin && result) {
+        // FT005 - feat: formularz dodawania nowych kategorii
+      }
+      if (!isAdmin && result) {
+        // brak taska: wysłanie prośby o dodanie kategorii
+      }
     });
   }
 }
