@@ -5,7 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute } from '@angular/router';
 import { selectLoggedUser } from '@core/store/user.selectors';
 import { Store } from '@ngrx/store';
-import { combineLatest, map } from 'rxjs';
+import { combineLatest, map, of, take } from 'rxjs';
 
 import { NavigationComponent, NavigationOption } from '@shared/ui';
 import { sectionDetailsActions, selectSectionDetails } from '../../store';
@@ -13,16 +13,10 @@ import { sectionDetailsActions, selectSectionDetails } from '../../store';
 @Component({
   selector: 'app-section-details',
   standalone: true,
-  imports: [
-    NgIf,
-    AsyncPipe,
-    NavigationComponent,
-    MatButtonModule,
-    MatCardModule
-  ],
+  imports: [NgIf, AsyncPipe, NavigationComponent, MatButtonModule, MatCardModule],
   templateUrl: './section-details.component.html',
   styleUrls: ['./section-details.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SectionDetailsComponent implements OnInit {
   private store = inject(Store);
@@ -34,40 +28,54 @@ export class SectionDetailsComponent implements OnInit {
 
   userStatus$ = combineLatest([this.loggedInUser$, this.sectionDetails$]).pipe(
     map(([loggedInUser, sectionDetails]) => {
-      if (loggedInUser?.id === sectionDetails.sectionOwner.id) {
+      const isSectionOwner$ = of(loggedInUser?.id === sectionDetails.sectionOwner.id);
+      const isSectionMember$ = of(sectionDetails.users.some(participant => participant.id === loggedInUser?.id));
+
+      if (isSectionOwner$) {
         return 'Jesteś właścicielem tej sekcji';
-      } else if (sectionDetails.users.some(participant => participant.id === loggedInUser?.id)) {
-        return 'Jesteś członkiem tej sekcji';
-      } else {
-        return 'Nie jesteś członkiem tej sekcji';
       }
+
+      if (isSectionMember$) {
+        return 'Jesteś członkiem tej sekcji';
+      }
+
+      return 'Nie jesteś członkiem tej sekcji';
     })
   );
 
   ngOnInit() {
-    this.activeRoute.parent?.paramMap.subscribe(params => {
-      const id = params.get('id');
-  
-      if (id) {
-        this.store.dispatch(sectionDetailsActions.getSectionDetails({ sectionId: +id }));
+    this.activeRoute.parent?.paramMap
+      .pipe(
+        take(1),
+        map(params => {
+          const id = params.get('id');
 
-        this.navigationOptions = [
-          {
-            icon: 'keyboard_backspace',
-            link: '/sections',
-          },
-          {
-            icon: 'info',
-            link: `/section/${id}`,
-          },
-          {
-            icon: 'people',
-            link: `/section/${id}/members`,
-          },
-        ];
-      }
+          if (!id) {
+            return;
+          }
 
-      this.sectionDetails$.subscribe(sectionDetails => console.log(sectionDetails));
-    });
+          this.store.dispatch(sectionDetailsActions.getSectionDetails({ sectionId: +id }));
+
+          return [
+            {
+              icon: 'keyboard_backspace',
+              link: '/sections',
+            },
+            {
+              icon: 'info',
+              link: `/section/${id}`,
+            },
+            {
+              icon: 'people',
+              link: `/section/${id}/members`,
+            },
+          ];
+        })
+      )
+      .subscribe(options => {
+        if (options) {
+          this.navigationOptions = options;
+        }
+      });
   }
 }
