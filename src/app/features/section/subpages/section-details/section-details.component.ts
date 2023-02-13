@@ -18,13 +18,13 @@ import { sectionDetailsActions, selectSectionDetails } from '../../store';
   styleUrls: ['./section-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SectionDetailsComponent implements OnInit {
+export class SectionDetailsComponent {
   private store = inject(Store);
   private activeRoute = inject(ActivatedRoute);
 
   sectionDetails$ = this.store.select(selectSectionDetails);
   loggedInUser$ = this.store.select(selectLoggedUser);
-  navigationOptions$!: Observable<NavigationOption[]>;
+  navigationOptions$ = this.getNavigationOptions();
 
   userStatus$ = combineLatest([this.loggedInUser$, this.sectionDetails$]).pipe(
     map(([loggedInUser, sectionDetails]) => {
@@ -43,34 +43,33 @@ export class SectionDetailsComponent implements OnInit {
     })
   );
 
-  ngOnInit() {
-    this.activeRoute.parent?.paramMap
-      .pipe(
+  getNavigationOptions(): Observable<NavigationOption[]> {
+    return (
+      this.activeRoute.parent?.paramMap.pipe(
         take(1),
         map(params => params.get('id')),
         map(id => {
-          if (id) {
-            this.store.dispatch(sectionDetailsActions.getSectionDetails({ sectionId: +id }));
-
-            return [
-              {
-                icon: 'keyboard_backspace',
-                link: '/sections',
-              },
-              {
-                icon: 'info',
-                link: `/section/${id}`,
-              },
-              {
-                icon: 'people',
-                link: `/section/${id}/members`,
-              },
-            ];
+          if (!id) {
+            return [];
           }
+          this.store.dispatch(sectionDetailsActions.getSectionDetails({ sectionId: +id }));
 
-          return [];
+          return [
+            {
+              icon: 'keyboard_backspace',
+              link: '/sections',
+            },
+            {
+              icon: 'info',
+              link: `/section/${id}`,
+            },
+            {
+              icon: 'people',
+              link: `/section/${id}/members`,
+            },
+          ];
         })
-      )
-      .subscribe(options => (this.navigationOptions$ = of(options)));
+      ) || of([])
+    );
   }
 }
