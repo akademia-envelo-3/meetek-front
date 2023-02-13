@@ -1,10 +1,11 @@
+import { AsyncPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { InputDialogComponent, SearchComponent } from '@shared/ui';
 import { take } from 'rxjs';
 
+import { InputDialogComponent, SearchComponent } from '@shared/ui';
 import { CategoriesStore } from '.';
 import { CategoriesCardComponent } from './shared/categories-card/categories-card.component';
 
@@ -18,6 +19,8 @@ import { CategoriesCardComponent } from './shared/categories-card/categories-car
     MatIconModule,
     InputDialogComponent,
     MatDialogModule,
+    AsyncPipe,
+    NgIf
   ],
   templateUrl: 'categories.component.html',
   styleUrls: ['categories.component.scss'],
@@ -28,8 +31,7 @@ export class CategoriesComponent {
   private categoriesStore = inject(CategoriesStore);
   private dialog = inject(MatDialog);
 
-  categories$ = this.categoriesStore.categories$;
-  isUserAdmin$ = this.categoriesStore.isAdmin$;
+  state$ = this.categoriesStore.state$;
 
   handleActivate({ active, id }: { active: boolean; id: number }) {
     // brak taska?
@@ -40,7 +42,7 @@ export class CategoriesComponent {
   }
 
   openAddModal() {
-    this.isUserAdmin$.pipe(take(1)).subscribe(isAdmin => {
+    this.state$.pipe(take(1)).subscribe(({ isAdmin }) => {
       if (isAdmin) {
         this.openDialog('Dodaj kategorię', 'Wpisz nazwę kategorii', 'Dodaj');
       } else {
@@ -60,7 +62,7 @@ export class CategoriesComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.isUserAdmin$.pipe(take(1)).subscribe(isAdmin => {
+      this.state$.pipe(take(1)).subscribe(({ isAdmin }) => {
         if (isAdmin && result) {
           // FT005 - feat: formularz dodawania nowych kategorii
         }

@@ -1,7 +1,7 @@
 <mat-card>
   <div class="categories-wrapper">
-    <ng-container *ngIf="isAdmin$ | async; else user">
-      <div class="category" *ngFor="let category of categories$ | async">
+    <ng-container *ngIf="isAdmin; else user">
+      <div class="category" *ngFor="let category of categories">
         <app-category-hashtag-card
           (activityChange)="handleActivityChange($event, category.categoryId)"
           (modification)="handleModification(category.categoryId)"
@@ -11,7 +11,7 @@
       </div>
     </ng-container>
     <ng-template #user>
-      <div class="category" *ngFor="let category of categories$ | async">
+      <div class="category" *ngFor="let category of categories">
         <app-category-hashtag-card [name]="category.name" [isActive]="category.active"> </app-category-hashtag-card>
       </div>
     </ng-template>

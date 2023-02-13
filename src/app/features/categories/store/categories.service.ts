@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { API_URL } from '@core/env.token';
 
+import { API_URL } from '@core/env.token';
 import { Category } from '..';
 
 
