@@ -46,6 +46,7 @@ h2 {
   flex: 1;
   gap: 8px;
   width: 100%;
+  overflow: auto;
 }
 
 .info {
@@ -84,8 +85,16 @@ button {
 }
 
 @include breakpoint('mobile') {
+  main {
+    align-items: flex-start;
+    min-height: calc(100vh - 56px - 76px);
+  }
   .section-wrapper {
     width: 100vw;
     max-height: 100vh;
+  }
+
+  mat-card {
+    max-height: calc(100vh - 56px - 76px);
   }
 }
