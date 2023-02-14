@@ -6,11 +6,13 @@ import { map } from 'rxjs';
 
 import { selectLoggedUser } from '@core/store/user.selectors';
 import { HeaderComponent, MenuComponent, MenuService } from '@shared/ui';
+import { LoaderService } from '@shared/services';
+import { SpinnerComponent } from '@shared/ui';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, MenuComponent, AsyncPipe, NgIf],
+  imports: [RouterOutlet, HeaderComponent, MenuComponent, AsyncPipe, NgIf, SpinnerComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -18,6 +20,9 @@ import { HeaderComponent, MenuComponent, MenuService } from '@shared/ui';
 export class HomeComponent {
   private menuService = inject(MenuService);
   private store = inject(Store);
+  private loaderService = inject(LoaderService);
+
+  isLoading$ = this.loaderService.isLoading$;
 
   userData$ = this.store.select(selectLoggedUser).pipe(
     map(user => {

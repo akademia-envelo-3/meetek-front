@@ -9,7 +9,6 @@ import { LoaderService } from '@shared/services';
   imports: [MatProgressSpinnerModule, NgIf, AsyncPipe],
   standalone: true,
   templateUrl: './spinner.component.html',
-  styleUrls: ['./spinner.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpinnerComponent {

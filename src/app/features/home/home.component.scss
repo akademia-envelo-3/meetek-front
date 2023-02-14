@@ -26,6 +26,17 @@
   }
 }
 
+.isLoading {
+  display: none;
+}
+
+.spinner-wrapper {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 @media (min-width: 1023px) {
   .wrapper {
     .content-container {
