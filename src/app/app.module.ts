@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { API_URL, IS_PRODUCTION } from '@core/env.token';
 import { environment } from 'src/environment';
 import { noProductionGuard } from '@shared/no-production.guard';
+<<<<<<< HEAD
 import { userReducer } from './core/store/user.reducer';
 import { UserEffects } from '@core/store/user.effects';
 import { UserState } from '@core/store/user.interfaces';
@@ -19,16 +20,16 @@ import { TokenInterceptorProvider } from '@shared/interceptors';
 import { HttpErrorInterceptorProvider } from '@shared/interceptors';
 import { LoadingInterceptorProvider } from '@shared/interceptors';
 import { SpinnerComponent } from '@shared/ui';
+=======
+import { userReducer, UserEffects, UserState } from '@core/store';
+import { TokenInterceptorProvider, HttpErrorInterceptorProvider } from '@shared/interceptors';
+import { NotFoundComponent } from './features/404/not-found.component';
+import { APP_PATHS } from './app-paths';
+>>>>>>> e8e321e30422d68b4940cc40237e5af48a160780
 
 export interface AppState {
-  user?: UserState;
+  user: UserState;
 }
-
-export const APP_PATH = {
-  HOME: '',
-  AUTH: 'auth',
-  THEME: 'theme',
-} as const;
 
 @NgModule({
   declarations: [AppComponent],
@@ -51,17 +52,17 @@ export const APP_PATH = {
             loadChildren: () => import('./features/home/home.module'),
           },
           {
-            path: APP_PATH.AUTH,
+            path: APP_PATHS.AUTH,
             loadChildren: () => import('./features/auth/auth.module'),
           },
           {
-            path: APP_PATH.THEME,
+            path: APP_PATHS.THEME,
             canMatch: [noProductionGuard],
             loadComponent: () => import('./core/theme.component'),
           },
           {
             path: '**',
-            redirectTo: '',
+            component: NotFoundComponent,
           },
         ],
       },

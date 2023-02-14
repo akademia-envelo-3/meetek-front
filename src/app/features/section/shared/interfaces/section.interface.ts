@@ -8,5 +8,5 @@ export interface Section {
   isActive: boolean;
   users: User[];
   events: Event[];
-  sectionOwner: User[];
+  sectionOwner: User;
 }

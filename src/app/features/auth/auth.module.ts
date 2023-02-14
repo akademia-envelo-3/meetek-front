@@ -3,10 +3,7 @@ import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 
 import { AuthEffects, AuthComponent } from '../auth';
-
-export const AUTH_PATHS = {
-  DEFAULT: '',
-} as const;
+import { AUTH_PATHS } from './auth-paths';
 
 @NgModule({
   imports: [

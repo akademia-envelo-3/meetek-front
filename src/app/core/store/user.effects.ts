@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CookieService } from 'ngx-cookie-service';
 import { startWith, filter, switchMap, map, catchError, of } from 'rxjs';
 
-import { APP_PATH } from 'src/app/app.module';
+import { APP_PATHS } from 'src/app/app-paths';
 import { UserActions, UserApiActions } from './user.actions';
 import { UserService } from './user.service';
 import { ToastFacadeService } from '@shared/services';
@@ -26,7 +26,7 @@ export class UserEffects {
         return this.userService.getMe().pipe(map(response => UserApiActions.getUserSuccess({ user: response })));
       }),
       catchError(() => {
-        this.router.navigate([APP_PATH.AUTH]);
+        this.router.navigate([APP_PATHS.AUTH]);
         this.toastService.showError('Nie udało się pobrać użytkownika', 'Błąd');
         this.cookieService.delete('token');
         return of(UserApiActions.getUserFailure());

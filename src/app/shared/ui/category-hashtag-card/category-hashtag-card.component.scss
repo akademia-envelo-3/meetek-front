@@ -1,0 +1,47 @@
+mat-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  width: 280px;
+  padding: 0 15px;
+  overflow: hidden;
+  cursor: default;
+
+  &.active {
+    cursor: pointer;
+  }
+
+  .content-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .name {
+    font-size: var(--L_font-size);
+    margin-right: 2px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 195px;
+
+    &.narrow {
+      max-width: 130px;
+    }
+  }
+
+  button {
+    cursor: pointer;
+    transition: 0.1s;
+
+    &:hover {
+      opacity: 0.6;
+    }
+
+    mat-icon {
+      padding: 8px;
+      color: var(--text);
+    }
+  }
+}

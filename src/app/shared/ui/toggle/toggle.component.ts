@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-toggle',
+  selector: 'app-toggle[isActive]',
   standalone: true,
   template: `
     <label class="toggle">
@@ -9,6 +9,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angul
         #toggleCheckbox
         class="toggle-checkbox"
         type="checkbox"
+        [checked]="isActive"
         (change)="onToggleChange(toggleCheckbox.checked)" />
       <div class="toggle-switch"></div>
     </label>
@@ -70,6 +71,8 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angul
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToggleComponent {
+  @Input() isActive!: boolean;
+
   @Output() toggleChange = new EventEmitter<boolean>();
 
   onToggleChange(isChecked: boolean) {
