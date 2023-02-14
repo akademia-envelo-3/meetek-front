@@ -17,6 +17,7 @@ import {
 import { TestComponent } from '@shared/test/test.component';
 import { UserEffects } from '@core/store/user.effects';
 import { EditFormComponent } from '../section/subpages/edit-form';
+import { CategoriesComponent } from '../categories';
 
 @NgModule({
   imports: [
@@ -56,13 +57,17 @@ import { EditFormComponent } from '../section/subpages/edit-form';
           { path: HOME_PATHS.SECTIONS.MY, component: TestComponent },
           { path: HOME_PATHS.SECTIONS.OWNED, component: TestComponent },
           { path: HOME_PATHS.SECTIONS.ADD, component: SectionFormComponent },
-          { path: HOME_PATHS.CATEGORIES, component: TestComponent },
+          { path: HOME_PATHS.CATEGORIES, component: CategoriesComponent },
           { path: HOME_PATHS.HASHTAGS, component: TestComponent },
           { path: HOME_PATHS.NOTIFICATIONS, component: TestComponent },
           { path: HOME_PATHS.REQUEST_BOX, component: TestComponent },
           { path: HOME_PATHS.MEENDER, component: TestComponent },
         ],
       },
+      {
+        path: HOME_PATHS.CATEGORIES,
+        component: CategoriesComponent
+      }
     ]),
   ],
 })
