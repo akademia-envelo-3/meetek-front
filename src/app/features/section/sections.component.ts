@@ -14,6 +14,7 @@ import { selectAllSections } from '../section';
 import { SectionActions } from '../section';
 import { SearchComponent } from '@shared/ui';
 import { selectLoggedUser } from '@core/store/user.selectors';
+import { of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-sections[loggedUserId]',
@@ -38,19 +39,18 @@ export class SectionsComponent implements OnInit {
   private store = inject(Store);
 
   allSections$ = this.store.select(selectAllSections);
-  loggedUserId!: number;
+  loggedUserId$ = this.store.select(selectLoggedUser).pipe(
+    switchMap(user => {
+      if (user) {
+        return of(user.id);
+      } else {
+        return of(null);
+      }
+    })
+  );
 
   ngOnInit() {
     this.loadSections();
-    this.store.select(selectLoggedUser).subscribe(user => {
-      if (user) {
-        this.loggedUserId = user.id;
-      }
-    });
-  }
-
-  isOwner(owner: User) {
-    return this.loggedUserId && owner.id === this.loggedUserId;
   }
 
   modification(id: number) {
