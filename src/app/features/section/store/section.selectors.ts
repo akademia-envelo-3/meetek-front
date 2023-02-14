@@ -1,8 +1,10 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { SectionState, SectionDetailsState } from './section.state';
+
+import { SectionState, SectionDetailsState, SectionAllUsersState } from './section.state';
 
 export const selectSectionsState = createFeatureSelector<SectionState>('sections');
 export const selectSectionDetailsState = createFeatureSelector<SectionDetailsState>('sectionDetails');
+export const selectAllUsersState = createFeatureSelector<SectionAllUsersState>('users');
 
 export const selectAllSections = createSelector(selectSectionsState, (state: SectionState) => {
   return state?.sections;
@@ -17,3 +19,5 @@ export const selectSection = (sectionId: number) => {
 export const selectSectionDetails = createSelector(selectSectionDetailsState, (state: SectionDetailsState) => {
   return state?.section;
 });
+
+export const selectAllUsers = createSelector(selectAllUsersState, (state: SectionAllUsersState) => state?.users);

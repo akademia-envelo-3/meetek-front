@@ -1,11 +1,11 @@
-import { UserState } from "./user.interfaces";
+import { UserState } from './user.interfaces';
 
 export const initialUserState: UserState = {
-    user: {
-      id: NaN,
-      firstName: '',
-      lastName: '',
-      email: '',
-      role: 'user'
-    }
+  user: {
+    id: NaN,
+    firstName: '',
+    lastName: '',
+    email: '',
+    role: 'user',
+  },
 };
