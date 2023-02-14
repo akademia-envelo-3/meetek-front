@@ -1,12 +1,15 @@
 @import 'breakpoints';
 
+:host {
+  width: 100%;
+}
+
 main {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   min-height: calc(100vh - 64px);
-  width: 100vw;
   background-color: var(--background);
   position: relative;
 }

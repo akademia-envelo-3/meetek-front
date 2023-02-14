@@ -21,9 +21,19 @@
 
       &.active {
         min-width: 290px;
+
+        .router-container {
+          max-width: calc(100vw - 290px);
+        }
       }
     }
   }
+}
+
+.router-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 @media (min-width: 1023px) {
@@ -34,7 +44,6 @@
       }
 
       .router-container {
-        min-width: calc(1023px - 290px);
         overflow: hidden;
       }
     }
