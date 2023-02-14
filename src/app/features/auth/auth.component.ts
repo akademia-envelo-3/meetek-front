@@ -7,11 +7,7 @@ import { FormComponent } from './form/form.component';
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [
-    MatSlideToggleModule,
-    NgOptimizedImage,
-    FormComponent
-  ],
+  imports: [MatSlideToggleModule, NgOptimizedImage, FormComponent],
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

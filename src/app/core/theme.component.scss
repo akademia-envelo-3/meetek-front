@@ -10,6 +10,14 @@
   padding: 10px;
 }
 
+app-menu {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
 @include breakpoint('laptop') {
   .list {
     min-width: 40vw;
