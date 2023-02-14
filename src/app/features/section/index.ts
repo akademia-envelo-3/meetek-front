@@ -12,3 +12,4 @@ export * from './subpages/section-form/section-form.component';
 export * from './subpages/section-members/section-members.component';
 export * from './shared/list/list-item/member-list-item.component';
 export * from './shared/list/member-list/member-list.component';
+export * from './subpages/section-details/section-details.component';
