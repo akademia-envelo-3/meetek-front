@@ -12,9 +12,9 @@ import {
   SectionFormComponent,
   SectionMembersComponent,
   sectionAllUsersReducer,
+  SectionDetailsComponent
 } from '../section';
 import { TestComponent } from '@shared/test/test.component';
-import { TestWithRouterComponent } from '@shared/test/test-router.component';
 import { UserEffects } from '@core/store/user.effects';
 import { EditFormComponent } from '../section/subpages/edit-form';
 import { CategoriesComponent } from '../categories';
@@ -37,8 +37,12 @@ import { CategoriesComponent } from '../categories';
           { path: HOME_PATHS.EVENTS.ADD, component: TestComponent },
           {
             path: HOME_PATHS.SECTIONS.SINGLE.CORE,
-            component: TestWithRouterComponent, //todo: zmienić, jak już będziemy mieli komponent dla sekcji task FT017 https://github.com/akademia-envelo-3/meetek-front/issues/18
             children: [
+              {
+                path: '',
+                component: SectionDetailsComponent,
+                pathMatch: 'full',
+              },
               {
                 path: HOME_PATHS.SECTIONS.SINGLE.SUBPAGES.MEMBERS,
                 component: SectionMembersComponent,

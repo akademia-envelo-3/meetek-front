@@ -1,0 +1,100 @@
+@import 'breakpoints.scss';
+
+:host {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 64px);
+  background-color: var(--background);
+  width: 100%;
+}
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 24px;
+  height: 600px;
+  width: 550px;
+}
+
+.status {
+  font-size: var(--L_font-size);
+}
+
+app-navigation {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+h2 {
+  font-weight: 400;
+}
+
+.info-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  gap: 8px;
+  width: 100%;
+  overflow: auto;
+}
+
+.info {
+  padding: 24px 0;
+}
+
+.description {
+  display: flex;
+  flex: 1;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  width: 120px;
+}
+
+@include breakpoint('laptop') {
+  main {
+    background-color: var(--surface);
+    min-height: calc(100vh - 56px);
+  }
+
+  .section-wrapper {
+    box-shadow: none;
+    width: 100vw;
+    max-height: 100vh;
+  }
+
+  mat-card {
+    box-shadow: none;
+  }
+}
+
+@include breakpoint('mobile') {
+  main {
+    align-items: flex-start;
+    min-height: calc(100vh - 56px - 76px);
+  }
+  .section-wrapper {
+    width: 100vw;
+    max-height: 100vh;
+  }
+
+  mat-card {
+    max-height: calc(100vh - 56px - 76px);
+  }
+}
