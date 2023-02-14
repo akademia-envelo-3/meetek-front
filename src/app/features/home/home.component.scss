@@ -20,10 +20,18 @@
       z-index: 99;
 
       &.active {
-        width: 290px;
+        min-width: 290px;
+
+        .router-container {
+          max-width: calc(100vw - 290px);
+        }
       }
     }
   }
+}
+
+.router-container {
+  width: 100%;
 }
 
 @media (min-width: 1023px) {
@@ -34,7 +42,6 @@
       }
 
       .router-container {
-        max-width: calc(1023px - 290px);
         overflow: hidden;
       }
     }

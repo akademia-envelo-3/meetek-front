@@ -1,0 +1,55 @@
+@import 'breakpoints';
+
+:host {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: calc(100vh - 64px);
+  background-color: var(--background);
+  position: relative;
+  width: 100%;
+}
+
+h2 {
+  font-weight: 400;
+  padding: 24px;
+}
+
+app-search {
+  position: absolute;
+  top: 20px;
+  right: 50px;
+}
+
+.add-button {
+  position: absolute;
+  bottom: 20px;
+  right: 50px;
+}
+
+@include breakpoint('laptop') {
+  main {
+    background-color: var(--surface);
+    max-height: 100vh;
+    max-width: 100vw;
+  }
+
+  app-search {
+    position: static;
+    margin-bottom: 24px;
+  }
+}
+
+@include breakpoint('mobile') {
+  main {
+    justify-content: flex-start;
+    min-height: calc(100vh - 56px);
+  }
+}
