@@ -50,5 +50,6 @@ app-search {
 @include breakpoint('mobile') {
   main {
     justify-content: flex-start;
+    min-height: calc(100vh - 56px);
   }
 }
