@@ -1,6 +1,8 @@
 @import 'breakpoints';
 
 :host {
+  display: flex;
+  justify-content: center;
   width: 100%;
 }
 
