@@ -27,14 +27,14 @@ mat-card {
 @include breakpoint('laptop') {
   mat-card {
     box-shadow: none;
-    max-height: 400px;
+    max-height: calc(100vh - 300px);
   }
 }
 
 @include breakpoint('mobile') {
   mat-card {
     width: 300px;
-    max-height: 400px;
-    padding: 0;
+    max-height: calc(100vh - 300px);
+    padding: 6px;
   }
 }
