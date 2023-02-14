@@ -1,11 +1,12 @@
 import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap, of, mergeMap } from 'rxjs';
+import { catchError, map, switchMap, of, mergeMap, startWith, tap } from 'rxjs';
 import { SectionService } from './section.service';
 import { SectionActions, sectionDetailsActions, SectionDetilsApiActions, SectionsApiActions } from './section.actions';
-import { Router } from '@angular/router';
-import { HOME_PATHS } from '../../home';
 import { ToastFacadeService } from '@shared/services';
+import { HOME_PATHS } from '../../home';
 
 @Injectable()
 export class SectionEffects {
@@ -32,7 +33,7 @@ export class SectionEffects {
       switchMap(({ sectionId }) => this.sectionService.getOne(sectionId)),
       map(section => SectionDetilsApiActions.sectionDetailsSuccess({ section })),
       catchError(() => {
-        this.router.navigate([HOME_PATHS.SECTION.SINGLE.SUBPAGES.HOME]);
+        this.router.navigate([HOME_PATHS.SECTIONS.SINGLE.SUBPAGES.HOME]);
         return of(SectionDetilsApiActions.sectionDetailsFailure());
       })
     );
@@ -41,8 +42,9 @@ export class SectionEffects {
   addSection$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(SectionActions.addSection),
-      switchMap(newSection => this.sectionService.add(newSection.section)),
+      switchMap(({ section, isActive }) => this.sectionService.add(section, isActive)),
       map(section => SectionsApiActions.sectionsAddedSuccess({ section })),
+      tap(() => this.router.navigate([HOME_PATHS.SECTIONS.ALL])),
       catchError(() => {
         this.toastService.showError('Nie udało się utworzyć sekcji', 'Błąd');
         return of(SectionsApiActions.sectionsAddedFailure());
@@ -53,8 +55,11 @@ export class SectionEffects {
   editSection$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(SectionActions.editSection),
-      switchMap(editedSection => this.sectionService.update(editedSection.section)),
-      map(section => SectionsApiActions.sectionEditedSuccess({ section })),
+      switchMap(({ sectionId, section }) => this.sectionService.update(sectionId, section)),
+      map(section => {
+        this.router.navigate([HOME_PATHS.SECTIONS.SINGLE.SUBPAGES.HOME]);
+        return SectionsApiActions.sectionEditedSuccess({ section });
+      }),
       catchError(() => {
         this.toastService.showError('Nie udało się edytować sekcji', 'Błąd');
         return of(SectionsApiActions.sectionEditedFailure());
@@ -88,6 +93,19 @@ export class SectionEffects {
       catchError(() => {
         this.toastService.showError('Nie udało się dezaktywować sekcji', 'Błąd');
         return of(SectionsApiActions.sectionDeactivatedFailure());
+      })
+    );
+  });
+
+  getAllUsers$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SectionActions.getAllUsers),
+      startWith(SectionActions.getAllUsers),
+      switchMap(() => this.sectionService.getAllUsers()),
+      map(users => SectionsApiActions.getAllUsersSuccess({ users })),
+      catchError(() => {
+        this.toastService.showError('Nie udało się pobrać użytkowników', 'Błąd');
+        return of(SectionsApiActions.getAllUsersFailure());
       })
     );
   });

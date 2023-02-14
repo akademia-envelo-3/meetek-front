@@ -10,6 +10,7 @@ import { Store, select } from '@ngrx/store';
 import { UserInitialsButtonComponent } from '../user-initials-button/user-initials-button.component';
 import { selectLoggedUser } from '@core/store/user.selectors';
 import { UserMenuComponent } from '../user-menu/index';
+import { MenuService } from '../menu';
 
 @Component({
   selector: 'app-header',
@@ -30,6 +31,7 @@ import { UserMenuComponent } from '../user-menu/index';
 })
 export class HeaderComponent {
   private store = inject(Store);
+  private menuService = inject(MenuService);
 
   user$ = this.store.pipe(
     select(selectLoggedUser),
@@ -40,4 +42,8 @@ export class HeaderComponent {
       email: user?.email,
     }))
   );
+
+  toggleMenu() {
+    this.menuService.toggleMenu();
+  }
 }

@@ -1,11 +1,11 @@
 <header>
   <div class="header__close-modal-button">
     <mat-toolbar color="primary">
-      <button mat-icon-button class="header__menu-btn">
+      <button mat-icon-button (click)="toggleMenu()" class="header__menu-btn">
         <mat-icon>menu</mat-icon>
       </button>
       <div class="header__title-container">
-      <span class="header__title">Meetek</span>
+        <span class="header__title">Meetek</span>
       </div>
       <span class="header__example-spacer"></span>
       <button mat-icon-button class="header__notifications-btn">

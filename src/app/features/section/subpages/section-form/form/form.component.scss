@@ -1,0 +1,93 @@
+@import 'breakpoints';
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  background-color: var(--surface);
+  width: 450px;
+  height: 550px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.input {
+  width: 350px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  font-weight: 400;
+  padding: 0 24px 24px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+mat-form-field {
+  width: 100%;
+
+  mat-error {
+    font-size: var(--S_font-size);
+  }
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  height: 45px;
+  width: 120px;
+  text-transform: uppercase;
+}
+
+.mat-mdc-raised-button:enabled {
+  background-color: var(--success) !important;
+  color: var(--surface) !important;
+}
+
+.organizer-input {
+  display: none;
+}
+
+.letter-counter {
+  position: absolute;
+  right: -14px;
+  bottom: 0;
+  font-size: var(--XS_font-size);
+  color: #000000b8;
+}
+
+@include breakpoint('laptop') {
+  .form-wrapper {
+    box-shadow: none;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@include breakpoint('mobile') {
+  .input {
+    max-width: 300px;
+  }
+}

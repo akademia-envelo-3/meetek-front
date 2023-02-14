@@ -47,8 +47,8 @@ export class SectionsComponent implements OnInit {
     });
   }
 
-  isOwner(owners: User[]) {
-    return owners.some(owner => owner.id === this.loggedUserId);
+  isOwner(owner: User) {
+    return this.loggedUserId && owner.id === this.loggedUserId;
   }
 
   modification(id: number) {
@@ -72,6 +72,6 @@ export class SectionsComponent implements OnInit {
   }
 
   goToAddSection() {
-    this.router.navigate([`/${HOME_PATHS.SECTION.ADD}`]);
+    this.router.navigate([HOME_PATHS.SECTIONS.ADD]);
   }
 }
