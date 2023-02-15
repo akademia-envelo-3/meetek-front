@@ -1,0 +1,60 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  .content-container {
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+
+    .menu-container {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      overflow: auto;
+      transition: 0.3s;
+      overflow-x: hidden;
+      z-index: 99;
+
+      &.active {
+        min-width: 290px;
+
+        .router-container {
+          max-width: calc(100vw - 290px);
+        }
+      }
+    }
+  }
+}
+
+.isLoading {
+  display: none;
+}
+
+.spinner-wrapper {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.router-container {
+  width: 100%;
+}
+
+@media (min-width: 1023px) {
+  .wrapper {
+    .content-container {
+      .menu-container {
+        position: relative;
+      }
+
+      .router-container {
+        overflow: hidden;
+      }
+    }
+  }
+}

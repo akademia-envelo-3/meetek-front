@@ -4,6 +4,10 @@
   </div>
   <div class="form-wrapper">
     <img ngSrc="assets/images/logo.svg" alt="logo" width="200" height="100" priority />
-    <app-form></app-form>
+
+    <app-form [class.isLoading]="isLoading$ | async"></app-form>
+    <div class="spinner-wrapper">
+      <app-spinner></app-spinner>
+    </div>
   </div>
 </main>

@@ -16,5 +16,5 @@ import { NavigationOption } from './navigation.iinterface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationComponent {
-  @Input() navigationOptions!: NavigationOption[];
+  @Input() navigationOptions!: NavigationOption[] | null;
 }

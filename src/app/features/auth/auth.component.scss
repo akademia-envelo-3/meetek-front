@@ -26,9 +26,12 @@ main {
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
 }
 
-.input {
-  width: 300px;
-  height: 50px;
+.isLoading {
+  display: none;
+}
+
+.spinner-wrapper {
+  position: relative;
 }
 
 @include breakpoint('laptop') {
