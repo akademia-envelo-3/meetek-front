@@ -39,13 +39,13 @@ export const initialSectionDetailsState: SectionDetailsState = {
       },
     ],
     sectionOwner: {
-        id: 0,
-        firstName: '',
-        lastName: '',
-      },
+      id: 0,
+      firstName: '',
+      lastName: '',
+    },
   },
 };
 
 export const initialSectionAllUsersState: SectionAllUsersState = {
-  users: []
-}
+  users: [],
+};
