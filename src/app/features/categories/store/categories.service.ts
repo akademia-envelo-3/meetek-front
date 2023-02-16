@@ -15,6 +15,6 @@ export class CategoriesService {
   }
 
   activateCategory(id: number, active: boolean) {
-    return this.http.patch(`${this.BASE_URL}/categories/${id}`, { active });
+    return this.http.patch<Category>(`${this.BASE_URL}/categories/${id}`, { active });
   }
 }
