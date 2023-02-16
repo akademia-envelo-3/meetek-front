@@ -33,7 +33,7 @@ export class CategoriesComponent {
   state$ = this.categoriesStore.state$;
 
   handleActivate({ active, id }: { active: boolean; id: number }) {
-    // brak taska?
+    this.categoriesStore.activateCategory({ id, active });
   }
 
   handleModification(id: number) {

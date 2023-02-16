@@ -1,10 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { selectLoggedUser } from '@core/store/user.selectors';
-import { ComponentStore } from '@ngrx/component-store';
+import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { Store } from '@ngrx/store';
+import { map, Observable, switchMap } from 'rxjs';
 
-import { map } from 'rxjs';
-import { CategoriesService, Category } from '../';
+import { ToastFacadeService } from '@shared/services';
+import { CategoriesService, Category, CategoryUpdate } from '../';
 
 export interface CategoriesState {
   categories: Category[];
@@ -15,6 +16,7 @@ export interface CategoriesState {
 export class CategoriesStore extends ComponentStore<CategoriesState> {
   private categoriesService = inject(CategoriesService);
   private store = inject(Store);
+  private toastService = inject(ToastFacadeService);
 
   constructor() {
     super({
@@ -34,5 +36,15 @@ export class CategoriesStore extends ComponentStore<CategoriesState> {
 
   readonly getIsAdmin = this.effect(() => {
     return this.loggedUser$.pipe(map(user => this.patchState({ isAdmin: user?.role === 'admin' })));
+  });
+
+  readonly activateCategory = this.effect((updateData$: Observable<CategoryUpdate>) => {
+    return updateData$.pipe(
+      switchMap(({ id, active }) => this.categoriesService.activateCategory(id, active)),
+      tapResponse(
+        () => this.toastService.showSuccess('Kategoria została zaktualizowana', 'Sukces'),
+        () => this.toastService.showError('Nie udało się zaktualizować kategorii', 'Błąd')
+      )
+    );
   });
 }

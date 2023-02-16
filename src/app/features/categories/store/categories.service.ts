@@ -13,4 +13,8 @@ export class CategoriesService {
   getAllCategories() {
     return this.http.get<Category[]>(`${this.BASE_URL}/categories`);
   }
+
+  activateCategory(id: number, active: boolean) {
+    return this.http.patch(`${this.BASE_URL}/categories/${id}`, { active });
+  }
 }
