@@ -18,13 +18,13 @@ export class CategoriesCardComponent {
   @Input() isAdmin!: boolean | null;
 
   @Output() activityChange = new EventEmitter<{ active: boolean; id: number }>();
-  @Output() modification = new EventEmitter<number>();
+  @Output() modification = new EventEmitter<Category>();
 
   handleActivityChange(active: boolean, id: number) {
     this.activityChange.emit({ active, id });
   }
 
-  handleModification(id: number) {
-    this.modification.emit(id);
+  handleModification(category: Category) {
+    this.modification.emit(category);
   }
 }

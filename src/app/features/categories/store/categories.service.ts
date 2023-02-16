@@ -13,4 +13,10 @@ export class CategoriesService {
   getAllCategories() {
     return this.http.get<Category[]>(`${this.BASE_URL}/categories`);
   }
+
+  updateCategory(id: number, name: string) {
+    return this.http.patch<Category>(`${this.BASE_URL}/categories/${id}`, {
+      name
+    });
+  }
 }

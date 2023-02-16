@@ -1,5 +1,10 @@
 export interface Category {
-  categoryId: number;
+  id: number;
   name: string;
   active: boolean;
+}
+
+export interface updateCategory {
+  name: string;
+  id: number;
 }

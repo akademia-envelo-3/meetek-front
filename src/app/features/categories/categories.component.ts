@@ -5,7 +5,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
 import { InputDialogComponent, SearchComponent } from '@shared/ui';
-import { CategoriesState, CategoriesStore } from '.';
+import { CategoriesState, CategoriesStore, Category } from '.';
 import { CategoriesCardComponent } from './shared/categories-card/categories-card.component';
 
 @Component({
@@ -36,8 +36,8 @@ export class CategoriesComponent {
     // brak taska?
   }
 
-  handleModification(id: number) {
-    // FT010 - feat: dodanie edycji kategorii + effect
+  handleModification(category: Category) {
+    this.openDialog('Edytuj kategorię', 'Wpisz nazwę kategorii', 'Zapisz', true, true, category.id, category.name)
   }
 
   openAddModal(state: CategoriesState) {
@@ -54,6 +54,8 @@ export class CategoriesComponent {
     inputLabelText: string,
     buttonText: string,
     isAdmin: boolean,
+    isEdit = false,
+    editId?: number,
     importedDialogData?: string
   ) {
     const dialogRef = this.dialog.open(InputDialogComponent, {
@@ -65,9 +67,12 @@ export class CategoriesComponent {
       },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result: string) => {
       if (isAdmin && result) {
         // FT005 - feat: formularz dodawania nowych kategorii
+        if (isEdit && editId) {
+          this.categoriesStore.updateCategory({ name: result, id: editId });
+        }
       }
       if (!isAdmin && result) {
         // brak taska: wysłanie prośby o dodanie kategorii

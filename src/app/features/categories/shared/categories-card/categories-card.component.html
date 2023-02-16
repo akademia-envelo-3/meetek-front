@@ -3,8 +3,8 @@
     <ng-container *ngIf="isAdmin; else user">
       <div class="category" *ngFor="let category of categories">
         <app-category-hashtag-card
-          (activityChange)="handleActivityChange($event, category.categoryId)"
-          (modification)="handleModification(category.categoryId)"
+          (activityChange)="handleActivityChange($event, category.id)"
+          (modification)="handleModification(category)"
           [name]="category.name"
           [isActive]="category.active">
         </app-category-hashtag-card>
