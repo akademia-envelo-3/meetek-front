@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { FormComponent } from '../section-form';
+import { FormComponent } from '.';
 
 @Component({
   selector: 'app-section-form',

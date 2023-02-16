@@ -67,7 +67,7 @@ export class CategoriesComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (isAdmin && result) {
-        // FT005 - feat: formularz dodawania nowych kategorii
+        this.categoriesStore.addCategory(result);
       }
       if (!isAdmin && result) {
         // brak taska: wysłanie prośby o dodanie kategorii
