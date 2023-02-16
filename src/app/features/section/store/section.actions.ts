@@ -11,8 +11,8 @@ export const SectionActions = createActionGroup({
     'edit section': props<{ sectionId: number; section: Partial<Section> }>(),
     'activate section': props<{ sectionId: number }>(),
     'deactivate section': props<{ sectionId: number }>(),
-    'join section': props<{ sectionId: number }>(),
-    'leave section': props<{ sectionId: number }>(),
+    'join section': props<{ sectionId: number, userId: number }>(),
+    'leave section': props<{ sectionId: number, userId: number }>(),
     'get all users': emptyProps(),
   },
 });
@@ -45,10 +45,10 @@ export const SectionsApiActions = createActionGroup({
     'section deactivated success': props<{ sectionId: number }>(),
     'section deactivated failure': emptyProps(),
 
-    'section joined success': props<{ sectionId: number }>(),
+    'section joined success': props<{ section: Section }>(),
     'section joined failure': emptyProps(),
 
-    'section left success': props<{ sectionId: number }>(),
+    'section left success': props<{ section: Section }>(),
     'section left failure': emptyProps(),
 
     'get all users success': props<{ users: User[] }>(),

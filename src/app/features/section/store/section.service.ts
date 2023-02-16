@@ -41,11 +41,11 @@ export class SectionService {
   }
 
   //FT025 - https://github.com/akademia-envelo-3/meetek-front/issues/35
-  join(sectionId: number, userId: number) {
+  joinSection(sectionId: number, userId: number) {
     return this.http.post<Section>(`${this.BASE_URL}/sections/${sectionId}/users/${userId}`, {});
   }
 
-  leave(sectionId: number, userId: number) {
+  leaveSection(sectionId: number, userId: number) {
     return this.http.delete<Section>(`${this.BASE_URL}/sections/${sectionId}/users/${userId}`);
   }
 
