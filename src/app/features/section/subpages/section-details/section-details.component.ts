@@ -30,7 +30,7 @@ export class SectionDetailsComponent {
   userStatus$: Observable<UserStatus> = combineLatest([this.loggedInUser$, this.sectionDetails$]).pipe(
     map(([loggedInUser, sectionDetails]) => {
       const isSectionOwner = loggedInUser.id === sectionDetails.sectionOwner.id;
-      const isSectionMember = sectionDetails.users.includes(loggedInUser.id)
+      const isSectionMember = sectionDetails.users.some(user => user.id === loggedInUser.id);
 
       if (isSectionOwner) {
         return {

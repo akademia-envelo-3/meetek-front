@@ -22,7 +22,13 @@ export const initialSectionDetailsState: SectionDetailsState = {
     name: '',
     description: '',
     isActive: false,
-    users: [],
+    users: [
+      {
+        id: 0,
+        firstName: '',
+        lastName: '',
+      }
+    ],
     events: [
       {
         id: 0,
