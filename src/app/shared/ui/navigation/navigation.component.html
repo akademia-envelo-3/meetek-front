@@ -10,7 +10,7 @@
   </ng-container>
 </nav>
 
-<nav mat-tab-nav-bar class="tab-navigation">
+<nav mat-tab-nav-bar [tabPanel]="tabPanel" class="tab-navigation">
   <a
     mat-tab-link
     *ngFor="let option of navigationOptions"
@@ -20,3 +20,4 @@
     <mat-icon class="nav-icon">{{ option.icon }}</mat-icon>
   </a>
 </nav>
+<mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
