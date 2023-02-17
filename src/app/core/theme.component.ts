@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 
 import { MemberListItemComponent, SectionCardComponent } from '../features/section';
-import { User } from '../features/section/shared/interfaces';
+import { User } from '../features/section';
 import {
   SearchComponent,
   ToggleComponent,

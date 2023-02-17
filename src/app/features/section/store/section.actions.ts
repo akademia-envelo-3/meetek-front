@@ -2,14 +2,13 @@ import { createActionGroup, emptyProps, props } from '@ngrx/store';
 
 import { Section, User, CreateSection } from '../';
 
-
 export const SectionActions = createActionGroup({
   source: 'Sections',
   events: {
     'get sections': emptyProps(),
     'get section': props<{ sectionId: number }>(),
-    'add section': props<{ section: CreateSection, isActive: boolean }>(),
-    'edit section': props<{ sectionId: number, section: Partial<Section> }>(),
+    'add section': props<{ section: CreateSection; isActive: boolean }>(),
+    'edit section': props<{ sectionId: number; section: Partial<Section> }>(),
     'activate section': props<{ sectionId: number }>(),
     'deactivate section': props<{ sectionId: number }>(),
     'join section': props<{ sectionId: number }>(),

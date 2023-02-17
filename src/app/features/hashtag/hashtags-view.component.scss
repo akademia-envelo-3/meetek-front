@@ -1,0 +1,38 @@
+@import 'breakpoints.scss';
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  mat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+    min-height: 75vh;
+    width: 500px;
+
+    .title {
+      margin: 20px 0;
+      font-size: var(--h2_font-size);
+      font-weight: normal;
+    }
+
+    .hashtag-card-container {
+      margin: 8px 0;
+    }
+  }
+}
+
+@include breakpoint('laptop') {
+  .wrapper {
+    mat-card {
+      min-height: auto;
+      width: 100vw;
+      background-color: transparent;
+      box-shadow: none;
+    }
+  }
+}

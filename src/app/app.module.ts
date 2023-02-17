@@ -16,6 +16,8 @@ import { userReducer, UserEffects, UserState } from '@core/store';
 import { TokenInterceptorProvider, HttpErrorInterceptorProvider } from '@shared/interceptors';
 import { NotFoundComponent } from './features/404/not-found.component';
 import { APP_PATHS } from './app-paths';
+import { LoadingInterceptorProvider } from '@shared/interceptors';
+import { SpinnerComponent } from '@shared/ui';
 
 export interface AppState {
   user: UserState;
@@ -26,6 +28,7 @@ export interface AppState {
   imports: [
     BrowserModule,
     HttpClientModule,
+    SpinnerComponent,
     ToastrModule.forRoot(),
     StoreModule.forRoot({
       user: userReducer,
@@ -69,6 +72,7 @@ export interface AppState {
     CookieService,
     TokenInterceptorProvider,
     HttpErrorInterceptorProvider,
+    LoadingInterceptorProvider,
   ],
   bootstrap: [AppComponent],
 })

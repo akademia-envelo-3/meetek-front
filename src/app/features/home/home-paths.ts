@@ -29,7 +29,7 @@ export const HOME_PATHS = {
     ALL: 'sections',
     MY: 'sections/my',
     OWNED: 'sections/owned',
-    ADD: 'section/add',
+    ADD: 'sections/add',
   },
   CATEGORIES: 'categories',
   HASHTAGS: 'hashtags',
