@@ -35,14 +35,13 @@ main {
   flex-direction: row;
   max-width: 310px;
   position: absolute;
-  top: 10px;
-  right: 5%;
+  top: 20px;
+  right: 50px;
 }
 
-h1 {
-  font-weight: normal;
-  margin: 30px;
-  font-size: var(--L_font-size);
+h2 {
+  font-weight: 400;
+  padding: 24px;
 }
 
 input {
@@ -59,10 +58,10 @@ input {
   right: 5%;
 }
 
-button {
-  position: fixed;
-  bottom: 5%;
-  right: 5%;
+.add-button {
+  position: absolute;
+  bottom: 20px;
+  right: 50px;
 }
 
 @include breakpoint('laptop') {
