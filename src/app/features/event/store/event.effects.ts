@@ -33,7 +33,7 @@ export class EventEffects {
       switchMap(({ eventId }) => this.eventService.getOne(eventId)),
       map(event => EventApiActions.eventLoadedSuccess({ event })),
       catchError(() => {
-        this.router.navigate([HOME_PATHS.EVENT.SINGLE.SUBPAGES.HOME]);
+        this.router.navigate([HOME_PATHS.EVENTS.SINGLE.SUBPAGES.HOME]);
         return of(EventApiActions.eventLoadedFailure());
       })
     );

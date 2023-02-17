@@ -8,7 +8,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
 
 import { HOME_PATHS } from '../home';
-import { User } from './shared/interfaces';
 import { SectionCardComponent } from '../section';
 import { selectAllSections } from '../section';
 import { SectionActions } from '../section';
