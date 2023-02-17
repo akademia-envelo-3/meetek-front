@@ -1,23 +1,29 @@
-<div class="wrapper">
-  <app-search [placeholderValue]="'Szukaj'"></app-search>
+<main>
+  <app-search [placeholderValue]="'Wyszukaj'"></app-search>
+  <h2 class="title">Hashtagi</h2>
   <mat-card>
-    <h2 class="title">Hashtagi</h2>
     <div *ngFor="let hashtag of hashtagsCollection$ | async" class="hashtag-card-container">
       <ng-container *ngIf="(userRole$ | async) === 'admin'; else notAdmin">
         <app-category-hashtag-card
           (activityChange)="('')"
           (modification)="('')"
-          [name]="hashtag.name"
+          [name]="'#' + hashtag.name"
           [usage]="hashtag.usage"
           [isActive]="hashtag.isActive"></app-category-hashtag-card>
       </ng-container>
 
       <ng-template #notAdmin>
         <app-category-hashtag-card
-          [name]="hashtag.name"
+          [name]="'#' + hashtag.name"
           [usage]="hashtag.usage"
           [isActive]="hashtag.isActive"></app-category-hashtag-card>
       </ng-template>
     </div>
   </mat-card>
-</div>
+
+  <ng-container *ngIf="userRole$ | async as role">
+    <button class="add-button" mat-fab (click)="openAddHashtagModal(role)">
+      <mat-icon>add</mat-icon>
+    </button>
+  </ng-container>
+</main>

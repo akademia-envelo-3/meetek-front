@@ -16,6 +16,6 @@ export interface SingleHashtagState {
 
 export type HashtagsCollectionState = SingleHashtagState[];
 
-export interface HashtagState {
+export interface HashtagsStoreState {
   hashtags: HashtagsCollectionState;
 }

@@ -1,38 +1,71 @@
 @import 'breakpoints.scss';
 
-.wrapper {
-  width: 100%;
+main {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 64px);
+  width: 100%;
+
+  app-search {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+  }
+
+  .title {
+    margin-top: 60px;
+    padding: 24px;
+    font-size: var(--h2_font-size);
+    font-weight: normal;
+  }
 
   mat-card {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px auto;
-    min-height: 75vh;
-    width: 500px;
-
-    .title {
-      margin: 20px 0;
-      font-size: var(--h2_font-size);
-      font-weight: normal;
-    }
+    width: 400px;
+    margin-bottom: 50px;
+    padding: 12px 0;
 
     .hashtag-card-container {
-      margin: 8px 0;
+      margin: 6px 0;
     }
+  }
+
+  .add-button {
+    position: absolute;
+    bottom: 20px;
+    right: 50px;
   }
 }
 
 @include breakpoint('laptop') {
-  .wrapper {
+  main {
+    background-color: var(--surface);
+    max-height: 100vh;
+    max-width: 100vw;
+
     mat-card {
-      min-height: auto;
+      padding: 0;
       width: 100vw;
       background-color: transparent;
       box-shadow: none;
+      order: 2;
+    }
+
+    .title {
+      margin-top: 0;
+      order: 0;
+    }
+
+    app-search {
+      order: 1;
+      position: static;
+      margin-bottom: 24px;
     }
   }
 }

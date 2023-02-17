@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { API_URL } from '@core/env.token';
-import { HashtagsCollectionResponse, SingleHashtagResponse } from '../hashtag.interface';
+import { HashtagsCollectionResponse, SingleHashtagResponse } from '../shared/hashtag.interface';
 
 @Injectable({ providedIn: 'root' })
-export class HashtagsService {
+export class HashtagService {
   private http = inject(HttpClient);
   private BASE_URL = inject(API_URL);
 
@@ -46,9 +46,5 @@ export class HashtagsService {
 
     //for json-server
     return this.http.patch(`${this.BASE_URL}/hashtags/${hashtagId}`, { name });
-  }
-
-  constructor() {
-    this.getAll().subscribe(console.log);
   }
 }

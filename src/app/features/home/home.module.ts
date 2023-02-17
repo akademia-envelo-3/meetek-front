@@ -20,6 +20,9 @@ import { TestComponent } from '@shared/test/test.component';
 import { UserEffects } from '@core/store/user.effects';
 import { EditFormComponent } from '../section/subpages/edit-form';
 import { CategoriesComponent } from '../categories';
+import { hashtagsReducer } from '../hashtag/store/hashtag.reducer';
+import { HashtagEffects } from '../hashtag/store/hashtag.effects';
+import { HashtagsViewComponent } from '../hashtag/hashtags-view.component';
 
 @NgModule({
   imports: [
@@ -27,8 +30,9 @@ import { CategoriesComponent } from '../categories';
     StoreModule.forFeature('sectionDetails', sectionDetailsReducer),
     StoreModule.forFeature('events', eventReducer),
     EffectsModule.forFeature([EventEffects]),
+    StoreModule.forFeature('hashtags', hashtagsReducer),
     StoreModule.forFeature('users', sectionAllUsersReducer),
-    EffectsModule.forFeature([SectionEffects, UserEffects]),
+    EffectsModule.forFeature([SectionEffects, UserEffects, HashtagEffects]),
     RouterModule.forChild([
       {
         path: HOME_PATHS.DEFAULT,
@@ -62,7 +66,7 @@ import { CategoriesComponent } from '../categories';
           { path: HOME_PATHS.SECTIONS.OWNED, component: TestComponent },
           { path: HOME_PATHS.SECTIONS.ADD, component: SectionFormComponent },
           { path: HOME_PATHS.CATEGORIES, component: CategoriesComponent },
-          { path: HOME_PATHS.HASHTAGS, component: TestComponent },
+          { path: HOME_PATHS.HASHTAGS, component: HashtagsViewComponent },
           { path: HOME_PATHS.NOTIFICATIONS, component: TestComponent },
           { path: HOME_PATHS.REQUEST_BOX, component: TestComponent },
           { path: HOME_PATHS.MEENDER, component: TestComponent },
