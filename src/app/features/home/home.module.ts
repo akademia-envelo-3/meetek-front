@@ -14,6 +14,7 @@ import {
   SectionFormComponent,
   SectionMembersComponent,
   sectionAllUsersReducer,
+  SectionsComponent,
   SectionDetailsComponent,
 } from '../section';
 import { TestComponent } from '@shared/test/test.component';
@@ -57,7 +58,7 @@ import { CategoriesComponent } from '../categories';
               },
             ],
           },
-          { path: HOME_PATHS.SECTIONS.ALL, component: TestComponent },
+          { path: HOME_PATHS.SECTIONS.ALL, component: SectionsComponent },
           { path: HOME_PATHS.SECTIONS.MY, component: TestComponent },
           { path: HOME_PATHS.SECTIONS.OWNED, component: TestComponent },
           { path: HOME_PATHS.SECTIONS.ADD, component: SectionFormComponent },
