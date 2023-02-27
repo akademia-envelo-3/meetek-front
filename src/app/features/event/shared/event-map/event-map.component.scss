@@ -1,0 +1,11 @@
+@import 'breakpoints';
+
+.map {
+  min-width: 100%;
+}
+
+@include breakpoint('mobile') {
+  .map {
+    min-width: 300px;
+  }
+}

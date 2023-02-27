@@ -21,6 +21,7 @@ import { TestComponent } from '@shared/test/test.component';
 import { UserEffects } from '@core/store/user.effects';
 import { EditFormComponent } from '../section/subpages/edit-form';
 import { CategoriesComponent } from '../categories';
+import { EventDetailsComponent } from '../event/subpages/event-details/event-details.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,16 @@ import { CategoriesComponent } from '../categories';
         path: HOME_PATHS.DEFAULT,
         component: HomeComponent,
         children: [
-          { path: HOME_PATHS.EVENTS.SINGLE.CORE, component: TestComponent, children: [] },
+          { 
+            path: HOME_PATHS.EVENTS.SINGLE.CORE, 
+            children: [
+              {
+                path: '',
+                component: EventDetailsComponent,
+                pathMatch: 'full'
+              }
+            ] 
+          },
           { path: HOME_PATHS.EVENTS.ALL, component: TestComponent },
           { path: HOME_PATHS.EVENTS.MY, component: TestComponent },
           { path: HOME_PATHS.EVENTS.OWNED, component: TestComponent },
