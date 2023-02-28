@@ -4,7 +4,7 @@ export interface Category {
   active: boolean;
 }
 
-export interface CategoryActive {
+export interface CategoryStatus {
   id: number;
   active: boolean;
 }
