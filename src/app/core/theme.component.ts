@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 
 import { MemberListItemComponent, SectionCardComponent } from '../features/section';
-import { User } from '../features/section/shared/interfaces';
+import { User } from '../features/section';
 import {
   SearchComponent,
   ToggleComponent,
@@ -120,10 +120,10 @@ import {
     <button class="modification">Modyfikuj</button>
     <button class="deactivation">Dezaktywuj</button>
     <button class="activation">Aktywuj</button>
-    <button class="success mediumButton">Zatwierdź</button>
-    <button class="error mediumButton">Odrzuć</button>
-    <button class="warning mediumButton">Nie wiem</button>
-    <button class="success mediumButton" disabled>Nieaktywny</button>
+    <button class="success smallButton">Zatwierdź</button>
+    <button class="error smallButton">Odrzuć</button>
+    <button class="warning smallButton">Nie wiem</button>
+    <button class="success smallButton" disabled>Nieaktywny</button>
     <hr />
     <button class="success largeButton">Zatwierdź</button>
     <button class="success mediumButton">Zatwierdź</button>

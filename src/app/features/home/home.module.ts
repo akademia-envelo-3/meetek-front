@@ -3,6 +3,8 @@ import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
+import { eventReducer } from '../event';
+import { EventEffects } from '../event/store/event.effects';
 import { HOME_PATHS } from './home-paths';
 import { HomeComponent } from './home.component';
 import {
@@ -12,7 +14,8 @@ import {
   SectionFormComponent,
   SectionMembersComponent,
   sectionAllUsersReducer,
-  SectionDetailsComponent
+  SectionsComponent,
+  SectionDetailsComponent,
 } from '../section';
 import { TestComponent } from '@shared/test/test.component';
 import { UserEffects } from '@core/store/user.effects';
@@ -23,6 +26,8 @@ import { CategoriesComponent } from '../categories';
   imports: [
     StoreModule.forFeature('sections', sectionReducer),
     StoreModule.forFeature('sectionDetails', sectionDetailsReducer),
+    StoreModule.forFeature('events', eventReducer),
+    EffectsModule.forFeature([EventEffects]),
     StoreModule.forFeature('users', sectionAllUsersReducer),
     EffectsModule.forFeature([SectionEffects, UserEffects]),
     RouterModule.forChild([
@@ -53,7 +58,7 @@ import { CategoriesComponent } from '../categories';
               },
             ],
           },
-          { path: HOME_PATHS.SECTIONS.ALL, component: TestComponent },
+          { path: HOME_PATHS.SECTIONS.ALL, component: SectionsComponent },
           { path: HOME_PATHS.SECTIONS.MY, component: TestComponent },
           { path: HOME_PATHS.SECTIONS.OWNED, component: TestComponent },
           { path: HOME_PATHS.SECTIONS.ADD, component: SectionFormComponent },
@@ -66,8 +71,8 @@ import { CategoriesComponent } from '../categories';
       },
       {
         path: HOME_PATHS.CATEGORIES,
-        component: CategoriesComponent
-      }
+        component: CategoriesComponent,
+      },
     ]),
   ],
 })

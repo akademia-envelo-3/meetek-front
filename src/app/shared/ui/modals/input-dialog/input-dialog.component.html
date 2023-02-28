@@ -9,18 +9,15 @@
   </div>
 
   <form [formGroup]="textForm" (ngSubmit)="submit()">
-      <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline">
       <mat-label>{{ data.inputLabelText }}</mat-label>
-      <input
-        matInput
-        formControlName="text"
-        [placeholder]="data.inputLabelText" />
-        <mat-error></mat-error>
-      </mat-form-field>
-      <div mat-dialog-actions class="input-dialog__btn-container">
-        <button type="submit" class="input-dialog__btn success" mat-button>
-          {{ data.buttonText }}
-        </button>
-      </div>
-    </form>
+      <input matInput formControlName="text" [placeholder]="data.inputLabelText" />
+      <mat-error></mat-error>
+    </mat-form-field>
+    <div mat-dialog-actions class="input-dialog__btn-container">
+      <button type="submit" class="input-dialog__btn success" mat-button>
+        {{ data.buttonText }}
+      </button>
+    </div>
+  </form>
 </div>

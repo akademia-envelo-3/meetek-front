@@ -82,14 +82,14 @@ button {
   }
 
   &.mediumButton{
-    width: 120px;
-    height: 35px;
+    width: 160px;
+    height: 40px;
   }
 
   &.smallButton{
-    width: 80px;
-    height: 25px;
-    font-size: var(--XXS_font-size);
+    width: 100px;
+    height: 35px;
+    font-size: var(--S_font-size);
   }
 
 }

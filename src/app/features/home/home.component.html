@@ -4,7 +4,10 @@
     <div *ngIf="userData$ | async as user" [class.active]="isMenuActive$ | async" class="menu-container">
       <app-menu [user]="user"></app-menu>
     </div>
-    <div class="router-container">
+    <div class="spinner-wrapper">
+      <app-spinner></app-spinner>
+    </div>
+    <div [class.isLoading]="isLoading$ | async" class="router-container">
       <router-outlet> </router-outlet>
     </div>
   </div>
