@@ -2,10 +2,10 @@ import { inject, Injectable } from '@angular/core';
 import { selectLoggedUser } from '@core/store/user.selectors';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { Store } from '@ngrx/store';
-import { ToastFacadeService } from '@shared/services';
-
 import { map, Observable, switchMap } from 'rxjs';
-import { CategoriesService, Category, updateCategory } from '../';
+
+import { ToastFacadeService } from '@shared/services';
+import { CategoriesService, Category, UpdateCategory } from '../';
 
 export interface CategoriesState {
   categories: Category[];
@@ -38,7 +38,7 @@ export class CategoriesStore extends ComponentStore<CategoriesState> {
     return this.loggedUser$.pipe(map(user => this.patchState({ isAdmin: user?.role === 'admin' })));
   });
 
-  readonly updateCategory = this.effect((category$: Observable<updateCategory>) => {
+  readonly updateCategory = this.effect((category$: Observable<UpdateCategory>) => {
     return category$.pipe(
       switchMap(({ id, name }) => this.categoriesService.updateCategory(id, name)),
       tapResponse(

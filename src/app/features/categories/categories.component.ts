@@ -1,7 +1,7 @@
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
 import { InputDialogComponent, SearchComponent } from '@shared/ui';
@@ -37,44 +37,44 @@ export class CategoriesComponent {
   }
 
   handleModification(category: Category) {
-    this.openDialog('Edytuj kategorię', 'Wpisz nazwę kategorii', 'Zapisz', true, true, category.id, category.name)
+    const config: MatDialogConfig = {
+      data: {
+        title: 'Edytuj kategorię',
+        inputLabelText: 'Wpisz nazwę kategorii',
+        buttonText: 'Zapisz',
+        isAdmin: true,
+        isEdit: true,
+        editId: category.id,
+        importedDialogData: category.name,
+      },
+    };
+    this.openDialog(config);
   }
 
   openAddModal(state: CategoriesState) {
     const { isAdmin } = state;
-    if (isAdmin) {
-      this.openDialog('Dodaj kategorię', 'Wpisz nazwę kategorii', 'Dodaj', isAdmin);
-    } else {
-      this.openDialog('Nazwa kategorii', 'Wpisz nazwę kategorii', 'wyślij prośbę', isAdmin);
-    }
+    const config: MatDialogConfig = {
+      data: {
+        title: isAdmin ? 'Dodaj kategorię' : 'Nazwa kategorii',
+        inputLabelText: 'Wpisz nazwę kategorii',
+        buttonText: isAdmin ? 'Dodaj' : 'Wyślij prośbę',
+        isAdmin,
+      },
+    };
+    this.openDialog(config);
   }
 
-  private openDialog(
-    title: string,
-    inputLabelText: string,
-    buttonText: string,
-    isAdmin: boolean,
-    isEdit = false,
-    editId?: number,
-    importedDialogData?: string
-  ) {
-    const dialogRef = this.dialog.open(InputDialogComponent, {
-      data: {
-        title,
-        inputLabelText,
-        importedDialogData,
-        buttonText,
-      },
-    });
+  private openDialog(config: MatDialogConfig) {
+    const dialogRef = this.dialog.open(InputDialogComponent, config);
 
     dialogRef.afterClosed().subscribe((result: string) => {
-      if (isAdmin && result) {
+      if (config.data.isAdmin && result) {
         // FT005 - feat: formularz dodawania nowych kategorii
-        if (isEdit && editId) {
-          this.categoriesStore.updateCategory({ name: result, id: editId });
+        if (config.data.isEdit && config.data.editId) {
+          this.categoriesStore.updateCategory({ name: result, id: config.data.editId });
         }
       }
-      if (!isAdmin && result) {
+      if (!config.data.isAdmin && result) {
         // brak taska: wysłanie prośby o dodanie kategorii
       }
     });
