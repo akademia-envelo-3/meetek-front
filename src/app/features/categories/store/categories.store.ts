@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { map, Observable, switchMap } from 'rxjs';
 
 import { ToastFacadeService } from '@shared/services';
-import { CategoriesService, Category, CategoryActive } from '../';
+import { CategoriesService, Category, CategoryStatus } from '../';
 
 export interface CategoriesState {
   categories: Category[];
@@ -38,14 +38,14 @@ export class CategoriesStore extends ComponentStore<CategoriesState> {
     return this.loggedUser$.pipe(map(user => this.patchState({ isAdmin: user?.role === 'admin' })));
   });
 
-  readonly activateCategory = this.effect((updateData$: Observable<CategoryActive>) => {
+  readonly activateCategory = this.effect((updateData$: Observable<CategoryStatus>) => {
     return updateData$.pipe(
       switchMap(({ id, active }) => this.categoriesService.activateCategory(id, active)),
       tapResponse(
-        (res) => {
+        res => {
           this.toastService.showSuccess('Kategoria została zaktualizowana', 'Sukces');
           this.patchState({
-            categories: this.get().categories.map((category) => {
+            categories: this.get().categories.map(category => {
               if (category.id === res.id) {
                 return res;
               }
