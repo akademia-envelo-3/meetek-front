@@ -40,7 +40,6 @@ export class SectionService {
     });
   }
 
-  //FT025 - https://github.com/akademia-envelo-3/meetek-front/issues/35
   joinSection(sectionId: number, userId: number) {
     return this.http.post<Section>(`${this.BASE_URL}/sections/${sectionId}/users/${userId}`, {});
   }

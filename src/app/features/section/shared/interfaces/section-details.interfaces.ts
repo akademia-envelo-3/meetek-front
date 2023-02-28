@@ -1,4 +1,4 @@
-export interface UserStatus {
+export interface SectionAccessInfo {
   status: string;
   button: Button;
   sectionId: number;

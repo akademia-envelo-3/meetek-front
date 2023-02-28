@@ -9,7 +9,7 @@ import { combineLatest, map, Observable, of, take } from 'rxjs';
 
 import { NavigationComponent, NavigationOption } from '@shared/ui';
 import { sectionDetailsActions, selectSectionDetails } from '../../store';
-import { UserStatus } from '../..';
+import { SectionAccessInfo } from '../..';
 
 @Component({
   selector: 'app-section-details',
@@ -27,7 +27,7 @@ export class SectionDetailsComponent {
   loggedInUser$ = this.store.select(selectLoggedUser);
   navigationOptions$ = this.getNavigationOptions();
 
-  userStatus$: Observable<UserStatus> = combineLatest([this.loggedInUser$, this.sectionDetails$]).pipe(
+  userStatus$: Observable<SectionAccessInfo> = combineLatest([this.loggedInUser$, this.sectionDetails$]).pipe(
     map(([loggedInUser, sectionDetails]) => {
       const isSectionOwner = loggedInUser.id === sectionDetails.sectionOwner.id;
       const isSectionMember = sectionDetails.users.some(user => user.id === loggedInUser.id);
