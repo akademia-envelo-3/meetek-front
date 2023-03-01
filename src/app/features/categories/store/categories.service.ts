@@ -13,4 +13,11 @@ export class CategoriesService {
   getAllCategories() {
     return this.http.get<Category[]>(`${this.BASE_URL}/categories`);
   }
+
+  addCategory(categoryName: string) {
+    return this.http.post<Category>(`${this.BASE_URL}/categories`, { 
+      name: categoryName,
+      active: true
+     });
+  }
 }

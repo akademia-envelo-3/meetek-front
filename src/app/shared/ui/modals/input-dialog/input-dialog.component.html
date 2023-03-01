@@ -8,25 +8,16 @@
     <p class="input-dialog__title">{{ data.title }}</p>
   </div>
 
-  <div class="input-dialog__input-container">
-    <form class="example-form">
-      <input
-        [formControl]="text"
-        [(ngModel)]="data.importedDialogData"
-        class="input-dialog__input"
-        [placeholder]="data.inputLabelText"
-        name="dialogData"
-        maxlength="50" />
-      <p class="input-dialog__maxlength" *ngIf="text.value?.length === 50">Maksymalna liczba znaków to 50</p>
-    </form>
-  </div>
-  <div mat-dialog-actions class="input-dialog__btn-container">
-    <button
-      [mat-dialog-close]="data.importedDialogData"
-      type="submit"
-      class="input-dialog__btn success mediumButton"
-      mat-button>
-      {{ data.buttonText }}
-    </button>
-  </div>
+  <form [formGroup]="textForm" (ngSubmit)="submit()">
+    <mat-form-field appearance="outline">
+      <mat-label>{{ data.inputLabelText }}</mat-label>
+      <input matInput formControlName="text" [placeholder]="data.inputLabelText" />
+      <mat-error></mat-error>
+    </mat-form-field>
+    <div mat-dialog-actions class="input-dialog__btn-container">
+      <button type="submit" class="input-dialog__btn success" mat-button>
+        {{ data.buttonText }}
+      </button>
+    </div>
+  </form>
 </div>
