@@ -33,7 +33,7 @@ export class CategoriesComponent {
   state$ = this.categoriesStore.state$;
 
   handleActivate({ active, id }: { active: boolean; id: number }) {
-    // brak taska?
+    this.categoriesStore.activateCategory({ id, active });
   }
 
   handleModification(category: Category) {
@@ -69,9 +69,10 @@ export class CategoriesComponent {
 
     dialogRef.afterClosed().subscribe((result: string) => {
       if (config.data.isAdmin && result) {
-        // FT005 - feat: formularz dodawania nowych kategorii
         if (config.data.isEdit && config.data.editId) {
           this.categoriesStore.updateCategory({ name: result, id: config.data.editId });
+        } else {
+          this.categoriesStore.addCategory(result);
         }
       }
       if (!config.data.isAdmin && result) {

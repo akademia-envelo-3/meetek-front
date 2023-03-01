@@ -1,0 +1,36 @@
+<main>
+  <h2>Wszystkie sekcje</h2>
+  <div class="content">
+    <div class="search">
+      <app-search [placeholderValue]="'Wyszukaj'"></app-search>
+    </div>
+    <mat-list class="list">
+      <ng-container *ngFor="let section of allSections$ | async as sections">
+        <ng-container *ngIf="loggedUserId$ | async as userId">
+          <app-section-card
+            *ngIf="userId === section.sectionOwner.id; else notOwner"
+            [name]="section.name"
+            (modification)="modification(section.id)"
+            (activation)="activation(section.id)"
+            (deactivation)="deactivation(section.id)"
+            [numberOfMembers]="section.users.length"
+            [isActive]="section.isActive"
+            (click)="goToSection(section.id)">
+          </app-section-card>
+
+          <ng-template #notOwner>
+            <app-section-card
+              [name]="section.name"
+              [numberOfMembers]="section.users.length"
+              [isActive]="section.isActive"
+              (click)="goToSection(section.id)">
+            </app-section-card>
+          </ng-template>
+        </ng-container>
+      </ng-container>
+    </mat-list>
+  </div>
+</main>
+<button class="add-button" mat-fab color="accent" (click)="goToAddSection()">
+  <mat-icon>add</mat-icon>
+</button>

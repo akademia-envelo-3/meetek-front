@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { API_URL } from '@core/env.token';
 import { Category } from '..';
 
-
 @Injectable({ providedIn: 'root' })
 export class CategoriesService {
   private http = inject(HttpClient);
@@ -14,9 +13,20 @@ export class CategoriesService {
     return this.http.get<Category[]>(`${this.BASE_URL}/categories`);
   }
 
+  activateCategory(id: number, active: boolean) {
+    return this.http.patch<Category>(`${this.BASE_URL}/categories/${id}`, { active });
+  }
+
+  addCategory(categoryName: string) {
+    return this.http.post<Category>(`${this.BASE_URL}/categories`, {
+      name: categoryName,
+      active: true,
+    });
+  }
+
   updateCategory(id: number, name: string) {
     return this.http.patch<Category>(`${this.BASE_URL}/categories/${id}`, {
-      name
+      name,
     });
   }
 }

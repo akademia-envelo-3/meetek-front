@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { map, Observable, switchMap } from 'rxjs';
 
 import { ToastFacadeService } from '@shared/services';
-import { CategoriesService, Category, UpdateCategory } from '../';
+import { CategoriesService, Category, CategoryStatus, UpdateCategory } from '../';
 
 export interface CategoriesState {
   categories: Category[];
@@ -37,6 +37,41 @@ export class CategoriesStore extends ComponentStore<CategoriesState> {
   readonly getIsAdmin = this.effect(() => {
     return this.loggedUser$.pipe(map(user => this.patchState({ isAdmin: user?.role === 'admin' })));
   });
+
+  readonly activateCategory = this.effect((updateData$: Observable<CategoryStatus>) => {
+    return updateData$.pipe(
+      switchMap(({ id, active }) => this.categoriesService.activateCategory(id, active)),
+      tapResponse(
+        res => {
+          this.toastService.showSuccess('Kategoria została zaktualizowana', 'Sukces');
+          this.patchState({
+            categories: this.get().categories.map(category => {
+              if (category.id === res.id) {
+                return res;
+              }
+              return category;
+            }),
+          });
+        },
+        () => this.toastService.showError('Nie udało się zaktualizować kategorii', 'Błąd')
+      )
+    );
+  });
+  
+  readonly addCategory = this.effect((categoryName$: Observable<string>) => {
+    return categoryName$.pipe(
+      switchMap(categoryName => this.categoriesService.addCategory(categoryName)),
+      tapResponse(
+        (res) => {
+          this.patchState({ categories: [...this.get().categories, res] });
+          this.toastService.showSuccess('Dodano kategorię', 'Sukces');
+        },
+        () => {
+          this.toastService.showError('Nie udało się dodać kategorii', 'Błąd')
+        },
+      )
+    );
+  })
 
   readonly updateCategory = this.effect((category$: Observable<UpdateCategory>) => {
     return category$.pipe(
