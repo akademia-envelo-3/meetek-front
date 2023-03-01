@@ -57,7 +57,7 @@ export class InputDialogComponent {
 
   private createTextForm() {
     return this.formBuilder.group({
-      text: this.formBuilder.control('', [
+      text: this.formBuilder.control(this.data.importedDialogData, [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(20),

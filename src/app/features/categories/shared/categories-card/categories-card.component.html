@@ -4,7 +4,7 @@
       <div class="category" *ngFor="let category of categories">
         <app-category-hashtag-card
           (activityChange)="handleActivityChange($event, category.id)"
-          (modification)="handleModification(category.id)"
+          (modification)="handleModification(category)"
           [name]="category.name"
           [isActive]="category.active">
         </app-category-hashtag-card>

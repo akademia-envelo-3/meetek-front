@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { map, Observable, switchMap } from 'rxjs';
 
 import { ToastFacadeService } from '@shared/services';
-import { CategoriesService, Category, CategoryStatus } from '../';
+import { CategoriesService, Category, CategoryStatus, UpdateCategory } from '../';
 
 export interface CategoriesState {
   categories: Category[];
@@ -72,4 +72,23 @@ export class CategoriesStore extends ComponentStore<CategoriesState> {
       )
     );
   })
+
+  readonly updateCategory = this.effect((category$: Observable<UpdateCategory>) => {
+    return category$.pipe(
+      switchMap(({ id, name }) => this.categoriesService.updateCategory(id, name)),
+      tapResponse(
+        res => {
+          const categories = this.get().categories.map(category => {
+            if (category.id === res.id) {
+              return res;
+            }
+            return category;
+          });
+          this.patchState({ categories });
+          this.toastService.showSuccess('Zaktualizowano kategorię', 'Sukces');
+        },
+        () => this.toastService.showError('Nie udało się zaktualizować kategorii', 'Błąd')
+      )
+    );
+  });
 }
