@@ -10,7 +10,7 @@ import { FormsModule, NonNullableFormBuilder, Validators } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { DialogData } from '../index';
-import { whitespaceValidator } from 'src/app/features/auth';
+import { whitespaceValidator } from '../validators/modal.validator';
 
 @Component({
   selector: 'app-category-dialog',
