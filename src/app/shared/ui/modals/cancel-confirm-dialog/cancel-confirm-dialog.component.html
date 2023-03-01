@@ -8,7 +8,9 @@
     <p class="cancel-confirm-dialog__title">{{ data.text }}</p>
   </div>
   <div class="cancel-confirm-dialog__btn-container">
-    <button (click)="closeDialog()" mat-button class="cancel-confirm-dialog__cancel-btn error">anuluj</button>
-    <button mat-button class="cancel-confirm-dialog__confirm-btn success">potwierdź</button>
+    <button (click)="closeDialog()" mat-button class="cancel-confirm-dialog__cancel-btn error smallButton">
+      anuluj
+    </button>
+    <button mat-button class="cancel-confirm-dialog__confirm-btn success smallButton">potwierdź</button>
   </div>
 </div>

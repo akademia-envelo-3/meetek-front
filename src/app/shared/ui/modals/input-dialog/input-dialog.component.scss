@@ -1,69 +1,25 @@
-@import 'breakpoints.scss';
 @import 'button.scss';
 
-@include breakpoint('laptop') {
-  .input-dialog {
-    width: 240px;
-    height: 200px;
-  }
-
-  .input-dialog__btn-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 150px;
-  }
-
-  .input-dialog__input {
-    margin-top: 10px;
-    height: 34px;
-    width: 180px;
-    border-radius: 5px;
-    outline-color: var(--divider);
-    border: 1px solid var(--divider);
-    padding: 2px;
-    font-size: var(--M_font-size);
-    text-align: center;
-  }
-
-  .input-dialog__btn-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
-    position: absolute;
-    top: 130px;
-    width: 240px;
-  }
+form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 6px;
 }
 
-@media screen and (min-width: 1024px) {
-  .input-dialog {
-    width: 300px;
-    height: 200px;
-  }
+mat-error {
+  font-size: var(--XS_font-size);
+}
 
-  .input-dialog__btn-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
-    position: absolute;
-    top: 130px;
-    width: 300px;
-  }
+.input-dialog {
+  padding: 6px 16px;
+}
 
-  .input-dialog__input {
-    margin-top: 10px;
-    height: 34px;
-    width: 230px;
-    border-radius: 5px;
-    outline-color: var(--divider);
-    border: 1px solid var(--divider);
-    padding: 2px;
-    font-size: var(--M_font-size);
-    text-align: center;
-  }
+.input-dialog__btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  max-width: 300px;
 }
 
 .input-dialog__title {
@@ -75,13 +31,6 @@
 .input-dialog__title-container {
   justify-content: center;
   align-items: center;
-}
-
-.input-dialog__input-container {
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  text-align: center;
 }
 
 .input-dialog__btn {
@@ -98,11 +47,11 @@
 .input-dialog__close-btn {
   background-color: var(--white);
   color: var(--text);
-  transition: 0,1s;
+  transition: 0, 1s;
   outline: none;
 }
 
-.input-dialog__close-btn :hover {
+.input-dialog__close-btn:hover {
   background-color: var(--divider);
   transition: 10ms;
 }
@@ -113,22 +62,3 @@
 .input-dialog__icon {
   padding: 3px;
 }
-
-input{
-  outline: none;
-}
-
-input:focus{
-  border:2px solid var(--divider);
-}
-
-.input-dialog__maxlength{
- font-size: var(--XS_font-size);
- color: var(--divider);
- padding: 2px;
-}
-
-input:focus::-webkit-input-placeholder { color:transparent; }
-input:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
-input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
-input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */

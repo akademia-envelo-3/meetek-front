@@ -57,4 +57,19 @@ export class CategoriesStore extends ComponentStore<CategoriesState> {
       )
     );
   });
+  
+  readonly addCategory = this.effect((categoryName$: Observable<string>) => {
+    return categoryName$.pipe(
+      switchMap(categoryName => this.categoriesService.addCategory(categoryName)),
+      tapResponse(
+        (res) => {
+          this.patchState({ categories: [...this.get().categories, res] });
+          this.toastService.showSuccess('Dodano kategorię', 'Sukces');
+        },
+        () => {
+          this.toastService.showError('Nie udało się dodać kategorii', 'Błąd')
+        },
+      )
+    );
+  })
 }
