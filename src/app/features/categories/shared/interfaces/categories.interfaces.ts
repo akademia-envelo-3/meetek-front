@@ -3,3 +3,8 @@ export interface Category {
   name: string;
   active: boolean;
 }
+
+export interface CategoryStatus {
+  id: number;
+  active: boolean;
+}
