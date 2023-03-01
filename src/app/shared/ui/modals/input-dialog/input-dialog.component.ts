@@ -10,6 +10,7 @@ import { FormsModule, NonNullableFormBuilder, Validators } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { DialogData } from '../index';
+import { whitespaceValidator } from 'src/app/features/auth';
 
 @Component({
   selector: 'app-category-dialog',
@@ -32,7 +33,7 @@ import { DialogData } from '../index';
 })
 export class InputDialogComponent {
   private dialog = inject(MatDialogRef);
-  private formBuilder = inject(NonNullableFormBuilder)
+  private formBuilder = inject(NonNullableFormBuilder);
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
@@ -56,7 +57,12 @@ export class InputDialogComponent {
 
   private createTextForm() {
     return this.formBuilder.group({
-      text: this.formBuilder.control('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
+      text: this.formBuilder.control('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20),
+        whitespaceValidator,
+      ]),
     });
   }
 }
