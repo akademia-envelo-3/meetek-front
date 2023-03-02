@@ -29,15 +29,7 @@ export const initialSectionDetailsState: SectionDetailsState = {
         lastName: '',
       }
     ],
-    events: [
-      {
-        id: 0,
-        name: '',
-        dateTimeFrom: '',
-        dateTimeTo: '',
-        location: '',
-      },
-    ],
+    events: [],
     sectionOwner: {
       id: 0,
       firstName: '',

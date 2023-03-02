@@ -1,0 +1,42 @@
+<main *ngIf="userStatus$ | async as userStatus">
+  <mat-card>
+    <app-navigation [navigationOptions]="navigationOptions$ | async"></app-navigation>
+    <h2 class="status">{{ userStatus.status }}</h2>
+    <div class="event-wrapper" *ngIf="eventDetails$ | async as event">
+      <div class="info-wrapper">
+        <div class="info-container">
+          <h2>{{ event.name }}</h2>
+          <p>{{ event.owner.firstname }} {{ event.owner.lastname }}</p>
+          <div class="event-status" *ngIf="event.private; else public">
+            <p>Wydarzenie prywatne</p>
+            <mat-icon>lock</mat-icon>
+          </div>
+          <ng-template class="event-status" #public>
+            <p>Wydarzenie publiczne</p>
+            <mat-icon>lock</mat-icon>
+          </ng-template>
+          <p>{{ event.dateTimeFrom }}</p>
+          <p>{{ event.locationName }}</p>
+        </div>
+        <div class="map-wrapper">
+          <app-event-map
+          *ngIf="event.coordinates.latitude"
+          [lat]="event.coordinates.latitude"
+          [lng]="event.coordinates.longitude">
+        </app-event-map>
+        </div>
+      </div>
+      <div class="hashtags-wrapper">
+        <p *ngFor="let hashtag of event.hashtags">&#35;{{ hashtag.name }}</p>
+      </div>
+      <div>
+        <p>{{ event.description }}</p>
+      </div>
+    </div>
+    <div class="button-wrapper">
+      <button *ngFor="let button of userStatus.buttons" [ngClass]="button.class" class="smallButton">
+        {{ button.text }}
+      </button>
+    </div>
+  </mat-card>
+</main>
