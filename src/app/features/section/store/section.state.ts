@@ -27,7 +27,7 @@ export const initialSectionDetailsState: SectionDetailsState = {
         id: 0,
         firstName: '',
         lastName: '',
-      },
+      }
     ],
     events: [
       {

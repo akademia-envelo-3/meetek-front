@@ -13,3 +13,4 @@ export * from './shared/list/list-item/member-list-item.component';
 export * from './shared/list/member-list/member-list.component';
 export * from './sections.component';
 export * from './subpages/section-details/section-details.component';
+export * from './shared/interfaces/section-details.interfaces';

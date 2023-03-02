@@ -1,6 +1,6 @@
-<main>
+<main *ngIf="userStatus$ | async as accessInfo">
   <mat-card>
-    <p class="status">{{ userStatus$ | async }}</p>
+    <p class="status">{{ accessInfo.status }}</p>
     <app-navigation [navigationOptions]="navigationOptions$ | async"></app-navigation>
     <div class="info-wrapper" *ngIf="sectionDetails$ | async as section">
       <div class="info">
@@ -11,7 +11,13 @@
         {{ section.description }}
       </div>
       <div class="button-wrapper">
-        <button class="success mediumButton">dołącz</button>
+        <button
+          class="mediumButton"
+          [ngClass]="accessInfo.button.class"
+          [routerLink]="accessInfo.button.link"
+          (click)="sectionActions(accessInfo.button.action, accessInfo.sectionId, accessInfo.userId)">
+          {{ accessInfo.button.text }}
+        </button>
       </div>
     </div>
   </mat-card>

@@ -1,19 +1,20 @@
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe, NgClass, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { selectLoggedUser } from '@core/store/user.selectors';
 import { Store } from '@ngrx/store';
 import { combineLatest, map, Observable, of, take } from 'rxjs';
 
 import { NavigationComponent, NavigationOption } from '@shared/ui';
 import { sectionDetailsActions, selectSectionDetails } from '../../store';
+import { SectionAccessInfo } from '../..';
 
 @Component({
   selector: 'app-section-details',
   standalone: true,
-  imports: [NgIf, AsyncPipe, NavigationComponent, MatButtonModule, MatCardModule],
+  imports: [NgIf, AsyncPipe, NavigationComponent, MatButtonModule, MatCardModule, NgClass, RouterLink],
   templateUrl: './section-details.component.html',
   styleUrls: ['./section-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,22 +27,60 @@ export class SectionDetailsComponent {
   loggedInUser$ = this.store.select(selectLoggedUser);
   navigationOptions$ = this.getNavigationOptions();
 
-  userStatus$ = combineLatest([this.loggedInUser$, this.sectionDetails$]).pipe(
+  userStatus$: Observable<SectionAccessInfo> = combineLatest([this.loggedInUser$, this.sectionDetails$]).pipe(
     map(([loggedInUser, sectionDetails]) => {
-      const isSectionOwner$ = of(loggedInUser?.id === sectionDetails.sectionOwner.id);
-      const isSectionMember$ = of(sectionDetails.users.some(participant => participant.id === loggedInUser?.id));
+      const isSectionOwner = loggedInUser.id === sectionDetails.sectionOwner.id;
+      const isSectionMember = sectionDetails.users.some(user => user.id === loggedInUser.id);
 
-      if (isSectionOwner$) {
-        return 'Jesteś właścicielem tej sekcji';
+      if (isSectionOwner) {
+        return {
+          status: 'Jesteś właścicielem tej sekcji',
+          button: {
+            text: 'Edytuj',
+            link: `/section/${sectionDetails.id}/edit`,
+            action: 'edit',
+            class: 'warning',
+          },
+          sectionId: sectionDetails.id,
+          userId: loggedInUser?.id,
+        };
       }
 
-      if (isSectionMember$) {
-        return 'Jesteś członkiem tej sekcji';
+      if (isSectionMember) {
+        return {
+          status: 'Jesteś członkiem tej sekcji',
+          button: {
+            text: 'Opuść',
+            action: 'leave',
+            class: 'error',
+          },
+          sectionId: sectionDetails.id,
+          userId: loggedInUser?.id,
+        };
       }
 
-      return 'Nie jesteś członkiem tej sekcji';
+      return {
+        status: 'Nie jesteś członkiem tej sekcji',
+        button: {
+          text: 'Dołącz',
+          action: 'join',
+          class: 'success',
+        },
+        sectionId: sectionDetails.id,
+        userId: loggedInUser?.id,
+      };
     })
   );
+
+  sectionActions(action: string, sectionId: number, userId: number) {
+    if (action === 'join') {
+      // jak backend bedzie gotowy dodać dispatch
+    }
+
+    if (action === 'leave') {
+      // jak backend bedzie gotowy dodać dispatch
+    }
+  }
 
   getNavigationOptions(): Observable<NavigationOption[]> {
     return (
