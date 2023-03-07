@@ -16,8 +16,8 @@ import { userReducer, UserEffects, UserState } from '@core/store';
 import { TokenInterceptorProvider, HttpErrorInterceptorProvider } from '@shared/interceptors';
 import { NotFoundComponent } from './features/404/not-found.component';
 import { APP_PATHS } from './app-paths';
-import { LoadingInterceptorProvider } from '@shared/interceptors';
-import { SpinnerComponent } from '@shared/ui';
+import { LoadingInterceptorProvider } from '@shared/interceptors/loader.interceptor';
+import { SpinnerComponent } from '@shared/ui/spinner/spinner.component';
 
 export interface AppState {
   user: UserState;

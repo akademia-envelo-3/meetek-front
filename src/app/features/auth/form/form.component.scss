@@ -20,7 +20,8 @@ form {
 .inputs-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 20px;
+  margin: 0 0 20px 0;
 }
 
 mat-form-field {

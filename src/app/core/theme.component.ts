@@ -1,6 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { MenuComponent, MenuInputs, MenuService } from '@shared/ui';
+import { MenuComponent, MenuInputs, MenuService } from '@shared/ui/menu';
 import { map } from 'rxjs';
 import { NgIf } from '@angular/common';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -8,15 +8,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 
 import { MemberListItemComponent, SectionCardComponent } from '../features/section';
-import { User } from '../features/section';
+import { User } from '@shared/interfaces';
 import {
   SearchComponent,
   ToggleComponent,
-  CategoryHashtagCardComponent,
   CancelConfirmDialogComponent,
   InputDialogComponent,
   HeaderComponent,
 } from '@shared/ui';
+import { CategoryHashtagCardComponent } from '@shared/ui/category-hashtag-card/category-hashtag-card.component';
 
 @Component({
   selector: 'app-theme',

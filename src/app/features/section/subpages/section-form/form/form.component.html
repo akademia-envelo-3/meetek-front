@@ -2,7 +2,7 @@
   <div>
     <form [formGroup]="newSectionForm" (ngSubmit)="createSection()">
       <div class="input-wrapper">
-        <div>{{nameCounter}}</div>
+        <div>{{ nameCounter }}</div>
         <div class="input">
           <mat-form-field appearance="outline">
             <mat-label>Nazwa</mat-label>
@@ -15,9 +15,9 @@
               (keypress)="preventLongTitle($event)"
               (input)="letterCount = nameInput.value.length"
               required />
-              <div class="letter-counter">{{ letterCount }}/30</div>
-            <mat-error *ngIf="getErrorMessage('name')">{{ getErrorMessage('name') }}</mat-error>
+            <div class="letter-counter">{{ letterCount }}/30</div>
           </mat-form-field>
+          <app-error-message [control]="newSectionForm.get('name')!"></app-error-message>
         </div>
         <div class="input textarea">
           <mat-form-field appearance="outline">
@@ -36,8 +36,8 @@
               required>
             </textarea>
             <div class="letter-counter">{{ descriptionLetterCount }}/250</div>
-            <mat-error *ngIf="getErrorMessage('description')">{{ getErrorMessage('description') }}</mat-error>
           </mat-form-field>
+          <app-error-message [control]="newSectionForm.get('description')!"></app-error-message>
         </div>
         <div class="input">
           <mat-form-field class="chip-list" appearance="fill">

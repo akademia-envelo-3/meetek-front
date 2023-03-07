@@ -9,8 +9,10 @@ import { MatInputModule } from '@angular/material/input';
 import { Store } from '@ngrx/store';
 
 import { selectLoggedUser } from '@core/store/user.selectors';
-import { SectionActions, Organizer } from '../../../../section';
+import { SectionActions } from '../../../../section';
+import { Organizer } from '@shared/interfaces/section-form.interface';
 import { validateCharacters, validateNotNumbers } from '../../section-form';
+import { ErrorMessageComponent } from '@shared/validators';
 
 @Component({
   selector: 'app-form',
@@ -26,6 +28,7 @@ import { validateCharacters, validateNotNumbers } from '../../section-form';
     ReactiveFormsModule,
     FormsModule,
     MatChipsModule,
+    ErrorMessageComponent,
   ],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
@@ -68,60 +71,6 @@ export class FormComponent implements OnInit {
     if (this.newSectionForm.getRawValue().description.length >= 250) {
       event.preventDefault();
     }
-  }
-
-  getErrorMessage(formControlName: string) {
-    const control = this.newSectionForm.get(formControlName);
-    if (control?.hasError('required')) {
-      switch (formControlName) {
-        case 'name':
-          return 'Pole wymagane';
-        case 'description':
-          return 'Pole wymagane';
-      }
-    }
-    if (control?.hasError('minlength')) {
-      switch (formControlName) {
-        case 'name':
-          return 'Nazwa jest za krótka';
-        case 'description':
-          return 'Opis jest za krótki';
-      }
-    }
-    if (control?.hasError('maxlength')) {
-      switch (formControlName) {
-        case 'name':
-          return 'Maksymalna liczba znaków to 30';
-        case 'description':
-          return 'Maksymalna liczba znaków to 250';
-      }
-    }
-    if (control?.hasError('invalidCharacters')) {
-      switch (formControlName) {
-        case 'name':
-          return 'Nazwa zawiera niedozwolone znaki';
-        case 'description':
-          return 'Opis zawiera niedozwolone znaki';
-      }
-    }
-    if (control?.hasError('onlyNumbers')) {
-      switch (formControlName) {
-        case 'name':
-          return 'Nazwa nie może składać się tylko z cyfr';
-        case 'description':
-          return 'Opis nie może składać się tylko z cyfr';
-      }
-    }
-    if (control?.hasError('onlySpaces')) {
-      switch (formControlName) {
-        case 'name':
-          return 'Nieprawidłowa nazwa';
-        case 'description':
-          return 'Nieprawidłowy opis';
-      }
-    }
-
-    return '';
   }
 
   createSection() {

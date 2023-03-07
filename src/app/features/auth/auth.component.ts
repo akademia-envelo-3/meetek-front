@@ -3,8 +3,8 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { FormComponent } from './form/form.component';
-import { LoaderService } from '@shared/services';
-import { SpinnerComponent } from '@shared/ui';
+import { LoaderService } from '@shared/services/loader.state.service';
+import { SpinnerComponent } from '@shared/ui/spinner/spinner.component';
 
 @Component({
   selector: 'app-auth',
