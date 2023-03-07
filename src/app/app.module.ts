@@ -40,7 +40,7 @@ export interface AppState {
         path: '',
         children: [
           {
-            path: '',
+            path: APP_PATHS.HOME,
             loadChildren: () => import('./features/home/home.module'),
           },
           {

@@ -18,8 +18,8 @@ import { SpinnerComponent } from '@shared/ui';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
-  private menuService = inject(MenuService);
   private store = inject(Store);
+  private menuService = inject(MenuService);
   private loaderService = inject(LoaderService);
 
   isLoading$ = this.loaderService.isLoading$;
