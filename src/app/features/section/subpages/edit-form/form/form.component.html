@@ -15,8 +15,8 @@
               (input)="nameLetterCounter = nameInput.value.length"
               required />
             <div class="letter-counter">{{ nameLetterCounter }}/30</div>
-            <mat-error *ngIf="getErrorMessage('name') as message">{{ message }}</mat-error>
           </mat-form-field>
+          <app-error-message [control]="editSectionForm.get('name')!"></app-error-message>
         </div>
         <div class="input textarea">
           <mat-form-field appearance="outline">
@@ -35,8 +35,8 @@
               required>
             </textarea>
             <div class="letter-counter">{{ descriptionLetterCounter }}/250</div>
-            <mat-error *ngIf="getErrorMessage('description') as message">{{ message }}</mat-error>
           </mat-form-field>
+          <app-error-message [control]="editSectionForm.get('description')!"></app-error-message>
         </div>
         <div class="input">
           <mat-form-field class="chip-list" appearance="fill">
@@ -68,7 +68,9 @@
         </div>
       </div>
       <div class="button-wrapper">
-        <button mat-stroked-button color="warn" type="button" [routerLink]="['/' + HomePaths.SECTIONS.ALL]">Anuluj</button>
+        <button mat-stroked-button color="warn" type="button" [routerLink]="['/' + HomePaths.SECTIONS.ALL]">
+          Anuluj
+        </button>
         <button mat-raised-button type="submit" [disabled]="editSectionForm.invalid">zapisz</button>
       </div>
     </form>

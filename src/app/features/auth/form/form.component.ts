@@ -7,12 +7,23 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Store } from '@ngrx/store';
 
-import { emailValidator, whitespaceValidator, AuthResponse, AuthActions } from '../../auth';
+import { AuthResponse, AuthActions } from '../../auth';
+import { emailValidator, whitespaceValidator } from '@shared/validators';
+import { ErrorMessageComponent } from '@shared/validators';
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, NgIf, ReactiveFormsModule, FormsModule],
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    NgIf,
+    ReactiveFormsModule,
+    FormsModule,
+    ErrorMessageComponent,
+  ],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -42,32 +53,6 @@ export class FormComponent {
     });
 
     return form;
-  }
-
-  getErrorMessage(formControlName: string) {
-    const control = this.loginForm.get(formControlName);
-    if (control?.hasError('required')) {
-      switch (formControlName) {
-        case 'email':
-          return 'Pole wymagane';
-        case 'password':
-          return 'Pole wymagane';
-      }
-    }
-    if (control?.hasError('email') || control?.hasError('minlength') || control?.hasError('maxlength')) {
-      switch (formControlName) {
-        case 'email':
-          return 'Nieprawidłowy adres e-mail';
-      }
-    }
-    if (control?.hasError('whitespace') || control?.hasError('minlength') || control?.hasError('maxlength')) {
-      switch (formControlName) {
-        case 'password':
-          return 'Nieprawidłowe hasło';
-      }
-    }
-
-    return '';
   }
 
   togglePasswordVisibility() {

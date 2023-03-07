@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { DialogData } from '../index';
 import { whitespaceValidator } from '../validators/modal.validator';
+import { ErrorMessageComponent } from '@shared/validators';
 
 @Component({
   selector: 'app-category-dialog',
@@ -26,6 +27,7 @@ import { whitespaceValidator } from '../validators/modal.validator';
     ReactiveFormsModule,
     MatInputModule,
     NgIf,
+    ErrorMessageComponent,
   ],
   templateUrl: './input-dialog.component.html',
   styleUrls: ['./input-dialog.component.scss'],

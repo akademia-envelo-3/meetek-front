@@ -11,9 +11,11 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, map, switchMap, of } from 'rxjs';
 
-import { User, selectSectionDetails, selectAllUsers, SectionActions, sectionDetailsActions } from '../../../';
-import { validateCharacters, validateNotNumbers } from '../';
+import { selectSectionDetails, selectAllUsers, SectionActions, sectionDetailsActions } from '../../../';
+import { User } from '@shared/interfaces';
 import { HOME_PATHS } from 'src/app/features/home';
+import { ErrorMessageComponent } from '@shared/validators';
+import { validateCharacters, validateNotNumbers } from '@shared/validators';
 
 @Component({
   selector: 'app-form',
@@ -31,7 +33,8 @@ import { HOME_PATHS } from 'src/app/features/home';
     FormsModule,
     MatChipsModule,
     MatAutocompleteModule,
-    RouterModule
+    RouterModule,
+    ErrorMessageComponent,
   ],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
@@ -51,25 +54,6 @@ export class FormComponent implements OnInit {
   nameLetterCounter!: number;
   descriptionLetterCounter!: number;
 
-  errorsTree = {
-    name: {
-      required: 'Pole wymagane',
-      minlength: 'Nazwa jest za krótka',
-      maxlength: 'Maksymalna liczba znaków to 30',
-      invalidCharacters: 'Nazwa zawiera niedozwolone znaki',
-      onlyNumbers: 'Nazwa nie może składać się tylko z cyfr',
-      onlySpaces: 'Nieprawidłowa nazwa',
-    },
-    description: {
-      required: 'Pole wymagane',
-      minlength: 'Opis jest za krótki',
-      maxlength: 'Maksymalna liczba znaków to 250',
-      invalidCharacters: 'Opis zawiera niedozwolone znaki',
-      onlyNumbers: 'Opis nie może składać się tylko z cyfr',
-      onlySpaces: 'Nieprawidłowy opis',
-    },
-  };
-
   ngOnInit() {
     this.activeRoute.parent?.paramMap
       .pipe(
@@ -84,7 +68,7 @@ export class FormComponent implements OnInit {
       this.editSectionForm.patchValue(section);
       this.editedOwner = section.sectionOwner;
       this.nameLetterCounter = section.name.length;
-    this.descriptionLetterCounter = section.description.length;
+      this.descriptionLetterCounter = section.description.length;
     });
   }
 
@@ -122,36 +106,6 @@ export class FormComponent implements OnInit {
         })
       )
     );
-  }
-
-  getErrorMessage(formControlName: 'name' | 'description') {
-    const control = this.editSectionForm.get(formControlName);
-
-    if (control?.hasError('required')) {
-      return this.errorsTree[formControlName].required;
-    }
-
-    if (control?.hasError('minlength')) {
-      return this.errorsTree[formControlName].minlength;
-    }
-
-    if (control?.hasError('maxlength')) {
-      return this.errorsTree[formControlName].maxlength;
-    }
-
-    if (control?.hasError('invalidCharacters')) {
-      return this.errorsTree[formControlName].invalidCharacters;
-    }
-
-    if (control?.hasError('onlyNumbers')) {
-      return this.errorsTree[formControlName].onlyNumbers;
-    }
-
-    if (control?.hasError('onlySpaces')) {
-      return this.errorsTree[formControlName].onlySpaces;
-    }
-
-    return '';
   }
 
   editSection() {

@@ -6,8 +6,8 @@
         <mat-form-field appearance="outline">
           <mat-label>E-mail</mat-label>
           <input matInput placeholder="E-mail" type="email" formControlName="email" required />
-          <mat-error *ngIf="getErrorMessage('email')">{{ getErrorMessage('email') }}</mat-error>
         </mat-form-field>
+        <app-error-message [control]="loginForm.get('email')!"></app-error-message>
       </div>
       <div class="password-container">
         <mat-form-field appearance="outline">
@@ -27,8 +27,8 @@
             [disabled]="!this.loginForm.value.password">
             <mat-icon>remove_red_eye</mat-icon>
           </button>
-          <mat-error *ngIf="getErrorMessage('password')">{{ getErrorMessage('password') }}</mat-error>
         </mat-form-field>
+        <app-error-message [control]="loginForm.get('password')!"></app-error-message>
       </div>
     </div>
     <button mat-raised-button color="primary" [disabled]="loginForm.invalid">Zaloguj się</button>
